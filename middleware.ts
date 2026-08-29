@@ -2,14 +2,16 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  const host = (
+    request.headers.get("x-forwarded-host") ??
+    request.headers.get("host") ??
+    ""
+  ).toLowerCase();
+
   const { pathname } = request.nextUrl;
+  const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
 
-  // For public routes (homepage, products, search, etc.), return immediately without any redirects
   const isProtected = pathname.startsWith("/admin") || pathname.startsWith("/portal");
-
-  if (!isProtected) {
-    return NextResponse.next();
-  }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
@@ -36,14 +38,29 @@ export async function middleware(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (!user && !pathname.startsWith("/masuk")) {
-      const loginUrl = request.nextUrl.clone();
-      loginUrl.pathname = "/masuk";
-      loginUrl.searchParams.set("next", pathname);
-      return NextResponse.redirect(loginUrl);
+    // If accessing admin subdomain or protected route and not logged in, redirect to login page
+    if ((isProtected || isAdminDomain) && !user) {
+      if (
+        !pathname.startsWith("/masuk") &&
+        !pathname.startsWith("/auth") &&
+        !pathname.startsWith("/atur-sandi") &&
+        !pathname.startsWith("/lupa-sandi")
+      ) {
+        const loginUrl = request.nextUrl.clone();
+        loginUrl.pathname = "/masuk";
+        loginUrl.searchParams.set("next", "/admin");
+        return NextResponse.redirect(loginUrl);
+      }
     }
   } catch {
     // Edge runtime fallback
+  }
+
+  // If logged in on admin subdomain and accessing root "/", rewrite to /admin
+  if (isAdminDomain && pathname === "/") {
+    const adminUrl = request.nextUrl.clone();
+    adminUrl.pathname = "/admin";
+    return NextResponse.rewrite(adminUrl);
   }
 
   return response;
