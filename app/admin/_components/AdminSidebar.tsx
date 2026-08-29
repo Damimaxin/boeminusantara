@@ -8,6 +8,7 @@ type NavItem = { href: string; label: string; exact?: boolean; owner?: boolean }
 const NAV: NavItem[] = [
   { href: "/admin", label: "Dashboard", exact: true },
   { href: "/admin/produk", label: "Produk" },
+  { href: "/admin/kategori", label: "Kategori & Sub-kategori" },
   { href: "/admin/stok", label: "Stok" },
   { href: "/admin/pesanan", label: "Pesanan" },
   { href: "/admin/penawaran", label: "Penawaran" },
@@ -20,9 +21,6 @@ const NAV: NavItem[] = [
   { href: "/admin/perusahaan", label: "Identitas Perusahaan" },
   { href: "/admin/panduan", label: "Panduan" },
   { href: "/admin/pengaturan", label: "Pengaturan" },
-  // Ruang Pemilik SENGAJA tidak ada di menu — pintu tak terlihat, dibuka lewat
-  // alamat langsung /admin/pemilik. Gerbangnya tetap dijaga server-side, jadi
-  // hanya pemilik yang bisa masuk walau alamatnya ditebak.
 ];
 
 export function AdminSidebar({ isOwner = false }: { isOwner?: boolean }) {
