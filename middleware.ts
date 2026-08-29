@@ -1,6 +1,9 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.FzUsEGbikAoTWQRz-_ikcKyXQuniMPwRXhzlweXU7aM";
+
 export async function middleware(request: NextRequest) {
   const host = (
     request.headers.get("x-forwarded-host") ??
@@ -12,22 +15,38 @@ export async function middleware(request: NextRequest) {
   const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
   const isMainDomain = !isAdminDomain;
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.FzUsEGbikAoTWQRz-_ikcKyXQuniMPwRXhzlweXU7aM";
+  // Skip auth check for non-protected paths on main domain
+  const isAdminPath = pathname.startsWith("/admin");
+  const isPortalPath = pathname.startsWith("/portal");
+  const isAuthPath =
+    pathname.startsWith("/masuk") ||
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/atur-sandi") ||
+    pathname.startsWith("/lupa-sandi") ||
+    pathname.startsWith("/daftar");
 
-  let response = NextResponse.next({ request });
-
-  // On main domain (boeminusantara.com), redirect /masuk to admin subdomain
-  // Portal Klien stays at /portal but uses admin subdomain for login
+  // On main domain: redirect /masuk to admin subdomain
   if (isMainDomain && pathname.startsWith("/masuk")) {
-    const adminLoginUrl = new URL(request.url);
-    adminLoginUrl.host = `admin.${adminLoginUrl.host.replace(/^www\./, "")}`;
-    adminLoginUrl.pathname = "/masuk";
-    return NextResponse.redirect(adminLoginUrl);
+    const adminUrl = new URL(request.url);
+    const mainHost = adminUrl.hostname.replace(/^www\./, "");
+    adminUrl.hostname = `admin.${mainHost}`;
+    adminUrl.pathname = "/masuk";
+    return NextResponse.redirect(adminUrl);
   }
 
+  // Only run Supabase auth check when actually needed
+  const needsAuthCheck =
+    isAdminDomain || isAdminPath || isPortalPath;
+
+  if (!needsAuthCheck) {
+    return NextResponse.next({ request });
+  }
+
+  let response = NextResponse.next({ request });
+  let hasSession = false;
+
   try {
-    const supabase = createServerClient(supabaseUrl, supabaseKey, {
+    const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -42,46 +61,34 @@ export async function middleware(request: NextRequest) {
       },
     });
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    // Admin subdomain: redirect unauthenticated users to login
-    if (isAdminDomain && !user) {
-      if (
-        !pathname.startsWith("/masuk") &&
-        !pathname.startsWith("/auth") &&
-        !pathname.startsWith("/atur-sandi") &&
-        !pathname.startsWith("/lupa-sandi")
-      ) {
-        const loginUrl = request.nextUrl.clone();
-        loginUrl.pathname = "/masuk";
-        loginUrl.searchParams.set("next", "/admin");
-        return NextResponse.redirect(loginUrl);
-      }
-    }
-
-    // Portal Klien (/portal): redirect unauthenticated users to admin subdomain login
-    if (isMainDomain && pathname.startsWith("/portal") && !user) {
-      if (
-        !pathname.startsWith("/masuk") &&
-        !pathname.startsWith("/auth") &&
-        !pathname.startsWith("/atur-sandi") &&
-        !pathname.startsWith("/lupa-sandi")
-      ) {
-        const adminLoginUrl = request.nextUrl.clone();
-        adminLoginUrl.host = `admin.${adminLoginUrl.host.replace(/^www\./, "")}`;
-        adminLoginUrl.pathname = "/masuk";
-        adminLoginUrl.searchParams.set("next", "/portal");
-        return NextResponse.redirect(adminLoginUrl);
-      }
-    }
+    // Use getSession() — reads from cookie, no network round-trip, fast on Edge
+    const { data: { session } } = await supabase.auth.getSession();
+    hasSession = !!session;
   } catch {
-    // Edge runtime fallback
+    // If auth check fails, fail open for main domain, fail closed for admin
+    hasSession = isMainDomain;
   }
 
-  // If logged in on admin subdomain and accessing root "/", rewrite to /admin
-  if (isAdminDomain && pathname === "/") {
+  // Admin subdomain: redirect unauthenticated to login
+  if (isAdminDomain && !hasSession && !isAuthPath) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/masuk";
+    loginUrl.searchParams.set("next", "/admin");
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // Portal Klien on main domain: redirect unauthenticated to admin login
+  if (isMainDomain && isPortalPath && !hasSession) {
+    const adminLoginUrl = request.nextUrl.clone();
+    const mainHost = adminLoginUrl.hostname.replace(/^www\./, "");
+    adminLoginUrl.hostname = `admin.${mainHost}`;
+    adminLoginUrl.pathname = "/masuk";
+    adminLoginUrl.searchParams.set("next", "/portal");
+    return NextResponse.redirect(adminLoginUrl);
+  }
+
+  // Admin subdomain root "/" → rewrite to /admin
+  if (isAdminDomain && pathname === "/" && hasSession) {
     const adminUrl = request.nextUrl.clone();
     adminUrl.pathname = "/admin";
     return NextResponse.rewrite(adminUrl);
