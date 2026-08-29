@@ -10,7 +10,7 @@ import { getAdminSupabase } from "@/lib/admin/supabase-admin";
  * - Supabase belum diset → tidak ada session yang bisa diverifikasi → tolak.
  */
 
-const DEFAULT_OWNERS = ["russelltworks@gmail.com"];
+const DEFAULT_OWNERS = ["russelltworks@gmail.com", "maulanabagas173@gmail.com"];
 
 /**
  * Admin PEMILIK / Admin Pusat dari env ADMIN_EMAILS & default. Tidak bisa dihapus lewat panel —
