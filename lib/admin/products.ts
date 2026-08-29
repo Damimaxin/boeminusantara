@@ -19,6 +19,8 @@ type Row = {
   stock: number;
   image: string | null;
   active: boolean;
+  sku?: string;
+  brand?: string;
 };
 
 const fromRow = (r: Row): Product => ({
@@ -31,6 +33,8 @@ const fromRow = (r: Row): Product => ({
   stock: r.stock,
   image: r.image,
   active: r.active,
+  sku: r.sku,
+  brand: r.brand,
 });
 
 export type AdminProductInput = {
@@ -42,6 +46,8 @@ export type AdminProductInput = {
   stock: number;
   image: string | null;
   active: boolean;
+  sku?: string;
+  brand?: string;
 };
 
 /** Semua produk (aktif + non-aktif) untuk tabel admin. */
