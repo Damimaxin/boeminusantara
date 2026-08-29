@@ -70,12 +70,7 @@ export default function Header() {
           >
             Portal Klien
           </Link>
-          <Link
-            href="/masuk"
-            className="hidden min-h-11 items-center rounded-[var(--radius-card)] px-3 text-[var(--color-ink-soft)] transition hover:text-[var(--color-navy)] sm:inline-flex"
-          >
-            Masuk
-          </Link>
+
           <QuoteNavButton />
           <CartNavButton />
         </nav>

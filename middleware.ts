@@ -10,13 +10,21 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
   const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
-
-  const isProtected = pathname.startsWith("/admin") || pathname.startsWith("/portal");
+  const isMainDomain = !isAdminDomain;
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
 
   let response = NextResponse.next({ request });
+
+  // On main domain (boeminusantara.com), redirect /masuk to admin subdomain
+  // Portal Klien stays at /portal but uses admin subdomain for login
+  if (isMainDomain && pathname.startsWith("/masuk")) {
+    const adminLoginUrl = new URL(request.url);
+    adminLoginUrl.host = `admin.${adminLoginUrl.host.replace(/^www\./, "")}`;
+    adminLoginUrl.pathname = "/masuk";
+    return NextResponse.redirect(adminLoginUrl);
+  }
 
   try {
     const supabase = createServerClient(supabaseUrl, supabaseKey, {
@@ -38,8 +46,8 @@ export async function middleware(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // If accessing admin subdomain or protected route and not logged in, redirect to login page
-    if ((isProtected || isAdminDomain) && !user) {
+    // Admin subdomain: redirect unauthenticated users to login
+    if (isAdminDomain && !user) {
       if (
         !pathname.startsWith("/masuk") &&
         !pathname.startsWith("/auth") &&
@@ -50,6 +58,22 @@ export async function middleware(request: NextRequest) {
         loginUrl.pathname = "/masuk";
         loginUrl.searchParams.set("next", "/admin");
         return NextResponse.redirect(loginUrl);
+      }
+    }
+
+    // Portal Klien (/portal): redirect unauthenticated users to admin subdomain login
+    if (isMainDomain && pathname.startsWith("/portal") && !user) {
+      if (
+        !pathname.startsWith("/masuk") &&
+        !pathname.startsWith("/auth") &&
+        !pathname.startsWith("/atur-sandi") &&
+        !pathname.startsWith("/lupa-sandi")
+      ) {
+        const adminLoginUrl = request.nextUrl.clone();
+        adminLoginUrl.host = `admin.${adminLoginUrl.host.replace(/^www\./, "")}`;
+        adminLoginUrl.pathname = "/masuk";
+        adminLoginUrl.searchParams.set("next", "/portal");
+        return NextResponse.redirect(adminLoginUrl);
       }
     }
   } catch {
