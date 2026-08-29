@@ -5,13 +5,14 @@ export type Category = {
 };
 
 export const CATEGORIES: Category[] = [
-  { slug: "tkro", name: "Teknik Kendaraan Ringan (TKRO)" },
+  { slug: "tkro", name: "Teknik Kendaraan Ringan Otomotif (TKRO)" },
   { slug: "titl", name: "Teknik Instalasi Tenaga Listrik (TITL)" },
   { slug: "toi", name: "Teknik Otomasi Industri (TOI)" },
-  { slug: "tav", name: "Teknik Audio Video (TAV)" },
+  { slug: "audio-video", name: "Teknik Audio Video (TAV)" },
   { slug: "tsm", name: "Teknik Sepeda Motor (TSM)" },
-  { slug: "tp", name: "Teknik Pemesinan & Pengelasan (TP / Daiden)" },
-  { slug: "k3", name: "Keselamatan Kerja & APD (K3 / 3M)" },
+  { slug: "pemesinan", name: "Teknik Pemesinan (TP)" },
+  { slug: "las-fabrikasi", name: "Teknik Pengelasan & Daiden Japan" },
+  { slug: "k3-safety", name: "Keselamatan Kerja & APD (K3 / 3M)" },
 ];
 
 export function categoryName(slug: string): string {
