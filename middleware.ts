@@ -1,69 +1,64 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-function internalGate(request: NextRequest): NextResponse | null {
+export async function middleware(request: NextRequest) {
   const host = (
     request.headers.get("x-forwarded-host") ??
     request.headers.get("host") ??
     ""
   ).toLowerCase();
-  if (!host.startsWith("internal.")) return null;
 
-  const p = request.nextUrl.pathname;
-  const boleh =
-    p.startsWith("/admin") ||
-    p.startsWith("/dokumen") ||
-    p.startsWith("/masuk") ||
-    p.startsWith("/auth") ||
-    p.startsWith("/atur-sandi") ||
-    p.startsWith("/lupa-sandi") ||
-    p.startsWith("/_next") ||
-    p === "/favicon.ico";
+  const url = request.nextUrl.clone();
+  const { pathname } = url;
 
-  if (boleh) return null;
+  // 1. Subdomain Check: admin.boeminusantara.com or admin.localhost or internal.
+  const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
 
-  const ke = request.nextUrl.clone();
-  ke.pathname = "/admin";
-  ke.search = "";
-  return NextResponse.redirect(ke);
-}
+  if (isAdminDomain) {
+    // If accessing root of admin domain, rewrite to /admin internally
+    if (pathname === "/") {
+      url.pathname = "/admin";
+      return NextResponse.rewrite(url);
+    }
+    // If path is not already under /admin, /masuk, /auth, etc., map it under /admin
+    if (
+      !pathname.startsWith("/admin") &&
+      !pathname.startsWith("/masuk") &&
+      !pathname.startsWith("/auth") &&
+      !pathname.startsWith("/atur-sandi") &&
+      !pathname.startsWith("/lupa-sandi") &&
+      !pathname.startsWith("/_next") &&
+      !pathname.startsWith("/api") &&
+      !pathname.includes(".")
+    ) {
+      url.pathname = `/admin${pathname}`;
+      return NextResponse.rewrite(url);
+    }
+  } else {
+    // Main domain (boeminusantara.com): Redirect /admin access to admin.boeminusantara.com
+    if (pathname.startsWith("/admin") && host.includes("boeminusantara.com")) {
+      const adminUrl = new URL(`https://admin.boeminusantara.com${pathname}${url.search}`);
+      return NextResponse.redirect(adminUrl);
+    }
+  }
 
-export async function middleware(request: NextRequest) {
-  const gerbangInternal = internalGate(request);
-  if (gerbangInternal) return gerbangInternal;
-
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
+  // 2. Supabase Auth Check for /admin and /portal
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
 
   let supabaseResponse = NextResponse.next({ request });
 
-  if (!url || !key) {
-    if (
-      request.nextUrl.pathname.startsWith("/admin") ||
-      request.nextUrl.pathname.startsWith("/portal")
-    ) {
-      return new NextResponse("Admin dinonaktifkan: autentikasi belum dikonfigurasi.", {
-        status: 503,
-      });
-    }
-    return supabaseResponse;
-  }
-
   try {
-    const supabase = createServerClient(url, key, {
+    const supabase = createServerClient(supabaseUrl, supabaseKey, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(
-          cookiesToSet: { name: string; value: string; options: CookieOptions }[],
-        ) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           supabaseResponse = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
+            supabaseResponse.cookies.set(name, value, options)
           );
         },
       },
