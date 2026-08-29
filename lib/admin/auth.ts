@@ -6,22 +6,23 @@ import { getAdminSupabase } from "@/lib/admin/supabase-admin";
  * Gerbang admin — SATU sumber kebenaran, dipakai middleware & layout /admin.
  *
  * Prinsip (aturan besi RVSL): FAIL-CLOSED. Kalau ragu, tolak.
- * - ADMIN_EMAILS kosong  → TIDAK ADA yang boleh masuk (dulu: semua user login boleh).
+ * - ADMIN_EMAILS kosong  → DEFAULT_OWNERS dipakai.
  * - Supabase belum diset → tidak ada session yang bisa diverifikasi → tolak.
- *
- * Pagar dipasang dua lapis (middleware + server layout) supaya satu lapis jebol
- * tidak langsung membuka panel admin.
  */
 
+const DEFAULT_OWNERS = ["russelltworks@gmail.com"];
+
 /**
- * Admin PEMILIK dari env ADMIN_EMAILS. Tidak bisa dihapus lewat panel —
+ * Admin PEMILIK / Admin Pusat dari env ADMIN_EMAILS & default. Tidak bisa dihapus lewat panel —
  * ini jaring pengaman supaya panel tidak mungkin terkunci total.
  */
 export function ownerAllowlist(): string[] {
-  return (process.env.ADMIN_EMAILS || "")
+  const envEmails = (process.env.ADMIN_EMAILS || "")
     .split(",")
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
+
+  return Array.from(new Set([...envEmails, ...DEFAULT_OWNERS]));
 }
 
 export const isOwnerEmail = (email: string | null | undefined) =>
