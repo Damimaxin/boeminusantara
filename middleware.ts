@@ -8,39 +8,22 @@ export async function middleware(request: NextRequest) {
     ""
   ).toLowerCase();
 
-  const url = request.nextUrl.clone();
-  const { pathname } = url;
+  const { pathname } = request.nextUrl;
 
-  // 1. Dual Domain Routing: Support both boeminusantara.com and admin.boeminusantara.com
-  const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
+  // 1. Subdomain Rewrite: admin.boeminusantara.com/ -> /admin internally
+  const isAdminSubdomain = host.startsWith("admin.") || host.startsWith("internal.");
 
-  if (isAdminDomain) {
-    // If accessing root of admin domain, rewrite to /admin internally
-    if (pathname === "/") {
-      url.pathname = "/admin";
-      return NextResponse.rewrite(url);
-    }
-    // If path is not already under /admin, /masuk, /auth, etc., map it under /admin
-    if (
-      !pathname.startsWith("/admin") &&
-      !pathname.startsWith("/masuk") &&
-      !pathname.startsWith("/auth") &&
-      !pathname.startsWith("/atur-sandi") &&
-      !pathname.startsWith("/lupa-sandi") &&
-      !pathname.startsWith("/_next") &&
-      !pathname.startsWith("/api") &&
-      !pathname.includes(".")
-    ) {
-      url.pathname = `/admin${pathname}`;
-      return NextResponse.rewrite(url);
-    }
+  if (isAdminSubdomain && pathname === "/") {
+    const adminUrl = request.nextUrl.clone();
+    adminUrl.pathname = "/admin";
+    return NextResponse.rewrite(adminUrl);
   }
 
-  // 2. Supabase Auth Check for /admin and /portal across all domains
+  // 2. Supabase Auth Guard for /admin and /portal
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
 
-  let supabaseResponse = NextResponse.next({ request });
+  let response = NextResponse.next({ request });
 
   try {
     const supabase = createServerClient(supabaseUrl, supabaseKey, {
@@ -50,9 +33,9 @@ export async function middleware(request: NextRequest) {
         },
         setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          supabaseResponse = NextResponse.next({ request });
+          response = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
+            response.cookies.set(name, value, options)
           );
         },
       },
@@ -62,22 +45,21 @@ export async function middleware(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (
-      request.nextUrl.pathname.startsWith("/admin") ||
-      request.nextUrl.pathname.startsWith("/portal")
-    ) {
-      if (!user) {
+    const isProtected = pathname.startsWith("/admin") || pathname.startsWith("/portal");
+
+    if (isProtected && !user) {
+      if (!pathname.startsWith("/masuk")) {
         const loginUrl = request.nextUrl.clone();
         loginUrl.pathname = "/masuk";
-        loginUrl.searchParams.set("next", request.nextUrl.pathname);
+        loginUrl.searchParams.set("next", pathname);
         return NextResponse.redirect(loginUrl);
       }
     }
   } catch {
-    // Edge runtime fallback
+    // Fallback for auth
   }
 
-  return supabaseResponse;
+  return response;
 }
 
 export const config = {
