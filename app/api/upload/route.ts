@@ -1,0 +1,67 @@
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
+const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjU3MzUzNywiZXhwIjoyMTAyMTQ5NTM3fQ.QC4FL6VIDquyCysv5y7Qlu8v1ZGvPA4cwIcgHpx-z90";
+
+export async function POST(request: Request) {
+  try {
+    const formData = await request.formData();
+    const file = formData.get("file") as File | null;
+
+    if (!file) {
+      return NextResponse.json({ error: "File tidak ditemukan." }, { status: 400 });
+    }
+
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Sanitize filename
+    const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+    const filename = `uploads/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+    const supabase = createClient(SUPABASE_URL, SERVICE_KEY, {
+      auth: { persistSession: false },
+    });
+
+    const { data, error } = await supabase.storage
+      .from("products")
+      .upload(filename, buffer, {
+        contentType: file.type || "image/jpeg",
+        upsert: true,
+      });
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Get public URL
+    const { data: publicUrlData } = supabase.storage
+      .from("products")
+      .getPublicUrl(data.path);
+
+    const publicUrl = publicUrlData.publicUrl;
+
+    // Optionally fetch TinyURL
+    let tinyUrl = publicUrl;
+    try {
+      const tinyRes = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(publicUrl)}`);
+      if (tinyRes.ok) {
+        const text = await tinyRes.text();
+        if (text.startsWith("http")) {
+          tinyUrl = text.trim();
+        }
+      }
+    } catch {
+      // Fallback to publicUrl if tinyurl service unavailable
+    }
+
+    return NextResponse.json({
+      url: publicUrl,
+      tinyUrl: tinyUrl,
+      filename: file.name,
+    });
+  } catch (e) {
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+  }
+}

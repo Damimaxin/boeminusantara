@@ -10,10 +10,6 @@ import {
 import { checkAdmin } from "@/lib/admin/auth";
 import { recordAudit } from "@/lib/audit";
 
-/**
- * Server Action bisa dipanggil langsung lewat HTTP — jadi tiap action
- * memeriksa admin sendiri, tidak menumpang pagar layout.
- */
 async function requireAdmin() {
   const gate = await checkAdmin();
   if (!gate.ok) redirect("/masuk?next=/admin/produk");
@@ -43,11 +39,17 @@ function parseForm(formData: FormData): {
   const name = String(formData.get("name") ?? "").trim();
   const slugRaw = String(formData.get("slug") ?? "").trim();
   const category = String(formData.get("category") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
+  let description = String(formData.get("description") ?? "").trim();
   const priceRaw = String(formData.get("price") ?? "").trim();
   const stockRaw = String(formData.get("stock") ?? "").trim();
   const image = String(formData.get("image") ?? "").trim();
   const active = formData.get("active") === "on";
+
+  const sku = String(formData.get("sku") ?? "").trim();
+  const brand = String(formData.get("brand") ?? "").trim();
+  const standard = String(formData.get("standard") ?? "").trim();
+  const dimensions = String(formData.get("dimensions") ?? "").trim();
+  const weight = String(formData.get("weight") ?? "").trim();
 
   const fieldErrors: Record<string, string> = {};
   if (!name) fieldErrors.name = "Nama wajib diisi.";
@@ -63,16 +65,52 @@ function parseForm(formData: FormData): {
 
   if (Object.keys(fieldErrors).length > 0) return { fieldErrors };
 
+  // Combine structured meta into description if provided and not already present
+  const metaParts: string[] = [];
+  if (brand && !description.toLowerCase().includes("merk:")) {
+    metaParts.push(`Merk: ${brand}`);
+  }
+  if (standard && !description.toLowerCase().includes("standar:")) {
+    metaParts.push(`Standar: ${standard}`);
+  }
+  if (sku && !description.toLowerCase().includes("sku:")) {
+    metaParts.push(`SKU: ${sku}`);
+  }
+
+  const dimParts: string[] = [];
+  if (dimensions && !description.toLowerCase().includes("dimensi")) {
+    dimParts.push(`Dimensi: ${dimensions}`);
+  }
+  if (weight && !description.toLowerCase().includes("bobot") && !description.toLowerCase().includes("berat")) {
+    dimParts.push(`Bobot: ${weight}`);
+  }
+
+  let finalDescription = description;
+  if (metaParts.length > 0) {
+    const metaHeader = metaParts.join(" | ");
+    if (!finalDescription.startsWith("Merk:") && !finalDescription.startsWith("Standar:")) {
+      finalDescription = `${metaHeader}\n\n${finalDescription}`.trim();
+    }
+  }
+  if (dimParts.length > 0) {
+    const dimHeader = dimParts.join(" | ");
+    if (!finalDescription.includes("Dimensi")) {
+      finalDescription = `${finalDescription}\n\n${dimHeader}`.trim();
+    }
+  }
+
   return {
     input: {
       name,
       slug: slugRaw ? slugify(slugRaw) : slugify(name),
       category,
-      description,
+      description: finalDescription,
       price: Math.round(price),
       stock,
       image: image || null,
       active,
+      sku: sku || undefined,
+      brand: brand || undefined,
     },
   };
 }
