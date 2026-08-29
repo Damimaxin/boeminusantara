@@ -2850,8 +2850,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 132000000,
     "description": "Spesifikasi :\nMesin Bensin yang dapat digunakan dalam pembelajaran over haul mesin, sistem bahan bakar, sistem pendingin dan sebagainya, sebagai penunjang pembellajaran teori dan praktik",
-    "image": "/produk/dudukan-mesin-bensin-mesin-hidup-petrol-engine-stand-life-en-1.png",
-    "inStock": true
+    "image": "/produk/dudukan-mesin-bensin-mesin-hidup-petrol-engine-stand-life-en-1.png"
   },
   {
     "id": "tkro-2",
@@ -2860,8 +2859,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 150000000,
     "description": "Minimum Configuration : \n- Composition \n- Diesel Engine Assembly, approx. 2,000 \u2013 3,000 cc \n- Transmission Unit \n- Ignition related by compression \n- Fuel system DC 12V Car Battery and Alternator \n- Cooling System \n- Exhaust System \n- Ignition Switch Key S/W\n- Control box, fuel tank \n- Molding type safety guard is installed \n- Fuel Pressure Gauge \n- Battery Voltage Gauge",
-    "image": "/produk/penyangga-mesin-diesel-mesin-hidup-diesel-engine-stand-life--2.png",
-    "inStock": true
+    "image": "/produk/penyangga-mesin-diesel-mesin-hidup-diesel-engine-stand-life--2.png"
   },
   {
     "id": "tkro-3",
@@ -2870,8 +2868,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 67553750,
     "description": "Parameters :\nOperation System : Android\nDisplay : 7.0 inches\nBattery Capacity : 4000mAh\nCommunication : WiFi / Main Test Cable\nROM : 16 Gb\nRAM : 1 Gb\nCPU : Quad-core 1.6GHz Processor\nAudio Input/Output : Microphone, Dual Speakers, 4-Band 3.5 mm stereo/standard headset jack\nDimension : 218 x 150 x 29 mm\nResolution : 1024 x 600",
-    "image": "/produk/pemindai-otomotif-alat-diagnostik-automotive-scanner-diagno--3.png",
-    "inStock": true
+    "image": "/produk/pemindai-otomotif-alat-diagnostik-automotive-scanner-diagno--3.png"
   },
   {
     "id": "tkro-4",
@@ -2880,8 +2877,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 91000000,
     "description": "Specifications :\nMeasuring gas : CO, HC, CO2, O2, Lamda (Air surplus rate), AFR, NOX (5gas)\nSensor Theory : CO, HC, CO2, Non-Dispersive Infrared Analysis (NDIR), O2, NOX : Electrochemical Cell\n\nCO-H-C-CO2\nMeasuring range : 0 - 10 percents, 0 - 9999 ppm, 0 - 20 percents\nResolution : 0.01 percents, 1 ppm 0.10 percents\n\nO2-AFR-NOX\nMeasuring range : 0 - 25 percents, 0 - 2000 ppm, 0 - 99, 0 - 5000 ppm\nResolution : 0.01 percents, 0.0010, 11ppm\nDisplay : 4 digit 7 segment LED \nRepetition Rate : Less than 2 percents FS\nResponse time : Within 10 seconds \nPreheat Time : Approx. 2 - 8 minutes \nFlow rate : 4 - 6 L/min  \nPower : 110V- 220V +- 10 percents, 50/60 Hz \nPower consumption : Approx. 50 W\nOperation Temp : 0 - 40 Celcius\nDimensions : 420 x 298 x 180 mm \nPacking Size : 530 x 400 x 350 mm\nWeight (Net/Gross) : 6.9 kg  / 12.5 kg\nStandard Accessories (KEG-500) : Probe, Probe hose, Fuse, Leak test cap, Spare filter, Power cord, RS232, Built-in Printer, Printer paper, Communication cable \nOptions : RPM and oil temperature meter  \nBuilt-in printer for KEG-200",
-    "image": "/produk/gasoline-emission-analyzer-4.png",
-    "inStock": true
+    "image": "/produk/gasoline-emission-analyzer-4.png"
   },
   {
     "id": "tkro-5",
@@ -2890,8 +2886,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 178750000,
     "description": "Untuk menganalisa dan mengetahui hasil dari pembakaran pada engine diesel Measuring items Smoke opacity (%, k [m-1]) Shell length : approx. 215mm Power 220 V /50 Hz",
-    "image": "/produk/diesel-smokemeter-5.png",
-    "inStock": true
+    "image": "/produk/diesel-smokemeter-5.png"
   },
   {
     "id": "tkro-6",
@@ -2900,8 +2895,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 23716875,
     "description": "Untuk mensuplai angin bagi peralatan yang membutuhkan angin bertekanan.\nKompressor Angin 3 HP",
-    "image": "/produk/kompresor-udara-air-compressor-6.png",
-    "inStock": true
+    "image": "/produk/kompresor-udara-air-compressor-6.png"
   },
   {
     "id": "tkro-7",
@@ -2910,8 +2904,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 95000000,
     "description": "Gasoline Fuel Injection Control System With Auto Fault\nUntuk mempelajari kinerja sistem injeksi elektronik pada engine bensin dilengkapi dengan simulasi deteksinkegagalan sistem.",
-    "image": "/produk/gasoline-fuel-injection-control-system-with-auto-fault-7.png",
-    "inStock": true
+    "image": "/produk/gasoline-fuel-injection-control-system-with-auto-fault-7.png"
   },
   {
     "id": "tkro-8",
@@ -2920,8 +2913,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 47987500,
     "description": "Injector Cleaner Tester And Analyzer\nUntuk mendiagnosa banyaknya, bentuk semprotan dari injector bensin, sekaligus membersihkan dari endapan karbon.",
-    "image": "/produk/penguji-dan-penganalisis-pembersih-injektor-injector-cleaner-8.png",
-    "inStock": true
+    "image": "/produk/penguji-dan-penganalisis-pembersih-injektor-injector-cleaner-8.png"
   },
   {
     "id": "tkro-9",
@@ -2930,8 +2922,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 105000000,
     "description": "Automotive Sensor Measuring System\nUntuk mempelajari sensor-sensor yang terintregasi dengan EMS, sehingga sejauh mana sensor bekerja/tidak dapat terekam oleh sistem EMS.",
-    "image": "/produk/automotive-sensor-measuring-system-9.png",
-    "inStock": true
+    "image": "/produk/automotive-sensor-measuring-system-9.png"
   },
   {
     "id": "tkro-10",
@@ -2940,8 +2931,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 273550000,
     "description": "Composition \n- CRDI Diesel engine injection \n- Includes all components used in the CRDI injection \n- Displays diesel injection circuit \n- Power supply : DC12V\n- Indicator Fault sensor \n- Stand with wheel \n- Auto Fault Function",
-    "image": "/produk/gasoline-fuel-injection-control-system-with-auto-fault-7.png",
-    "inStock": true
+    "image": "/produk/gasoline-fuel-injection-control-system-with-auto-fault-7.png"
   },
   {
     "id": "tkro-11",
@@ -2950,8 +2940,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 348838000,
     "description": "Technical parameters : \n1. Motor power: approx. 7.5KW \n2. Electronic power: 3 phase 380V or 1 phase 220V \n3. Motor speed: 0-3000 RPM \n4. Presure adjustment: 0-2000bar \n5. Flow testing range: 0- 600ml/approx. 1000 times \n6. Flow measurement accuracy: approx. 0.1ml \n7 . Cooling system: fan or forced cooling",
-    "image": "/produk/commonrail-diesel-test-bench-11.png",
-    "inStock": true
+    "image": "/produk/commonrail-diesel-test-bench-11.png"
   },
   {
     "id": "tkro-12",
@@ -2960,8 +2949,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 25750000,
     "description": "Untuk membantu bongkar pasang engine, baik melepas baut maupun mengendurkan baut, dll.\n7 Drawers Cabinet\nSocket : 8, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 27, 30, 32 mm, flex handle approx. 15 inch Extension Bar approx. 5 inch and approx. 10 inch, Universal Joint, Bent Handle Ratchet, Sliding T-Bar approx. 10 inch, Adaptor approx. 1/2 x 3/8M, 1/2 x 1/4M, Sparkplug Socket 16 mm, 21 mm\nBall Head Hexkey - Extralong Type : 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10\nCentral Holed Torx Key Set - Fully Polished and Satin Plated : T10,T15, T20,T25,T27,T30,T40,T45,T50\nScrewdriver Twistop : (-) 1.2 x 6-150L, (+) PH2-150\n71 pcs Bit Socket Set\nCombination Wrench : 6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,32 mm\nDouble size flexible socket wrench : 8 x 10, 10 x 12, 12 x 14, 14 x 17, 17 x 19 mm\n1/2 inch drive E-socket : E10, E12, E14, E16, E18, E20\nCombination Plier 8 inch, Diagonal Cutting Plier 7 inch, Slip-Joint Jaw Plier 8 inch, Long Nose Plier 8 inch, Water Pump Plier 10inc, Ball Peen Hammer with Wooden Shaft\n5 pcs Chisel and Punch Set, Adjustable Wrench, Curved Jaw Locking Plier 10 inch",
-    "image": "/produk/standar-mechanical-tool-set-12.png",
-    "inStock": true
+    "image": "/produk/standar-mechanical-tool-set-12.png"
   },
   {
     "id": "tkro-13",
@@ -2970,8 +2958,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 26000000,
     "description": "Untuk membantu bongkar pasang engine, baik melepas baut maupun mengendurkan baut, dll.\n7 drawers cabinet.\nDrawer 1 contains of :\n- Combination Wrenches 15 degrees Offset Ring Set (16pcs): 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 22, 24 mm\n- Double Hinged Socket Wrenches Set (7pcs): 8x9, 10x11, 12x13, 14x15, 16x17, 18x19, 20x22 mm\n- Flare Nut Wrenches Set (6pcs): 8x10, 10x12, 11x13, 12x14, 17x19, 19x22 mm\n- 1/2 inch Bit Socket Set (13pcs)\n\nDrawer 2 contains of :\n- Pliers Set (4pcs): Combination Pliers 180mm, Long Nose Pliers 200mm, Bent Nose Pliers 200mm, Heavy Duty Diagonal Cutting Nippers 180mm\n- Double Ended Angled Socket Wrenches Set (11pcs): 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 mm\n- Double Open End Wrenches Set (11pcs): 6x7, 8x9, 10x11, 12x13, 14x15, 16x17, 18x19, 20x22, 21x23, 24x27, 30x32 mm\nDrawer 3 contains of :\n- Circlip Pliers Set (4pcs): External Straight Nose 180 mm, External Bent Nose 185 mm, Internal Straight Nose 170 mm, Internal Bent Nose 170 mm\n- Torks Screwdriver Set (10pcs): 6, 7, 8, 9, 10, 15, 20, 25, 27, 30\n- 1/2 inch Socket Set (26pcs): Sockets, 6-Point: 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 30, 32, 34 mm\n- Ratchet Handle 36T\n- Extension Bars: 150, 250 mm\n- Sliding T Bar 300 mm\n- Universal Joint, 78mm\n\nDrawer 4 contains of :\n- Tool Set (3 pcs) : Adjustable Wrench 250mm, Water Pump Pliers 250mm, Curved Jaw Locking Pliers 224mm.\n- Hammer File Set (12 pcs) : Flat Chisel (19, 25 mm), Cross Cut Chisel 5mm , Pin Punches (2, 3, 4, 5, 6 mm), Taper Punch 6 mm, Center Punch 6 mm, Riveting Hammer 30 mm, Interchangeable-tip Mallets 32 mm\n- Measuring Tools Set (10 pcs) : Straight Ruler 300 mm, Protractor 150 mm, Squares (150\u00d7100 mm), Feeler Gauges 26 Sizes (SAE 0.002 inch - 0.025 inch and Metric 0.05 - 0.63 mm), Metric Screw Pitch Gauges (0.25 - 6 mm), SAE Screw Pitch Gauges (4-48), Vernier Caliper 150mm, 5M Metric Tape Ruler, Auto Center Punch, Engineer Scriber\nDrawer 5 contains of :\nGo-Thru Screwdriver Set (12pcs) : \n(-) : 5x(75/100/125/150/200/250/300), (-) : 6x(75/100/125/150/200/250/300), (-) : 8x(75/100/125/150/200/250/300) ,(-) : 10x(75/100/125/150/200/250/300), (-) : 12x(75/100/125/150/200/250/300), (-) : 14x(75/100/125/150/200/250/300), (+) : 1x(75/100/125/150/200/250/300), (+) : 2x(75/100/125/150/200/250/300), (+) : 3x(75/100/125/150/200/250/300), (+) : 4x(75/100/125/150/200/250/300), (-) : 5x(25/38/50), (+) : 2x(25/38/50)\n\n1/4 inch Socket and Tool Set (43pcs) :\n- Sockets 6-Point: 4, 5, 5.5, 6, 7, 8, 9, 10, 11, 12, 13, 14 mm\n- Deep Sockets, 6-Point: 4, 5, 5.5, 6, 7, 8, 9, 10, 11, 12, 13, 1 4mm\n- Ratchet Handle 36 T\n- Extension Bars 50 / 75 / 100 mm\n- Sliding T Bar 115 mm\n- Spinner Handle 145 mm\n- Universal Joint 40 mm\n- 3/8 inch x 1/4 inch Square Adapter\n- 12 pcs Bit Sockets 32 mm\n- Speed Extension Bar 150 mm\n- 3/8\" Socket Set (26pcs) : Sockets 6-Point: 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22 mm\n- Ratchet Handle 36T\n- Extension Bars : 150, 230 mm\n- Sliding T Bar 200 mm\n- Universal Joint 55 mm\n- 5pcs Bit Socket 48 mm\nDrawer 6 contains of :\n- Hex Screwdriver Set (8pcs) : 2, 2.5, 3, 4, 5, 6, 8, 10\n- Hex Nutspinner Set (5pcs) : 9, 10, 11, 12, 13\n\nDrawer 7 contains of :\n- 1/2 inch Screw Repair Tools Set (23pcs) : Adapter 3/8 inch x 5/16 inch Hex Coupler 5/16 inch x 1/2 inch\n- 1/2 inch Impact Driver\n- Nut Splitter: 9-12mm (5/16 inch - 1/2 inch), 12-16mm(1/2 inch - 5/8 inch), 16-22 mm (5/8 inch 7/8 inch)\n- 5/16 inch Bits 36 mm : (-) 8.0, 10.0 and (+) 2, 3\n- 5/16 inch Bits 80 mm : (-) 8.0, 10.0 and (+) 2, 3\n- Stud Extractor : 6, 8, 10, 12 mm\n- Extractor Bits : 1/8 inch, 1/4 inch, 5/16 inch, 7/16 inch, 9/16 inch\n- 3/8 inch and 1/2 inch Tool Set (15pcs) : 3/8 inch Magnetic Spark Plug Sockets (16, 21mm),  3/8 inch Deep Socket 21mm, 3/8 inch Extension Bars (75, 230 mm)\n- 3-Way Adapter square 3/8 inch x 1/2 inch\n- 20 Sizes Metrie Feeler\n- Gauges (0.05 - 1.00 mm)\n- Oil Filter Strap Wrench\n- Oil Drain Plug Key : Hexagonal 5/16 inch x 3/8 inch, Square 8 mm x 3/8 inch, Hexagonal 8 mm x 10 mm, Square 11 mm x Hex. 12 mm, Square 13mm x Hex. 14mm, Hexagonal 17 mm x 1/2 inch\n- Telescope Mirror Stick / Magnetic Pick-Up\n- Cutting Tool Set (6pcs) : 1Kg Flexible Claw Pick-Up Tool 400 mm, Gasket Scraper 160 mm, Straight Shears 265 mm, Mini Hacksaw 6 inch with Blade, Industrial Safety Utility Knife 165 mm, Scissor 140 mm",
-    "image": "/produk/vehicle-mechanical-tool-set-13.png",
-    "inStock": true
+    "image": "/produk/vehicle-mechanical-tool-set-13.png"
   },
   {
     "id": "tkro-14",
@@ -2980,8 +2967,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 41507537,
     "description": "Ram Capacity approx 30 Tons , \nMaksimum Pressure 1000 psi, \nNetto Weight 75 Kg, \nDimension Unit : 750 x700x1800 mm. \nDurable Hydraulic Presses, Pressure Dial gauge, Rigid Construction",
-    "image": "/produk/heavy-dutty-hydraulic-press-14.png",
-    "inStock": true
+    "image": "/produk/heavy-dutty-hydraulic-press-14.png"
   },
   {
     "id": "tkro-15",
@@ -2990,8 +2976,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 175000000,
     "description": "- Terdiri dari ABS, Engine control, TCS with ECU, Wheel speed sensor, Master cylinder, Vacuum Brake booster, 4 x inverter, AC 380Volt, Motor 1HP, sistem pengisian otomatis baterai 12 Volt; \n- Tersedia untuk mengontrol RPM 4 roda dan gaya cengkeraman ban, inersia putar, kontrol pengereman hidraulik melalui 4 inverter \n- Unit kontrol kesalahan diagnosis tombol untuk sirkuit EC",
-    "image": "/produk/simulator-abs-dengan-diagnosis-kesalahan-dengan-4-sumbu-abs--15.png",
-    "inStock": true
+    "image": "/produk/simulator-abs-dengan-diagnosis-kesalahan-dengan-4-sumbu-abs--15.png"
   },
   {
     "id": "tkro-16",
@@ -3000,8 +2985,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 44118750,
     "description": "Power supply : AC 110 V / 220 V / 50 - 60 Hz\nMotor Power : 0.25 kW\nRim Diameter: 10 - 24 inch / 254 - 610 mm\nRim Width :  1.5 - 20 inch / 38 - 510 mm\nMax. Wheel Diameter : 38 inch / 960 mm\nMax. Wheel Weight : 70 kg\nBalancing Speed : 215 RPM\nCycle Time : 8 s\nNet weight : 112 Kg \nGross weight :137 Kg",
-    "image": "/produk/penyeimbang-roda-wheel-balancer-16.png",
-    "inStock": true
+    "image": "/produk/penyeimbang-roda-wheel-balancer-16.png"
   },
   {
     "id": "tkro-17",
@@ -3010,8 +2994,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 148995000,
     "description": "Main Features :\nThe new Richmind TRIGON Novo 3D wheel aligner with 2 camera reading system is fast, precise reliable.\nThe software is intuitive, user friendly for precise and quick alignment measurements.\n0.01 data display\n10 to 22 inch sensor holder, 2 inch with standard adaptor\nUser friendly software with easy access tutor help\nAutomatic steering measurements directly from the targets\nChassis measurement data\nFactory calibrated, calibration on installation only, no need for maintance calibration\nTechnical data :\nMeasuring ranges :\nTotal toe -+ 20 degree\nHalf toe -+ 10 degree\nCamber -+ 10 degree\nCaster Angle -+ 30 degree\nKing pin  -+ 30 degree\nSet back Angle -+ 22 degree\nThrust angle Angle -+ 10 degree\nSteering difference -+ 20 degree\nPower supply voltage : 115 - 230 VAC / 50 - 60 Hz / 1 Phase\nPower absorption : 500 W",
-    "image": "/produk/penjajaran-roda-3d-3d-wheel-alignment-17.png",
-    "inStock": true
+    "image": "/produk/penjajaran-roda-3d-3d-wheel-alignment-17.png"
   },
   {
     "id": "tkro-18",
@@ -3020,8 +3003,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 35000000,
     "description": "Automotive tire changer will get the job done for as little out of pocket as possible. It features a side mounted bead breaker, swing style arm, and double acting cylinders.\nWorking tire width : 3 - 12 inch\nMax tire diameter : 38 inch\nBead breaker force : 2500 kg\nRequires 3 CFM at 110 - 145 Psi / 8 - 10 Bar\nWheel diameter inside 12 - 22 inch\nWheel diameter outside 10 - 20 inch\nPower Supply : 220 V / 380 V\nShipping weight : 500 lbs",
-    "image": "/produk/pengganti-ban-tyre-changer-18.png",
-    "inStock": true
+    "image": "/produk/pengganti-ban-tyre-changer-18.png"
   },
   {
     "id": "tkro-19",
@@ -3030,8 +3012,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 169202033,
     "description": "Lifting capacity 5000kg Lifting Time : 55 sec \nLowering time : 55 sec \nMotor power : 2.2KW \nElectrohydraulic Power Pack Power Supply : 220V/380V/ 50Hz \nMin Height Approx : 250 mm \nLifting Height : 1750 mm \nColumn Height : 2120 mm \nWidth Between Platform : 928 mm \nTotal Width : 2875 mm \nTotal Length : 4950 mm \nDrive on Ramps : 530 mm \nEquiped with recess (turn table hole) and sliding plate for wheel alignment process",
-    "image": "/produk/four-post-lift-alignment-19.png",
-    "inStock": true
+    "image": "/produk/four-post-lift-alignment-19.png"
   },
   {
     "id": "tkro-20",
@@ -3040,8 +3021,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 65200000,
     "description": "Electrohydraulic Power Pack Lifting capacity 4000kg Lifting Time : 50 sec \nLowering time : 40 sec \nMotor power : 2.2KW \nPower Supply : 220V/380V/ 50Hz \nMin Height Approx :110 mm \nLifting Height : 1800 mm \nColumn Height : 3600 mm \nWidth Between Column : 2500 mm.",
-    "image": "/produk/two-post-lift-20.png",
-    "inStock": true
+    "image": "/produk/two-post-lift-20.png"
   },
   {
     "id": "tkro-21",
@@ -3050,8 +3030,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 48690000,
     "description": "Automotive Basic Electric Circuit Trainer \nComposition: Maximum voltage: 30A, \nWorking voltage: DV12V, \nRelay capacity : approx. 30A, \nLamp : approx. 1.4W and 55W, \nMain fuse : approx. 30A, \nRelay fuse : approx. 10A, 1.0SQ \nJump wire : min 48 set Minimum 2 Training Contents Manual Book Modul Automotive Basic Electrical",
-    "image": "/produk/automotive-basic-electric-circuit-trainer-21.png",
-    "inStock": true
+    "image": "/produk/automotive-basic-electric-circuit-trainer-21.png"
   },
   {
     "id": "tkro-22",
@@ -3060,8 +3039,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 335000000,
     "description": "Interactive Automotive Electronic Learning with Universal Engineering Platform\nKonfigurasi: Catu daya keluaran DC: +/- 0~20V 2A, \u00b15V 1A, \u00b115V 1A Output AC 240V 0,5A, 12V 0,5A, \nMultimeter Digital Tegangan AC/DC: 1mV~400V Arus DC 1mA~4A , Resistansi 0~4 M\u03a9, Generator Fungsi 1Hz ~ 100Khz (Maks 20Vp-p) gelombang sinus, gelombang segitiga, gelombang persegi, gelombang gigi gergaji OS kontrol waktu nyata \nLaboratorium CPU : min Quadcore/1.33Ghz, \nRAM : DDR kira-kira. 2GB, Dalam memori kira-kira. minimal 32 GB, Memori Keluar Dukungan maksimum 128GB, \nLCD: kira kira. Layar IPS 10\", Resolusi kira kira 1280x800, \nPanel sentuh: Layar multi-sentuh kapasitif 10 titik Ukuran kira-kira. 257x172x10mm Input Power Bandwith 25MHz, Saluran Osiloskop Dalam 2 (Opsi) Resolusi Vertikal 8 bit Bandwitd kira-kira. 25MHz Rentang input +50mV~+20V , \nPerlindungan tegangan lebih +100V Memori kira-kira. 16Kb, Tingkat sampel maksimum 200ms Mode pemicu: tidak ada, otomatis, ulangi, tunggal, \nPengukuran otomatis: mode cakupan, statistik Mode spektrum: frekuensi di puncak, amplitudo di puncak THD db, SNR-SINAD, daya total SFDR, amplitudo rata-rata di puncak",
-    "image": "/produk/pembelajaran-elektronik-otomotif-interaktif-dengan-platform--22.png",
-    "inStock": true
+    "image": "/produk/pembelajaran-elektronik-otomotif-interaktif-dengan-platform--22.png"
   },
   {
     "id": "tkro-23",
@@ -3070,8 +3048,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 157500000,
     "description": "1. Overall dimension : 1600 x 1280 x 600 (mm) \n2. Main board dimension 1200 x 800 x 600 (mm) \n3. Integrated on board modules embedded with interface connection board \n4. Connection system : Bluetooth and USB \n5. Can be connected with printer \n6. Expandable to unlimited stations, using single PC as a server \n7. Operating system : windows 10 \n8. Upgradable modules & software \n9. EWDS software (CD installer) included real time mode as electrical practical method \n10. True/false LED panel light \n11. True, false & ending session sound \n12. 256 test point connection \n13. 96 paralel point connection \n14. Aluminium T slot 30 x 60 (mm) as frame \n15. 150 pcs jumper cable ( variation of length ) \n16. Power input AC 220V/0,2A \n17. Cable and module storage case \n18. Manual book 2 teaching and testing modules : \n    1) Body electrical for car modules consist of : Hazard emergency light) circuit,Turn light circuit, Head light circuit, Horn circuit, Brake light circuit, Parking light circuit, combination switch, relay, fuse. \n    2) Car EFI modules consist of : Ignition circuit, injector circuit, fuel pump circuit, throttle body sensor circuit, MAP sensor circuit, OX sensor circuit, Power supply EFI circuit, MIL circuit, THW circuit, THA circuit, CKP circuit, Cam sensor circuit, Knock sensor circuit, IACV circuit, Variable valve solenoid circuit, DLC connector circuit.",
-    "image": "/produk/electrical-wiring-diagram-simulator-for-car-23.png",
-    "inStock": true
+    "image": "/produk/electrical-wiring-diagram-simulator-for-car-23.png"
   },
   {
     "id": "tkro-24",
@@ -3080,8 +3057,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 15150000,
     "description": "1. Portable Battery charger & starter for 12V/24C lead acid batteries. \n2. Over- load protection & thermal protection. \n3. Equipped with digital display showing charging amp, normal or quick (boost) charge selectable. \n4. Carging time setting with timer. \n5. Compact, light and portable. \n6. Suitable for cars, vans and light truck. \n7. Provide with complete kits. Various plug types optional. Charging capacity. 100 AH Input Voltage 1PH 220V Frequency 50/60Hz Charge Voltage 12/24V",
-    "image": "/produk/standard-batery-charger-24.png",
-    "inStock": true
+    "image": "/produk/standard-batery-charger-24.png"
   },
   {
     "id": "tkro-25",
@@ -3090,8 +3066,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 67500000,
     "description": "Komposisi : Crank sensors, injectors, spark plugs, fan, relay, RPM meter, self diagnosis jack, emergency switches, fuses, Key switch, ATS, TPS, WTS, MAP, HO2S",
-    "image": "/produk/dli-ignition-system-trainer-25.png",
-    "inStock": true
+    "image": "/produk/dli-ignition-system-trainer-25.png"
   },
   {
     "id": "tkro-26",
@@ -3100,8 +3075,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 67500000,
     "description": "Composition : Crank sensors, injectors, spark plugs, fan, relay, RPM meter, self- diagnosis jack emergency switches, fuses, Key switch, ATS, TPS,WTS, MAP, HO2S Minimum 2 Training Contents Manual Book Modul Motronic System",
-    "image": "/produk/motronic-system-simulator-26.jpeg",
-    "inStock": true
+    "image": "/produk/motronic-system-simulator-26.jpeg"
   },
   {
     "id": "tkro-27",
@@ -3110,8 +3084,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 85000000,
     "description": "Specifications :\nCompressor, condenser, dryer, expansion valve, the orifice tube, the evaporator,Blowers, piping, cooling fans, the unit,\nthe control panel, Motor with speed control, pressure (high-1, low-3), approx. 7 temperature gauge, etc. approx. 10 Fault insertion available approx. 3 PCB board available to safety protection PCB Board is connect PC with USB\nMinimum 5 Training Contents\nManual Book\nModul Automototive A/C System",
-    "image": "/produk/simulator-sistem-pendingin-udara-otomotif-automotive-air-con-27.png",
-    "inStock": true
+    "image": "/produk/simulator-sistem-pendingin-udara-otomotif-automotive-air-con-27.png"
   },
   {
     "id": "tkro-28",
@@ -3120,8 +3093,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 7000000,
     "description": "1. Hydraulics are powered with a high quality oil, which offers better corrosion resistance and high/low temperature flexibility. \n2. 4-hole position reinforced boom enables 4 different lengths and 4 load capacities: \n3. 1/2-ton capacity; \n4. 1-ton capacity; \n5. 1 1/2-ton capacity; \n6. 2-ton capacity; \n7. Solid steel casters for easy mobility. \n8. Foldable design for convenient, easy storage \n9. Includes engine leveler, making engine handling and positioning easier.",
-    "image": "/produk/mesin-derek-engine-crane-28.png",
-    "inStock": true
+    "image": "/produk/mesin-derek-engine-crane-28.png"
   },
   {
     "id": "tkro-29",
@@ -3130,8 +3102,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 205000000,
     "description": "Made from high quality and durable parts Space for turntable standard 24V control system and limited switch. With secondary jack optional. \nMin height on ground for 190mm platform length 4500mm. \nSpecifications Load capacity 4Tons Horse power 3HP Power 2.2KW Power supply AC220/380V.50HZ Main Unit Max.lifting height 1800mm Main Unit Platfom Length 4300 - 4500 mm Main Unit Platfom Width 600 mm Sub Machine Platfom Height 500mm Sub Machine Platfom Length 1400mm Sub Machine Platfom Width 550mm Raise Time 12 second Instruction Manual",
-    "image": "/produk/alignment-scissor-car-lift-29.png",
-    "inStock": true
+    "image": "/produk/alignment-scissor-car-lift-29.png"
   },
   {
     "id": "tkro-30",
@@ -3140,8 +3111,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 185000000,
     "description": "Specifications :\nSpindle travel : approx. 6-7/8 inch / 175 mm\nSpindle speed : approx. 70, 88, 118 rpm\nSpindle feed speed : approx. 0.002 inch / 0.05 mm - 0.02 inch / 0.5 mm Rev\nCross feed speed : approx. 0.002 inch / 0.05 mm - 0.05 inch Rev\nHandwheel graduations : approx. 0.002 inch / 0.05 mm\nRotor diameter : approx. 7 inch / 180 mm - 15 inch / 381 mm\nRotor thickness : approx. 1 7/8 inch / 48 mm\nDrum thickness : approx. 1-7/8 inch / 48 mm\nDrum diameter : approx. 6 inch / 152 mm - 28 inch / 711 mm\nDrum depth : approx. 6-7/8 inch / 175 mm\nMotor : 110V / 220V / 380V, 50/60 Hz",
-    "image": "/produk/bubut-rem-drum-dan-disk-brake-drum-and-disk-lathe-30.png",
-    "inStock": true
+    "image": "/produk/bubut-rem-drum-dan-disk-brake-drum-and-disk-lathe-30.png"
   },
   {
     "id": "tkro-31",
@@ -3150,8 +3120,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 175000000,
     "description": "Electrical Control Gasoline Engine Assembly, Auto Fault Minimum Configuration : \n- Transmission Unit \n- Electrical and electronic sensor devices \n- Fuel system \n- DC12V Battery for Vehicles, Alternator \n- Ignition coil, Spark Plug, High Voltage Cables \n- Cooling system \n- Exhaust system \n- Ignition Switch (Key S/W) \n- Control box, fuel tank \n- Molding type safety guard is installed \n- Fuel pressure gauge \n- Battery voltage gauge",
-    "image": "/produk/simulator-diagnosis-kesalahan-mesin-otomotif-dengan-kesalaha-31.png",
-    "inStock": true
+    "image": "/produk/simulator-diagnosis-kesalahan-mesin-otomotif-dengan-kesalaha-31.png"
   },
   {
     "id": "tkro-32",
@@ -3160,8 +3129,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 605605000,
     "description": "Alat latih untuk mendiagnosa kerusakan mesin otomotif ( Car Trainer ) \n- Composition : vehicle with engine 2000~2,500 cc, 4 cylinders an actual vehicle with gasoline engine \n- Approx. 20 auto fault available \n- Waveform terminals : Cooling control system, Headlight System, VDC System, Steering, Tilt and telescopic, Power Door Locks, IMS (Integrated Memory System), Engine Control, Automatic Transmission Control Power Window, Power outside mirror folding, passenger side power seat",
-    "image": "/produk/automotive-fault-diagnosis-training-equipment-32.png",
-    "inStock": true
+    "image": "/produk/automotive-fault-diagnosis-training-equipment-32.png"
   },
   {
     "id": "tkro-33",
@@ -3170,8 +3138,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 52150000,
     "description": "Educational model for gasoline carburetor engine/ structure of the system. \nExplanation for both each parts function description and operating principle. \nEnhance the educational effect by coloring differently on each parts. Composition : 4 cylinders gasoline engine assy.",
-    "image": "/produk/peralatan-pelatihan-struktur-mesin-jenis-karburator-engine-s-33.png",
-    "inStock": true
+    "image": "/produk/peralatan-pelatihan-struktur-mesin-jenis-karburator-engine-s-33.png"
   },
   {
     "id": "tkro-34",
@@ -3180,8 +3147,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 245000000,
     "description": "Diesel engine simulator that equipped with fuel, cooling, intake, exhaust panel so that allows theoretical training and experiments. \nComposition: \n1) CRDI Diesel engine assembly \n2) Fuel Filter, Fuel Tank, Fuel Pump, Fuel Devices, DC 12V Car Battery and Generator \n3) Cooling Device Such As Radiator, Electric Fan, Overflow Tank and Relay and Antifreeze \n4) Exhaust system such as catalyst converter and silencer \n5) Start switch (Key S/W) Anti vibration dampers and an urethane Wheels \n6) Control box (for measurement of waveform), fuel tank and accelerator lever \n7) Stainless molding type safety guard is installed \n8) Radiator-only stand and laser processing protection panel \n9) Drawer type storage space 10) Fault insertion, control panel open and close feature and 3 stage PCB board mounted",
-    "image": "/produk/crdi-diesel-engine-fault-diagnosis-training-equipment-34.png",
-    "inStock": true
+    "image": "/produk/crdi-diesel-engine-fault-diagnosis-training-equipment-34.png"
   },
   {
     "id": "tkro-35",
@@ -3190,8 +3156,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 273436500,
     "description": "Untuk pelatihan mendiagnosa \n- Diesel Engine Simulator Type Equipment that equipped with fuel, cooling, intake, exhaust panel so that allows theoretical training and experiments. \n- Easy to check and diagnose all faults that can happen in an actual vehicle system so that it's able to do effective education concerning maintenance system. \n- It is to see internal movement, operation, condtiion and component\u2019s location by cutaway structure. \nSpecification: \n- Composition \n1) Diesel engine assembly, manual transmission \n2) Fuel filter, fuel tank, fuel pump, fuel devices, DC 12V battery and generator \n3) Cooling device such as radiator, electric fan and antifreeze \n4) Start switch \n5) Accelerator lever \n6) Stainless molding type safety guide is installed \n7) Radiator-only stand and laser process protection panel \n8) Vacuum pressure gauge \n9) Fuel pressure gauge \n10) Battery voltage measurement gauge",
-    "image": "/produk/crdi-diesel-engine-fault-diagnosis-training-equipment-34.png",
-    "inStock": true
+    "image": "/produk/crdi-diesel-engine-fault-diagnosis-training-equipment-34.png"
   },
   {
     "id": "tkro-36",
@@ -3200,8 +3165,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 75000000,
     "description": "Untuk mempelajari perangkat injector bahan bakar Konfigurasi \n- Model edukasi untuk Mesin Bensin injeksi 1500~2000 cc \nSpesifikasi: Terdiri dari Mesin 4 silinder, Motor AC 220V, Controller, Emergency Switch, Safety Fuse, Light",
-    "image": "/produk/peralatan-pelatihan-struktur-mesin-jenis-injeksi-bahan-bakar-36.png",
-    "inStock": true
+    "image": "/produk/peralatan-pelatihan-struktur-mesin-jenis-injeksi-bahan-bakar-36.png"
   },
   {
     "id": "tkro-37",
@@ -3210,8 +3174,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 93725490,
     "description": "Untuk mempelajari system manajemen injeksi bahan bakar \n- Mobile stand on fourwheels \n- Gasoline injector engine management system (MPI) with multipoint petrol injection installed in upper part of stand \n- Stand allow to monitoring the following - Fuel supply system - Amount of injected fuel - Fuel pressure of the fuel pump \n- Construction of the fuel pump and fuel distribution system allow visually see the distribution of the fuel flow \n- The ignition system and spark plugs installed in a way that allows visual monitoring of their activities \n- Air flow in the intake manifold are adjustable, allowing functional demonstration of air mass flow and air temperature sensors \n- Adjustable crankshaft rotation speed \n- Ability altering the air/fuel mixture by the O2 sensor signal simulator \n- Engine management system have a built-in voltmeter \n- The stand has a closed structure, internal wiring is not visible \n- Training bench equipped with a network power supply (220 /12V) and a battery (12V) \n- Training stand include - Automobile oscilloscope - EOBD diagnostics equipment Instruction Manual",
-    "image": "/produk/fuel-injection-management-system-simulator-37.png",
-    "inStock": true
+    "image": "/produk/fuel-injection-management-system-simulator-37.png"
   },
   {
     "id": "tkro-38",
@@ -3220,8 +3183,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1045000,
     "description": "Untuk menguji kompresi bensin \n- Diagnose Problems with Pistons, \n- Easy Pressure Release Button on Side of Tester \nSpecifications: \n- Gauge Calibration: approx. 0-300 PSI, 0-20 kPa \n- Spark Plug Adapters: M10 x 1.0, M12 x 1.25, M14 x 1.25, M18 x 1.5 Includes: - 1x 3\" Dual Scale Gauge 300 PSI - 4x Spark Plug Thread Adapters - 1x Flex Hose - 2x Rubber Cone Tipped Chrome Extensions - 1x Carrying Case",
-    "image": "/produk/gasoline-compression-tester-38.png",
-    "inStock": true
+    "image": "/produk/gasoline-compression-tester-38.png"
   },
   {
     "id": "tkro-39",
@@ -3230,8 +3192,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 4500000,
     "description": "Untuk Pengukur Tekanan Injeksi Bahan Bakar 3 1/2\" gauge approx. 140 PSI /10 bar scale. \nIt also has a relief valve and 4 ft. of tubing to relieve the pressure and fuel safely. \nAlso allows checking for sufficient fuel flow. \nGauge has hook, allowing technician to have both hands free",
-    "image": "/produk/fuel-injection-pressure-tester-gauge-kit-39.png",
-    "inStock": true
+    "image": "/produk/fuel-injection-pressure-tester-gauge-kit-39.png"
   },
   {
     "id": "tkro-40",
@@ -3240,8 +3201,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 3400000,
     "description": "Fuel injection pump pressure gauge. \nTest gasoline fuel pump pressure on most fuel injection equipped vehicle. \nGauge calibration: approx. 0 - 140 PSI (0 - 10 bar). \nIndicates if fuel pump is defective or inconsistent in pressure flow. \nIncludes assorted hoses, fittings and clamps to work on most vehicles. Adapter size: M10, M12, M14",
-    "image": "/produk/transmission-and-engine-oil-pressure-tester-40.png",
-    "inStock": true
+    "image": "/produk/transmission-and-engine-oil-pressure-tester-40.png"
   },
   {
     "id": "tkro-41",
@@ -3250,8 +3210,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 4700000,
     "description": "Untuk menguji tekanan Radiator Pressure Testing Pump w/ Hose, Quick Coupler with Pressure Release, and Gauge: Test Range approx. 0 - 35 psi, 2pcs Radiator Cap Test Adapters to test for original radiator cap pressure release/cap leakage Set includes: 1 x Pressure Testing Pump with Hose 1pc Blue and 1pc. Black Radiator Cap Test Adapters to test for original radiator cap leakage 20 x Test Caps for testing cooling systems on most domestic and import vehicles. 1 x Vacuum Type Cooling System Purge and Refill Tool Kit for quick change of coolant. 1 x Relief Valve 1 x Quick Disconnect 1 x Vacuum Gauge 1 x Universal Adapter.",
-    "image": "/produk/radiator-cup-and-pressure-tester-54.jpeg",
-    "inStock": true
+    "image": "/produk/radiator-cup-and-pressure-tester-54.jpeg"
   },
   {
     "id": "tkro-42",
@@ -3260,8 +3219,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 990000,
     "description": "Untuk mempelajari Kompresor Pegas Katup Valve Stem Seal Pliers Length: approx. 27cm/10.6\" \nRound Rod Length: approx. 51cm/20\" \nConnection Hose Length: approx. 31cm/12.2\" \nL-Shaped Lever Size: approx. 20 x 16cm/7.8\" x 6.3\" 7-hole \nHolder Size: approx. 14.5 x 10.5cm/5.7\" x 4.1\"",
-    "image": "/produk/valve-spring-compressor-42.png",
-    "inStock": true
+    "image": "/produk/valve-spring-compressor-42.png"
   },
   {
     "id": "tkro-43",
@@ -3270,8 +3228,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1250000,
     "description": "Outside Micrometer - Material: Tungsten carbide steel - Measuring range: approx. 0 - 25 mm - Accuracy / graduation: approx. 0.01mm",
-    "image": "/produk/outside-micrometer-43.png",
-    "inStock": true
+    "image": "/produk/outside-micrometer-43.png"
   },
   {
     "id": "tkro-44",
@@ -3280,8 +3237,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2300000,
     "description": "Cylinder Bore Gauge - Material: metal - Measure range: approx. 50 - 160 mm - Accuracy: approx. 0.01mm",
-    "image": "/produk/cylinder-bore-gauge-44.png",
-    "inStock": true
+    "image": "/produk/cylinder-bore-gauge-44.png"
   },
   {
     "id": "tkro-45",
@@ -3290,8 +3246,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1700000,
     "description": "Oil Pressure Tester / Gauge Diagnose leaking valves, incorrect timing, leaky intake manifolds and clogged mufflers. Test fuel pump output pressure up to 10Psi",
-    "image": "/produk/oil-pressure-tester-45.png",
-    "inStock": true
+    "image": "/produk/oil-pressure-tester-45.png"
   },
   {
     "id": "tkro-46",
@@ -3300,8 +3255,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2550000,
     "description": "Diesel Compression Tester Gauge range : approx. 0-70 Bar / 0-1000 Psi \nHose length : approx. 30 cm Built-in resetter Approx. \nGlow plug sizes : - M10x1,0x83mm, M10x1,0x91mm - M10x1,0x102mm, M10x1,0x113mm - M10x1,0x119mm, M10x1,25x64mm - M10x1,25x135mm, M12x1,25x47mm - M22x1,5x118mm Approx. \nInjector adapter sizes : - M20x1,5x75mm - M22x1,5x73mm - M24x1,5x88mm - M24x2,0x63mm",
-    "image": "/produk/diesel-compression-tester-46.png",
-    "inStock": true
+    "image": "/produk/diesel-compression-tester-46.png"
   },
   {
     "id": "tkro-47",
@@ -3310,8 +3264,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2850000,
     "description": "Dial Test Indicator with Magnetic Stand Display Type: Analog Accuracy: approx. 0.01mm \nMax. Measuring Range: approx. 0-10mm \nMagnetic Stand : Universal magnetic base stand Clamping hole diameter: approx. 8 mm",
-    "image": "/produk/dial-test-indicator-dti-with-magnetic-stand-47.png",
-    "inStock": true
+    "image": "/produk/dial-test-indicator-dti-with-magnetic-stand-47.png"
   },
   {
     "id": "tkro-48",
@@ -3320,8 +3273,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 32800000,
     "description": "Digital Valve Spring Tester Unit selection : N, Kg, g, lb \nAccuracy : \u00b1 0.5% Length (displacement) accuracy : approx. 0.01mm \nMaximum travel : up to 200mm Speed range : approx. 1 - 500mm/min \nStandard platen diameter : approx. \u03a620mm, Manual keys can be moved once: 1mm, 0.1mm, 0.01mm Test selection Compression and stretching Power supply 220V, 0.5A",
-    "image": "/produk/digital-valve-spring-tester-48.png",
-    "inStock": true
+    "image": "/produk/digital-valve-spring-tester-48.png"
   },
   {
     "id": "tkro-49",
@@ -3330,8 +3282,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2500000,
     "description": "Battery Tester Application: 12V automotive cranking lead acid battery and 12V car system test Measure Range: approx. 30-200AH \nSpecial test clip: Double conductor Kelvin clamp Housing Material: Acid-resistant ABS plastic Measure Range: approx. 30AH 200AH \nVoltage Measure Range: approx. 7- 30VDC",
-    "image": "/produk/battery-tester-49.png",
-    "inStock": true
+    "image": "/produk/battery-tester-49.png"
   },
   {
     "id": "tkro-50",
@@ -3340,8 +3291,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 5250000,
     "description": "Conventional Diesel Nozzle Tester It is used to adjust and calibrate the injecting pressure, atomizing quality, injecting angle and needle valve seals of nozzle of diesel engine in order to ensure excellent power and economic performance of diesel engine. Gauge range : approx. 0~60Mpa",
-    "image": "/produk/conventional-diesel-nozzle-tester-50.png",
-    "inStock": true
+    "image": "/produk/conventional-diesel-nozzle-tester-50.png"
   },
   {
     "id": "tkro-51",
@@ -3350,8 +3300,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 5750000,
     "description": "Torque Wrench - Digital torsional reading - Accuracy : \u00b1 2% - Clockwise and counterclockwise both operated - Buzzer and LED indication (reach preset torque value) - Four units (ft-lb, in-lb, N-m, kgf.cm)",
-    "image": "/produk/torque-wrench-51.png",
-    "inStock": true
+    "image": "/produk/torque-wrench-51.png"
   },
   {
     "id": "tkro-52",
@@ -3360,8 +3309,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1450000,
     "description": "Digital Vernier Caliper - Measuring range : approx. 0\u2013150 mm/ 0\u20136 inch. - Resolution : approx.0.01mm/ 0.0005 in. - Accuracy : +/- 0.02mm/ 0.001 in (<100mm), +/- 0.03mm/ 0.001 in (>100-150mm) - Repeatability : approx. 0.01mm/ 0.0005 in. - LCD display",
-    "image": "/produk/digital-vernier-caliper-52.png",
-    "inStock": true
+    "image": "/produk/digital-vernier-caliper-52.png"
   },
   {
     "id": "tkro-53",
@@ -3370,8 +3318,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 3400000,
     "description": "Range : 0-300 (12\")",
-    "image": "/produk/depth-caliper-53.jpeg",
-    "inStock": true
+    "image": "/produk/depth-caliper-53.jpeg"
   },
   {
     "id": "tkro-54",
@@ -3380,8 +3327,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2502500,
     "description": "Radiator Cup and Pressure Tester Colour-coded radiator test caps for easy identification Supplied in a blow molded carry case for easy transportation and storage. \nKit includes: - Hand pressure pump with colour coded approx. 0 - 35 psi gauge and push-button pressure relief valve - Temperature gauge - 3 chromed steel radiator adapters - 16 radiator adapters - 1 universal radiator adapter - 3 radiator cap test adapters - 3 piece vacuum purge and refill tools",
-    "image": "/produk/radiator-cup-and-pressure-tester-54.jpeg",
-    "inStock": true
+    "image": "/produk/radiator-cup-and-pressure-tester-54.jpeg"
   },
   {
     "id": "tkro-55",
@@ -3390,8 +3336,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 12100000,
     "description": "Digital Belt Tension Gauge - Measuring range: approx. 0-750 N, 0-120 lb, 0-77 Kg - Accuracy: \u2264\u00b15% - Belt state indication: Low, OK, Hi - Resolution: \u00b11N (or1 least significant digit of other units) - Belt width: \u226436mm - Overload alarm: approx. 750N - Max. load: up to 850N - Metric/Imperial",
-    "image": "/produk/digital-belt-tension-meter-gauge-55.png",
-    "inStock": true
+    "image": "/produk/digital-belt-tension-meter-gauge-55.png"
   },
   {
     "id": "tkro-56",
@@ -3400,8 +3345,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 2100000,
     "description": "Gasoline Engine Timing Light - Type: Ignition Timing Light - Material: ABS - Input voltage: 12V - Trigger point: high volt coil of No.1 spark plug - Speed: up to 10000 rpm",
-    "image": "/produk/gasoline-timing-light-56.png",
-    "inStock": true
+    "image": "/produk/gasoline-timing-light-56.png"
   },
   {
     "id": "tkro-57",
@@ -3410,8 +3354,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 9614000,
     "description": "Diesel Timing Light - Voltage: 0~24V; \n- Bright flash tube provides concentrated light for easy visibility of timing mark; \n- Detachable heavy duty inductive pick-up clamps, leads and diesel sensor for easy operation and replacement; \n- Testable rotate speed and advance angle; \n- Maximal testable angle is 60\u00b0, precision : approx. 0.1\u00b0. \n- Advance : approx. 0-60 C (0.7%RDG + 1%RNG) \n- TACH : approx. 200-9990 RPM \n- DWELL : approx. 0-99.9% \n- VOLTS: 0 -16 V",
-    "image": "/produk/diesel-timing-light-57.png",
-    "inStock": true
+    "image": "/produk/diesel-timing-light-57.png"
   },
   {
     "id": "tkro-58",
@@ -3420,8 +3363,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1725000,
     "description": "Automotive Multimeter \n- Display: 5999 Counts - Dwell angle : 1CYL: 0- 180.0\u00b0,4CYL: 0-90.0\u00b0,5CYL: 0- 72.0\u00b0,6CYL: 0-60.0\u00b0,8CYL: 0- 45.0\u00b0 \n- Accuracy: \u00b1(1.2%+2) \n- Rotational speed: 1CYL/4CYL/5CYL/6CYL/8CYL:5 00~10000Turn/min\u00b1(1.2%+2) \n- DC Voltage: 6V/60V/600V\u00b1(0.5%+3),1000V\u00b1( 0.8%+3) \n- AC Voltage: 6V/60V/600V\u00b1(0.8%+3), 700V\u00b1(1.2%+3) \n- DC Current: 6mA/60mA/600mA\u00b1(1.2%+3), 20A\u00b1(2.0%+5) \n- AC Current: 6mA/60mA/600mA\u00b1(1.2%+3), 20A\u00b1(2.5%+5) \n- Resistance: 600\u03a9\u00b1(0.8%+3), 6K\u03a9/60K\u03a9/600K\u03a9/6M\u03a9\u00b1(0.8%+2) \n- Capacitance: 6nF/60nF\u00b1(5%+3) 600nF/6uF/60uF/600uF\u00b1(3.0%+ 3),6mF/60mF/100mF\u00b1(5.0%+3) \n- Temperature: -40\u00b0\uff5e 400\u00b0\u00b1(0.75%+4), 400\u00b0\uff5e 1000\u00b0\u00b1(1.5%+15) - -40\u00b0\uff5e752\u00b0\u00b1(0.75%+4),752\u00b0\uff5e 1832\u00b0\u00b1(1.5%+15) \n- Frequency: 6Hz\uff5e 10MHz\u00b1(0.53 ) - Diode Test, hFE Test, Continuity Testing, Duty cycle, Backlight, Auto Power off, Data Hold - Range Select, Over range indication, True RMS, Flashlight",
-    "image": "/produk/automotive-multimeter-58.png",
-    "inStock": true
+    "image": "/produk/automotive-multimeter-58.png"
   },
   {
     "id": "tkro-59",
@@ -3430,8 +3372,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 41250000,
     "description": "Untuk meratakan permukaan plat \nSpecific Gravity: approx. 3.03 g/cm3 \n- Shore Hardness: >70Hs-80Hs \n- Tensile strength: approx. 211Kg/cm2 \n- Compressive Strength: 245-254 Mpa \n- Linear Expansion Coefficient: 4.61\u00b410--6/\u00b0C \n- Elastic Modulus: 30-50Gpa \n- Water Absorptivity: \u22640.13%",
-    "image": "/produk/surface-plate-59.png",
-    "inStock": true
+    "image": "/produk/surface-plate-59.png"
   },
   {
     "id": "tkro-60",
@@ -3440,8 +3381,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1142900,
     "description": "Technical Data : Range 30~130dB Accuracy \u00b11.5dB \nFrequency response: 31.5Hz~8kHz Resolution 0.1dB \nSampling rate: fast 125ms, low 1000ms \nWeighting Curve: A type Instruction Manual",
-    "image": "/produk/sound-level-meter-60.png",
-    "inStock": true
+    "image": "/produk/sound-level-meter-60.png"
   },
   {
     "id": "tkro-61",
@@ -3450,8 +3390,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 26050000,
     "description": "Work Bench for work station \n- Table for 2 persons \n- Dimension ( L X W X H ) : min. 2500 x 700 x 800 mm \n- Frame made by steel plate with thickness : min 2.5 mm \n- Bench top is constructed from wood with min. 50 mm thickness \n- Include 2 pcs american bench vise 4\u201d",
-    "image": "/produk/meja-kerja-bangku-work-bench-61.png",
-    "inStock": true
+    "image": "/produk/meja-kerja-bangku-work-bench-61.png"
   },
   {
     "id": "tkro-62",
@@ -3460,8 +3399,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 3551000,
     "description": "Common Rail Pressure Tester and Simulator \n- LCD screen; \n- Measurement selection switch and simulation; \n- LED indicator light; \n- Common rail lead pressure; \n- Simulation of pressure Rail regulator; \n- Power cord; \n- Compatible for any brand of common rail joint pressure; \n- Host machine.",
-    "image": "/produk/common-rail-pressure-tester-and-simulator-62.png",
-    "inStock": true
+    "image": "/produk/common-rail-pressure-tester-and-simulator-62.png"
   },
   {
     "id": "tkro-63",
@@ -3470,8 +3408,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 21693000,
     "description": "Automatic Transmission Oil Exchanger Functions: \n1) Circulation cleaning \n2) Equal quantity exchange of transmission oil \n3) Filling of new transmission oil \n4) Old transmission oil recycling \n5) New and old transmission oil evacuation \n6) Quick calibration of electronic scale Technical Parameter: \n 1) Power: approx. 0.18kw \n 2) Voltage: AC 220V 50Hz or DC12V",
-    "image": "/produk/atf-exchanger-63.png",
-    "inStock": true
+    "image": "/produk/atf-exchanger-63.png"
   },
   {
     "id": "tkro-64",
@@ -3480,8 +3417,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 5995000,
     "description": "Part Washer wth fluid pump Rugged welded steel Convenient removable work shelf Parts basket for snaking small parts in solvent \nSelf-latching fuses linked fine cover Electric requirement: 110V/60Hz (240V/50Hz) solvent pump \nMax. pump output through spigot: recirculates approx. 3 litre/min of solvent \nTank capacity : approx. 20 Gallon \nSolvent capacity : approx. 10 gallon \nCapacity : approx. 20 gallon",
-    "image": "/produk/parts-washer-64.png",
-    "inStock": true
+    "image": "/produk/parts-washer-64.png"
   },
   {
     "id": "tkro-65",
@@ -3490,8 +3426,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 87122700,
     "description": "Valve Grinder \n- Max. dia. of valves to be ground : approx. 90 mm \n- Dia. of valve stems to be gripped (standard) : approx. 6 ~ 16 mm Dia. of valve stems to be gripped (special) : approx. 4 ~ 7 mm Dia. of valve stems to be gripped (special) : approx. ~ 18 mm \n- Angles of valves to be ground : approx. 25 ~ 60 \u00b0 \n- Longitudinal movement of geared head : approx. 120 mm \n- Transverse movement of grinding wheel head : approx. 95 mm \n- Max. cutting depth of ground valve : approx. 0.025 mm \n- Grinding wheel spindle speed : approx. 4500 rpm \n- Geared head spindle speed : approx. 125 rpm",
-    "image": "/produk/valve-grinder-65.png",
-    "inStock": true
+    "image": "/produk/valve-grinder-65.png"
   },
   {
     "id": "tkro-66",
@@ -3500,8 +3435,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 857750000,
     "description": "Valve Seat Cutting and Boring Machine \nWidth : approx. 500/19.7 mm/inch \nHeight : approx. 450/17.7 mm/inch \nCrosswise work piece tilting : +40~-15 Degrees \nMachining capacity : Approx. 15-60 mm \nWork head displacement : Lengthwise Mm/inch 930/37, Crosswise Mm/inch 40/1.6, Sphere cylinder travel Mm/inch 9/0.4 \nSpindle : Max. spindle inclination Degrees 5, Spindle travel Mm/inch 200/8, Spindle motor power Kw 1.8, Spindle rotation Rpm 100-1200, Power supply 380/50Hz 3Ph Air flow Bar/psi 6/87, Max. air 1/min/cfm 300/11, Level of noise at 400rpm Dba 72, At 1200rpm dba 82",
-    "image": "/produk/valve-seat-cutting-and-boring-machine-66.png",
-    "inStock": true
+    "image": "/produk/valve-seat-cutting-and-boring-machine-66.png"
   },
   {
     "id": "tkro-67",
@@ -3510,8 +3444,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 25350000,
     "description": "Fuel System Cleaning Machines Function: \n- Disassembly-free cleaning for fuel system \n- Disassembly-free cleaning for air intake system \n- Disassembly-free cleaning for three-way catalyst \n- Foam cleaning for combustion chamber \nTechnical Parameter: \n- Working air pressure: Approx. 2- 8kg/cm2 \n- Voltage: DC 12V",
-    "image": "/produk/engine-fuel-system-cleaning-machine-five-in-one-67.png",
-    "inStock": true
+    "image": "/produk/engine-fuel-system-cleaning-machine-five-in-one-67.png"
   },
   {
     "id": "tkro-68",
@@ -3520,8 +3453,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 30786900,
     "description": "Air Conditioner Inside Cleaning of Car \n- Real-time switch control of cleaning function is flexible and simple \n- Cleaning tube uses adjustable coil pipe \n- Power source of the equipment is compressed air which is economical and reliable \n- Endoscope uses microspur HD processing to produce clear and bright images \n- Synchronized image of big and small displays allows operators and users to see \n- It improves working environment of engine and cooling efficiency of air conditioner \nTechnical Parameter: \n- Working air pressure: approx. 2- 8kg/cm2 \n- Voltage: AC 220V",
-    "image": "/produk/air-conditioner-inside-cleaning-of-car-68.png",
-    "inStock": true
+    "image": "/produk/air-conditioner-inside-cleaning-of-car-68.png"
   },
   {
     "id": "tkro-69",
@@ -3530,8 +3462,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 40022500,
     "description": "AC Recycle Machine Recovery, vacuum, charge LCD display Leakage hunting Semi- automatically operation High/low pressure protection \nTechnical parameter: \n- Input power approx. 800W \n- Recovery ability approx. 350g/min \n- Charge ability approx. 1000g/min \n- Vacuum speed approx. 5m\u0437/h \n- Cylinder capacity approx. 10kg \n- Compressor power approx. 3/8 HP",
-    "image": "/produk/recycle-ac-69.png",
-    "inStock": true
+    "image": "/produk/recycle-ac-69.png"
   },
   {
     "id": "tkro-70",
@@ -3540,8 +3471,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 1848100,
     "description": "Refregirant Leak Tester It will respond to all halogenated. \nThis includes, but is not limited to: CFCs e.g.R12, R11, R500, R503 etc. HCFCs e.g. R22,R123, R124,R502 etc. HFCs e.g. R134a, R404a, R125 etc. Blends such as AZ-50. HP62. MP39 etc. \nShort Preheating Time Once the switch rotated, the detector will be ready to use. \nPreheating time: approx. 6s \nResponse time: approx. 3s Adjustable Sensitivity",
-    "image": "/produk/refrigerant-leak-tester-70.png",
-    "inStock": true
+    "image": "/produk/refrigerant-leak-tester-70.png"
   },
   {
     "id": "tkro-71",
@@ -3550,8 +3480,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 57570600,
     "description": "Refregirant Identifier Refrigerant \nDetected: R1234yf (Tetrafluoropropene) \nAccuracy: PASS/FAIL - 95percent Pure R1234yf \nPower Requirements: 12 VDC \nUser Interface: Membrane type with visual indicators and function key \nCalibration Method: Manual pump aspirator \nStorage Temperature: approx. -10 to 50C Operating \nTemperature: approx. 10C to 45C \nConstruction Material: Molded ABS Housing/Molded Rubber Sleeve",
-    "image": "/produk/refrigerant-identifier-71.png",
-    "inStock": true
+    "image": "/produk/refrigerant-identifier-71.png"
   },
   {
     "id": "tkro-72",
@@ -3560,8 +3489,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 214750000,
     "description": "Conventional Diesel Test Bench \nTechnical Parameters: \n- Adjustable rotation speed range: approx. 0~4000 RPM \n- Test cylinders: min. 12. \n- Rotation speed presetting: min. 10 kinds. \n- DC. Supply: 12/24V \n- Feeding pump motor: approx. 1.1kw \n- Series of graduate glass: 45cc, 150cc. \n- Volume of oil tank: approx. 60L \n- Main shafts Center height: approx. 125 mm \n- Flywheel inertia's moment: approx. 0.8kg.M2, \n- Stoke counting: 50-4000 \n- Control temperature of fuel oil (\u00b0C): 40+2 \n- Feed oil pressure: low pressure approx. 0-0.4MPa, high-pressure approx. 0-4Mpa. Internal pressure: 0-0.16MPa, 0-1.6MPa. \n- Rotation direction of Main shafts: Clockwise or Anticlockwise \n- Output power: approx. 5.5kw \n- 3 phase power supply: 380V/50Hz or on request. Internal pressure: 0-0.16MPa, 0- 1.6MPa. \n- Rotation direction of Main shafts: Clockwise or Anticlockwise \n- Output power: approx. 5.5kw \n- 3 phase power supply: 380V/50Hz or on request",
-    "image": "/produk/bangku-uji-diesel-konvensional-conventional-diesel-test-benc-72.png",
-    "inStock": true
+    "image": "/produk/bangku-uji-diesel-konvensional-conventional-diesel-test-benc-72.png"
   },
   {
     "id": "tkro-73",
@@ -3570,8 +3498,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 20319300,
     "description": "Common Rail Injectors Repair Tools \nCommen rail Common rail injector tool, 40 sets dismantling tool. \nDiesel injector removal tool , automotive tool. \nApplication For Injector: Universal for common rail injector. \nCar Engine: Diesel Vehicle",
-    "image": "/produk/common-rail-injectors-repair-tools-73.png",
-    "inStock": true
+    "image": "/produk/common-rail-injectors-repair-tools-73.png"
   },
   {
     "id": "tkro-74",
@@ -3580,8 +3507,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 215250000,
     "description": "Electronic Control Chassis Simulator Tool Set \n-Able to check the value of Interior ABS, Engine (speed, pressure gauge), EPS (lighting) automotive sensor on ECU by eliminating the entire seats in the back side of half of the vehicle. \nSpecification Composition\n-Remove all the seats behind half of actual automobile \n-Vehicular underbody frame, control frame \n-Actual automobile 1/2 \n-Control box (material : steel) \n-Motor three phases 380V, approx. 2.2Kw, 1200 RPM \n-Inverter three phases 380V 3HP",
-    "image": "/produk/electronic-control-chassis-simulator-tool-set-74.png",
-    "inStock": true
+    "image": "/produk/electronic-control-chassis-simulator-tool-set-74.png"
   },
   {
     "id": "tkro-75",
@@ -3590,8 +3516,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 75000000,
     "description": "Untuk pelatihan system suspensI Konfigurasi Satuan pendidikan struktur suspensi. \nDudukan terbalik 360 derajat. \nRoda dan kemudi dipasang di struktur. \nKomposisi FF dalam struktur 360 berdiri terbalik dipasang 60~100 : 1 peredam terpasang Jenis rotasi manual.",
-    "image": "/produk/peralatan-pelatihan-sistem-suspensi-suspension-system-traini-75.png",
-    "inStock": true
+    "image": "/produk/peralatan-pelatihan-sistem-suspensi-suspension-system-traini-75.png"
   },
   {
     "id": "tkro-76",
@@ -3600,8 +3525,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 80062500,
     "description": "Spesifications :\nComposition of Control panel : Temperature display device 2 set, Pressure gauge, Speed control lever, PCB board for speed control, Inverter, Fuse holder, Emergency switch, Key switch, steering device circuit diagram\nAC 220 / 380 V power motors, power pump drive\nTire ground control function\nInput Pressure Gauge from Power Pump-Display Oil temperature in digital\nKEY, TPS, inverters, clusters, diagnostic connector equipped\nCNC Engraving in the front panel aluminum\nApprox. 3 HP driving motor",
-    "image": "/produk/peralatan-pelatihan-sistem-suspensi-suspension-system-traini-75.png",
-    "inStock": true
+    "image": "/produk/peralatan-pelatihan-sistem-suspensi-suspension-system-traini-75.png"
   },
   {
     "id": "tkro-77",
@@ -3610,8 +3534,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 118749997,
     "description": "Vehicle Frame Structure Training Equipment Struktur Rangka Kendaraan \n- Understand the structure by checking vehicle frame directly. \n- Understand differential gear, brake, suspension of rear-wheel drive vehicle frame. \n- Inspection of steering system and worm gear. \n- Disc brake suspension and Rear Wheel Type. \n- Composition : 1 set of rear wheel vehicle frame, steering, rack and pinion, disc brake, differential gear, leaf spring, etc",
-    "image": "/produk/vehicle-frame-structure-training-equipment-77.png",
-    "inStock": true
+    "image": "/produk/vehicle-frame-structure-training-equipment-77.png"
   },
   {
     "id": "tkro-78",
@@ -3620,8 +3543,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 148500000,
     "description": "Specifications :\nComposition : aprrox. 1,500 cc Class Engine, F/F Type Gasoline Engine Assy, Manual Transmission Assy, 1 set of Lighting, Brake system, Steering system, Shock Absorber, Driveshaft, Front Axle, Fuel Tank, Change Lever, Battery, Fuel Motor, Intake, Exhaust system, Controller, Safety Break",
-    "image": "/produk/gasoline-engine-power-train-system-78.png",
-    "inStock": true
+    "image": "/produk/gasoline-engine-power-train-system-78.png"
   },
   {
     "id": "tkro-79",
@@ -3630,8 +3552,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 104000000,
     "description": "Automotive Air Conditioning Training System with Auto Fault \n- Compressor : kira-kira. 5 HP motor, inverter RPM control type. \n- HFC Refrigerant \n- Komposisi : Compressor, condenser, dryer, expansion valve, the orifice tube,the evaporator, Blowers, piping, cooling fans, the unit, the control panel,Motor with speed control, pressure (high, low), temperature gauge. \n- Fault insertion available \n- PCB board available to safety protection",
-    "image": "/produk/automotive-air-conditioning-training-system-with-auto-fault-79.png",
-    "inStock": true
+    "image": "/produk/automotive-air-conditioning-training-system-with-auto-fault-79.png"
   },
   {
     "id": "tkro-80",
@@ -3640,8 +3561,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 120150000,
     "description": "Multiple Automotive Sensor Training System \nSensor Otomotif Consists of:\n- Voltmeter: capable of measuring from 0 to 30 Volts \n- Temperature : It has a temperature probe capable of measuring from 0 \u00b0C to 150 \u00b0C, ideal for the automotive cooling part, \n- IAC valves (minimum valves) \n- Injectors : select between RPM (800-1500-3000-5000) \n- TPS sensor - MAP sensor (3 or more pins) \n- MAF sensor (3 or more pins) \n- IAT sensor (Engine air inlet temperature) \n- ECT sensor (radiator water temperature) \n- Sensor CKP (Hall Effect) \n- Sensor CKP (Magnetic) 2 and 3 pins \n- Sensor CMP (Hall Effect) - 3 pins \n- Sensor CMP (Magnetic) 2 and 3 pins \n- Oscilloscope: shows AC and DC signals from 0 Hz to 200 Khz. Selector of 3 voltage levels 1 V, 0.1 V and 10 Mv,Chooser of 3 levels of attenuation: X1 - X2 - X5",
-    "image": "/produk/multiple-automotive-sensor-training-system-80.jpeg",
-    "inStock": true
+    "image": "/produk/multiple-automotive-sensor-training-system-80.jpeg"
   },
   {
     "id": "tkro-81",
@@ -3650,8 +3570,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 181750000,
     "description": "Automotive ECU Programing Equipment Mesin Bensin 1500 CC dengan cutaway untuk Blok Silinder Dapat mengukur volume injeksi Daya : 220 Volt, kira-kira. \nMotor 180W Kontrol kecepatan motor Sirkuit ECU Program ECU",
-    "image": "/produk/peralatan-pemrograman-ecu-otomotif-automotive-ecu-programing-81.png",
-    "inStock": true
+    "image": "/produk/peralatan-pemrograman-ecu-otomotif-automotive-ecu-programing-81.png"
   },
   {
     "id": "tkro-82",
@@ -3660,8 +3579,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 120000000,
     "description": "Advanced Automotive Electric Circuit Training System Composition \n1) Light circuit practice module \n- Made by LED light system (Head light, Turn signal, Taillight) \n- Experiment panel should be carved in AL coating panel and printed \n- Consist of a headlight, a multi-function switches, relays,connection terminals and so on. \n2) Side Mirror folding practice module \n- Arrangement of parts of Side Mirror folding \n- Consist of a folding set, a connect terminal, side mirror folding switch \n3) Door/ Window circuit practice module \n- Arrangement of parts of Door/Window and checking theory and operation by composing actual window circuit \n- Consist of door actuator, window motor connect terminal, side mirror door switch \n4) Horn circuit practice module \n- Test of horn system circuit \n- Theory education, circuit completion and test of horn system \n5) Ignition practice module \n- Test of Ignition practice module \n- Consist of ignition plug, Gap measuring device, air intake,Vmeasuring Device \n6) Injection practice module \n- Test of Injection practice \n- Consist of 4 injector, delivery pipe, injector Voltage Measuring Device \n7) Multi function input switch module \n- Test of Multi channel input switch \n- Consist of multi function switch, key switch, emergency switch, connector terminal.",
-    "image": "/produk/advanced-automotive-electric-circuit-training-system-82.png",
-    "inStock": true
+    "image": "/produk/advanced-automotive-electric-circuit-training-system-82.png"
   },
   {
     "id": "tkro-83",
@@ -3670,8 +3588,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 144000000,
     "description": "Automotive Electric and Electronic Control Trainer with 8 Types dan Elektronik Otomotif Composition \n1) Practice module for Starter motor circuit \n2) Practice module for Generator circuit \n3) Practice module for Wiper circuit \n4) Practice module for Window circuit \n5) Practice module for electronic ignition circuit \n6) Practice module for multifunctional circuit \n7) Door actuators on left, right \n8) BCM control Type 4 Cabinet type storage space with 2 door",
-    "image": "/produk/automotive-electric-and-electronic-control-trainer-with-8-ty-83.png",
-    "inStock": true
+    "image": "/produk/automotive-electric-and-electronic-control-trainer-with-8-ty-83.png"
   },
   {
     "id": "tkro-84",
@@ -3680,8 +3597,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 74690000,
     "description": "Desktop Type Immobilizer Ignition Control Simulator \nParts of ignition system are set on a panel with power and wiring terminal,being able to be seen the overall system at a glance. \nBy manipulating the controller, able to check the waveforms and changes in accordance with RPM speed. \nThe panel composing the ignition circuit is made with aluminum CNC treated panel. \nSpecification Composition : Crank sensors, injectors, spark plugs, fan, relay, RPM meter, self- diagnosis jack, emergency switches, fuses, Key switch, ATS, TPS, WTS, MAP, HO2S",
-    "image": "/produk/dekstop-type-immobilizzer-ignition-control-simulator-84.jpeg",
-    "inStock": true
+    "image": "/produk/dekstop-type-immobilizzer-ignition-control-simulator-84.jpeg"
   },
   {
     "id": "tkro-85",
@@ -3690,8 +3606,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 86400000,
     "description": "Automobile Data Transmission System CAN Bus Training Stand \n- Able to understand composition of air bag system of automobile and fundamental principles. \n- Understanding the linkage among Safety belts, airbags, PPD (Passenger Presence Detector) and acknowledging operation condition. \n- Measuring change in waveform in accordance to resistance by adjusting the resistance from the seatbelt and air bag. \n- Able to measure by a multimeter, oscilloscope, diagnosis etc. \n- Composition : Driver/passenger seat airbags, airbag modules, seat belts, PPD sensor, air regulators, 2 air tanks (approx. 10L), etc",
-    "image": "/produk/air-bag-system-simulator-with-auto-fault-85.png",
-    "inStock": true
+    "image": "/produk/air-bag-system-simulator-with-auto-fault-85.png"
   },
   {
     "id": "tkro-86",
@@ -3700,8 +3615,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 158000000,
     "description": "Sistem Untuk Transmisi Data Mobil CAN Bus Training Stand \nMobile stand on four wheels \nTraining stand equipped \nCentral control unit \nFunctioning engine control unit \nControl instrument panel \nElectronic steering column locking system \nIgnition lock, key and immobilizer \nCar airbag systems control unit (SRS) \nAutomobile door central locking control unit \nThe car door glass lifting mechanism with controls \nTraining stand ensured the possibility to run diagnostics for all devices installed in the control unit CAN network with automatic help search, including the following diagnostic operations \n- Control unit identification reading \n- Ensured the ability of detected systemic error reading / deletion \n- Ensured the possibility of system parameters control \nEnsured the possibility of the control unit coding / configuration, and the engine actuators activation \nThe stand has a closed structureno visible system installation elements and sealed electrical circuits, wiring \nIn training stand included :\n- Automobile oscilloscope \n- Diagnostics equipment \n- Network power supply (220 / 12V) and a battery (12V) \n- CAN maintenance analyzer",
-    "image": "/produk/automobile-data-transmission-system-can-bus-training-stand-86.png",
-    "inStock": true
+    "image": "/produk/automobile-data-transmission-system-can-bus-training-stand-86.png"
   },
   {
     "id": "tkro-87",
@@ -3710,8 +3624,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 77143551,
     "description": "Recovery, Recycling And Recharging 3R Equipment With Semi Automatic Operation \nAutomatic air purge Digital electronic scale Approx. 2,500 mm recycling hose Leak detector Coupler for high and low pressure Protection for electronic scale Automatic drain of use oil Oil separator for recycling only Dry filter Large pressure gauge Digital pressure vacuumer D.O.T approved tank for recycling purpose only Automatic leak detector, Automatic charging (Manual: Oil injection) approx. 100 mm high pressure \nDigital low pressure gauge Compressor \u2013 High Back Pressure : High pressure more only on the back Refrigerant Discharge R-134A (HFC) or R12 \nCentral Processor Compressor: \u2265 15 cc / REV Vacuum Pressure \u2265 140L / min - 94L / min \nWorking temperature: 10 - 45 degrees Celsius",
-    "image": "/produk/recovery-recycling-and-recharging-3r-equipment-with-semi-aut-87.png",
-    "inStock": true
+    "image": "/produk/recovery-recycling-and-recharging-3r-equipment-with-semi-aut-87.png"
   },
   {
     "id": "tkro-88",
@@ -3720,8 +3633,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 54750000,
     "description": "Spesifikasi :\n1. Motor stater 12 volt\n2. Altenator 12 volt 35 - 60 ah\n3. IC reugulator system\n4. Volt meter dan amper meter\n5. Braket starter dan altenator dibuat fleksibel\n6. Panel wiring diagram untuk perakitan wiring alternator dan starter\n7. Baterai 12 volt 45 ah\n8. Motor listrik 1 HP singel phase 220-230 VAC 50 hz\n9. Stand terbuat dari rangka besi dengan pengecatan oven\n10. Dilengkapi dengan roda caster untuk mobilisasi\n11. Dilengkapi dengan manual book",
-    "image": "/produk/car-starting-and-charging-system-trainer-generator-circuit-88.png",
-    "inStock": true
+    "image": "/produk/car-starting-and-charging-system-trainer-generator-circuit-88.png"
   },
   {
     "id": "tkro-89",
@@ -3730,8 +3642,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 106650000,
     "description": "Alat praktek siswa yang mempelajari perpindahan daya secara mekanis yang terdiri dari pesawat angkat roda gigi, puley dan bantalan. \nDimana siswa dapat merangkai menggunakan rantai, belt serta rangkaian roda gigi untuk mengetahui konsep kerja gaya, torsi dan putaran. \nKonfigurasi minimal : \n-1 Set Mechanics Basics \n-1 Set Simple Machines \n-1 Set Gears and Gear T rains \n-1 Set Friction-Belt Drives \n-1 Set Memeriksa Alat Pembatas dan Pengukur Tegangan Rendah (APP-TR) \n-1 Set Synchronous-Belt Drives \n-1 Set Chain Drives \n-1 Set Pulley Systems - Buku petunjuk Penggunaan",
-    "image": "/produk/mekanikal-trainer-89.jpeg",
-    "inStock": true
+    "image": "/produk/mekanikal-trainer-89.jpeg"
   },
   {
     "id": "tkro-90",
@@ -3740,8 +3651,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 90000000,
     "description": "Pengantar Sistem Penggerak Mekanis, Belt, Rantai, dan Drive roda gigi, Kopling dan Penjajaran Poros. \nKonfigurasi minimal : Paket Motor terdiri dari motor kecepatan konstan dan motor kecepatan variabel \nSpesifikasi : Tegangan : 220 V - arus maksimum 4A \"Paket Motor 1 unit, Kopling \u2013 poros, Penggerak sabuk, Penggerak rantai Penggerak roda gigi, dan kotak alat.",
-    "image": "/produk/peralatan-pelatihan-kendali-sabuk-belt-drive-training-equipm-90.jpeg",
-    "inStock": true
+    "image": "/produk/peralatan-pelatihan-kendali-sabuk-belt-drive-training-equipm-90.jpeg"
   },
   {
     "id": "tkro-91",
@@ -3750,8 +3660,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 171589000,
     "description": "Computer Based Interactive ABS Simulator for Light Vehicle Specification: \n1. Originaly Car ABS component \n2. ABS hydraulic unit \n3. Wheel speed sensor \n4. Brake switch \n5. Brake manometer \n6. Four wheel and road simulator \n7. Master brake and pedal \n8. ABS ECU \n9. Personal computer, LCD monitor, and printer \n10. Indicator lamp \n11. Measuring point",
-    "image": "/produk/computer-based-interactive-abs-simulator-91.png",
-    "inStock": true
+    "image": "/produk/computer-based-interactive-abs-simulator-91.png"
   },
   {
     "id": "tkro-92",
@@ -3760,8 +3669,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 324999997,
     "description": "Digunakan untuk pembelajaran interaktif siswa mengenai pengaturan sistim injeksi mesin diesel commonrail pada kendaraan ringan. \nSpecification: \n1. Originally diesel engine with commonrail system \n2. Commonrail sensors \n3. Commonrail actuators \n4. Turbo charger \n5. Commonrail ECU and Electric driver unit \n6. Accumulator approx.100 AH/12 volt \n7. Engine brake system \n8. Instrument meter \n9. Fuel tank approx. 10 liters \n10. Personal computer, LCD monitor, printer",
-    "image": "/produk/commonrail-engine-simulator-92.png",
-    "inStock": true
+    "image": "/produk/commonrail-engine-simulator-92.png"
   },
   {
     "id": "tkro-93",
@@ -3770,8 +3678,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 142650000,
     "description": "Digunakan untuk pembelajaran interaktif siswa mengenai sistim transmisi otomatis elektronik pada kendaraan ringan. \nSpecification: \n1. Originally electronically automatic transmission \n2. Consist of three speed gear shifting \n3. Torque converter, valve body unit, sensor and ECU \n4. PC, LCD monitor and printer \n5. Gear position shifting \n6. Input speed, output speed and gear ratio",
-    "image": "/produk/electronic-auto-transmission-gear-simulator-93.jpeg",
-    "inStock": true
+    "image": "/produk/electronic-auto-transmission-gear-simulator-93.jpeg"
   },
   {
     "id": "tkro-94",
@@ -3780,8 +3687,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 191250000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistim hybrid electric, seperti arus AC tegangan tinggi, electrical interlock, pengubah arus AC-DC, koneksitas baterai, panel surya dan photovoltaic pada kendaraan ringan Features: \n1. Hybrid drives are essentially meant to meet three objectives: save fuel, reduce emissions, and increase torque/power. \n2. Different hybrid concepts can be employed depending on the required application. \n3. With our system trainees can learn on their own the most important technical fundamentals of hybrid drives. \n4. Based on job orders and fault descriptions students plan diagnostics of individual components, carry out testing on systems and do repair work on original motor vehicle parts. \n5. In the course of measurements and experiments the students acquire practical knowhow for every day on the job and vocational training",
-    "image": "/produk/hybrid-electric-vehicle-parallel-simulator-94.png",
-    "inStock": true
+    "image": "/produk/hybrid-electric-vehicle-parallel-simulator-94.png"
   },
   {
     "id": "tkro-95",
@@ -3790,8 +3696,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 88750000,
     "description": "Specification: \n1. Microcontroller \n2. Drivers \n3. Signal processing \n4. Data acquisition using PC and Monitor LCD",
-    "image": "/produk/vehicle-ecu-trainer-and-simulator-95.png",
-    "inStock": true
+    "image": "/produk/vehicle-ecu-trainer-and-simulator-95.png"
   },
   {
     "id": "tkro-96",
@@ -3800,8 +3705,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 115200000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistim air bag dan seat belt pada kendaraan ringan. \nSpecification: \n1. Air bag sensor consist of: \n- Frontal driver and passenger \n- Side air bag sensor \n2. Air bag actuator/Air Generator consist of: \n- Driver frontal/longitudinal air bag \n- Passenger frontal/longitudinal \n- Passenger and driver side air bag \n- Driver and passenger presentation belt \n3. Frontal and side crash mini car model \n- Frontal collision high truck mini car model with ECU \n- Side collision driver & passenger mini car model with ECU \n4. Air compression/Air supply \n5. Air bag block diagram and measuring point",
-    "image": "/produk/air-bag-simulator-and-trainer-96.png",
-    "inStock": true
+    "image": "/produk/air-bag-simulator-and-trainer-96.png"
   },
   {
     "id": "tkro-97",
@@ -3810,8 +3714,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 75900000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai electronic cruise control pada kendaraan ringan. \nSpecification: \n1. Motorized throttle unit \n2. Full Electronic Cruise ECU \n3. Full Electronic Simulated ECM \n4. 3 Phase asynchronous motor simulated fuel engine plant \n5. Drive wheel simulated powertrain \n6. Sensor digital and analog for cruise panel cluster \n7. Sensor actuator measuring point panel cluster",
-    "image": "/produk/electrionic-cruise-control-simulator-97.png",
-    "inStock": true
+    "image": "/produk/electrionic-cruise-control-simulator-97.png"
   },
   {
     "id": "tkro-98",
@@ -3820,8 +3723,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 93650000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistim kelistrikan lampu dan can bus pada kendaraan ringan. \nSpecification: \n1. Lighting system with head lamp, tail lamp, turning light and interior lamp \n2. All lighting system used can bus \n3. High speed can bus \n4. Low speed can bus \n5. Measuring point of high and low can \n6. Instrument meter using can bus \n7. Lighting and signaling lamp using standard switching in can bus \n8. Battery approx. 12V/50AH",
-    "image": "/produk/lighting-and-can-bus-worksheet-98.jpeg",
-    "inStock": true
+    "image": "/produk/lighting-and-can-bus-worksheet-98.jpeg"
   },
   {
     "id": "tkro-99",
@@ -3830,8 +3732,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 127575000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai mesin yang menggunakan sistim EFI pada kendaraan ringan. \nTrainers and its component consist of: \n1. Engine 4 Cylinder, In-line 16 Valve, VVT-i, Capacity approx. 1.3L \n2. Electronic Ignition \n3. Electronic Fuel Injection \n4. Data Link Connector \n5. Starting System \n6. Charging System \n7. Cooling System \n8. Fuel tank capacity approx. 8 L \n9. Battery approx. 12V/50AH",
-    "image": "/produk/gasoline-engine-trainer-efi-stand-with-wiring-panel-99.png",
-    "inStock": true
+    "image": "/produk/gasoline-engine-trainer-efi-stand-with-wiring-panel-99.png"
   },
   {
     "id": "tkro-100",
@@ -3840,8 +3741,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 79200000,
     "description": "Specifications :\nEMS adalah sistem pengaturan pada engine untuk mengatur pencampuran udara dan BBM yang tepat, waktu pengapian yang akurat, serta pengontrolan sistem-sistem lain pada engine, sesuai dengan kondisi dan beban kerja pada kendaraan",
-    "image": "/produk/engine-management-100.png",
-    "inStock": true
+    "image": "/produk/engine-management-100.png"
   },
   {
     "id": "tkro-101",
@@ -3850,8 +3750,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 75150000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistim air conditioning pada kendaraan ringan. \nSpecification: \n1. Motor approx. 220 VAC/3HP, \n2. Evaporator \n3. Condenser \n4. Filter, thermometer and manometer \n5. PC Conector with software",
-    "image": "/produk/car-air-conditioner-trainer-101.png",
-    "inStock": true
+    "image": "/produk/car-air-conditioner-trainer-101.png"
   },
   {
     "id": "tkro-102",
@@ -3860,8 +3759,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 60075000,
     "description": "Spesifikasi :\nAlat Peraga Smk Otomotif Trainer Sistem Power Window, Alarm, Central Lock ini berfungsi untuk mensimulasikan Sistem power window dan pengaman pada mobil yang meliputi central lock / alarm, Alat peraga ini juga dapat digunakan untuk diagnosa, pemeriksaan, pengukuran dan uji komponen. Pada bagian Panel Tengah Menunjukkan tentang komponen-komponen Sistem Alarm beserta gambar letak komponen pada mobil. Pada Panel kanan Menjelaskan cara kerja sistem power window dengan letak komponen power window pada mobil. Sedangkan untuk Panel kiri menjelaskan tentang cara kerja sistem central lock beserta letak komponen central lock pada mobil.\nSelain itu pada alat peraga ini juga terdapat Simulasi Tes yang dapat di gunakan sebagai uji kompetensi siswa/mahasiswa untuk menguji kemampuan dan penyelesaian masalah pada Sistem Alarm, Power window, Central lock.",
-    "image": "/produk/alarm-central-lock-and-power-windows-stand-with-wiring-panel-102.jpeg",
-    "inStock": true
+    "image": "/produk/alarm-central-lock-and-power-windows-stand-with-wiring-panel-102.jpeg"
   },
   {
     "id": "tkro-103",
@@ -3870,8 +3768,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 81375000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai mesin diesel pada kendaraan ringan. \nSpecification: \n1. Engine: four cylinder, four stroke, water cooling, type in line, Capacity approx. 2000 - 2500cc \n2. Panel Instrument: main key, ampere meter, oil control lamp, water temperature meter \n3. Sub-system: radiator cooling system, approx. 5 liters fuel tank, exhaust system \n4. Power: Battery approx. 12V/40AH",
-    "image": "/produk/diesel-engine-stand-trainer-103.png",
-    "inStock": true
+    "image": "/produk/diesel-engine-stand-trainer-103.png"
   },
   {
     "id": "tkro-104",
@@ -3880,8 +3777,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 56250000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai komponen komponen utama mesin bensin pada kendaraan ringan \nSpecification: \n1. Engine : type in-line, four cylinder, four stroke \n2. Oil pump, Alternator, intake and exhaust manifold \n3. Spark plugs \n4. Engine is mounted on a frame with castors",
-    "image": "/produk/gasoline-engine-cutting-model-104.png",
-    "inStock": true
+    "image": "/produk/gasoline-engine-cutting-model-104.png"
   },
   {
     "id": "tkro-105",
@@ -3890,8 +3786,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 81375000,
     "description": "Diesel Engine Model Training Stand\nDigunakan untuk pembelajaran interaktif mengenai komponen_x005f_x0002_komponen utama mesin diesel pada kendaraan ringan.",
-    "image": "/produk/diesel-engine-model-training-stand-105.png",
-    "inStock": true
+    "image": "/produk/diesel-engine-model-training-stand-105.png"
   },
   {
     "id": "tkro-106",
@@ -3900,8 +3795,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 52850000,
     "description": "Digunakan sebagai perangkat pelatihan prinsip dasar kelistrikan starter dan sistem pengisian daya.",
-    "image": "/produk/car-starting-and-charging-system-trainer-generator-circuit-88.png",
-    "inStock": true
+    "image": "/produk/car-starting-and-charging-system-trainer-generator-circuit-88.png"
   },
   {
     "id": "tkro-107",
@@ -3910,8 +3804,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 63750000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistim hidrolis elektrik pada power steering pada kendaraan ringan.",
-    "image": "/produk/pelatih-kemudi-tenaga-listrik-electric-power-steering-traine-107.png",
-    "inStock": true
+    "image": "/produk/pelatih-kemudi-tenaga-listrik-electric-power-steering-traine-107.png"
   },
   {
     "id": "tkro-108",
@@ -3920,8 +3813,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 65100000,
     "description": "Digunakan untuk pembelajaran interaktif mengenai sistem hidrolik power steering pada kendaraan ringan",
-    "image": "/produk/alat-latih-kemudi-daya-hidraulik-hydraulic-power-steering-tr-108.png",
-    "inStock": true
+    "image": "/produk/alat-latih-kemudi-daya-hidraulik-hydraulic-power-steering-tr-108.png"
   },
   {
     "id": "tkro-109",
@@ -3930,8 +3822,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 102100000,
     "description": "Digunakan untuk pembelajaran rangkaian elektronik kendaraan ringan Minimal Konfigurasi Edutrainer basic power supply with integrated measuring module Universal patch panel Set electrical/electronics components Set motor vehicle mechatronics Set 2mm safety lab cables Set 4mm safety lab cables PSURemote software",
-    "image": "/produk/elektronik-otomotif-trainer-113.png",
-    "inStock": true
+    "image": "/produk/elektronik-otomotif-trainer-113.png"
   },
   {
     "id": "tkro-110",
@@ -3940,8 +3831,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 61050000,
     "description": "Minimal Konfigurasi DC power source (protected) AC power source (protected) A selection of resistors An inductor, parallel-connected to a fluorescent light Two capacitors Transformer A selection of switches: SPST, SPDT, DPDT, NO push button, NC push button, selector switch, knife switch DC relay , AC relay A selection of indicator lights: green, yellow, red Potentiometer DC motor. Solenoid , Buzzer Circuit Breaker with test components Fuse",
-    "image": "/produk/kelistrikan-otomotif-ac-dc-114.png",
-    "inStock": true
+    "image": "/produk/kelistrikan-otomotif-ac-dc-114.png"
   },
   {
     "id": "tkro-111",
@@ -3950,8 +3840,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 215380000,
     "description": "Digunakan untuk pembelajaran instalasi dan penerapan sistem charging unit pada kendaraan listrik 16A 3Phase EV Charger Electric Vehicle Charging Station Type 2 unit EV charging controller unit EV simulator Kit Fullset Motor 5.000 Watt 5KW 1.8 Ton Torsi 100 Nm",
-    "image": "/produk/charging-electric-vehicle-115.png",
-    "inStock": true
+    "image": "/produk/charging-electric-vehicle-115.png"
   },
   {
     "id": "tkro-112",
@@ -3960,8 +3849,7 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 38450000,
     "description": "Digunakan untuk pembelajaran instalasi panel pengaman \nSpecification : 1 unit Resistive load 1 unit 3 phase AC RCD type B 1 unit 3 phase AC 16 A circuit breaker 1 unit 3 phase AC 32 A circuit breaker EV 7,2 KW with Type 2 Plug EV Charging",
-    "image": "/produk/electric-vehicle-charging-protection-116.png",
-    "inStock": true
+    "image": "/produk/electric-vehicle-charging-protection-116.png"
   },
   {
     "id": "tkro-113",
@@ -3970,7 +3858,6 @@ export const SEED_PRODUCTS: Product[] = [
     "category": "tkro",
     "price": 98410000,
     "description": "Digunakan untuk peralatan penunjang untuk pembelajaran dasar penggerak mekanik \nMinimal Konfigurasi: Satu set alat untuk belajar mechanical power transmission. \nYang terdiri dari berbagai ukuran gears, pulleys, and sprockets. \nTopik pembelajaran dasar mekanik, Gears and Gear Trains, Friction-Belt Drives, Synchronous Belt Drives, Chain Drives, Pulley Systems",
-    "image": "/produk/mekanika-trainer-117.png",
-    "inStock": true
+    "image": "/produk/mekanika-trainer-117.png"
   }
 ];
