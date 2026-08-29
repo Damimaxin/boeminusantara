@@ -18,6 +18,8 @@ type Row = {
   price: number;
   stock: number;
   image: string | null;
+  images?: string[];
+  video?: string | null;
   active: boolean;
   sku?: string;
   brand?: string;
@@ -32,6 +34,8 @@ const fromRow = (r: Row): Product => ({
   price: r.price,
   stock: r.stock,
   image: r.image,
+  images: r.images,
+  video: r.video,
   active: r.active,
   sku: r.sku,
   brand: r.brand,
@@ -45,6 +49,8 @@ export type AdminProductInput = {
   price: number;
   stock: number;
   image: string | null;
+  images?: string[];
+  video?: string | null;
   active: boolean;
   sku?: string;
   brand?: string;

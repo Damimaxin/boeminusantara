@@ -52,6 +52,10 @@ export type Product = {
   price: number;
   stock: number;
   image: string | null;
+  /** Galeri hingga 9 foto produk. */
+  images?: string[];
+  /** Video demonstrasi / unboxing produk. */
+  video?: string | null;
   active: boolean;
   sku?: string;
   brand?: string;

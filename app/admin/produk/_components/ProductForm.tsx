@@ -2,7 +2,6 @@
 
 import { useActionState, useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { CATEGORIES } from "@/lib/categories";
 import type { ProductFormState } from "../actions";
@@ -35,7 +34,6 @@ function parseDescriptionMeta(desc: string | undefined) {
   return { sku, brand, standard, dimensions, weight, specBody: desc };
 }
 
-
 export function ProductForm({
   action,
   product,
@@ -50,10 +48,19 @@ export function ProductForm({
 
   const meta = parseDescriptionMeta(product?.description);
 
-  const [imageUrl, setImageUrl] = useState<string>(product?.image ?? "");
-  const [isUploading, setIsUploading] = useState<boolean>(false);
+  // Initialize 9 photo slots
+  const initialPhotos = Array.from({ length: 9 }, (_, i) => {
+    if (i === 0) return product?.image ?? "";
+    if (product?.images && product.images[i]) return product.images[i];
+    return "";
+  });
+
+  const [photos, setPhotos] = useState<string[]>(initialPhotos);
+  const [videoUrl, setVideoUrl] = useState<string>(product?.video ?? "");
+
+  const [uploadingIndex, setUploadingIndex] = useState<number | null>(null); // 0-8 for photos, 9 for video
   const [uploadStatus, setUploadStatus] = useState<string>("");
-  const [isShortening, setIsShortening] = useState<boolean>(false);
+  const [shorteningIndex, setShorteningIndex] = useState<number | null>(null);
 
   const [sku, setSku] = useState<string>(product?.sku ?? meta.sku ?? "");
   const [brand, setBrand] = useState<string>(product?.brand ?? meta.brand ?? "");
@@ -61,17 +68,17 @@ export function ProductForm({
   const [dimensions, setDimensions] = useState<string>(meta.dimensions ?? "");
   const [weight, setWeight] = useState<string>(meta.weight ?? "");
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const field =
     "mt-1 w-full rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3 py-2 text-sm outline-none focus:border-[var(--color-navy)]";
   const label = "block text-sm font-medium text-[var(--color-ink)]";
   const errText = "mt-1 text-xs text-[var(--color-red)]";
 
-  async function handleFileUpload(file: File) {
+  async function handleFileUpload(file: File, slotIndex: number) {
     if (!file) return;
-    setIsUploading(true);
-    setUploadStatus("Mengunggah foto...");
+    setUploadingIndex(slotIndex);
+    setUploadStatus(`Mengunggah file untuk Slot ${slotIndex === 9 ? "Video" : slotIndex + 1}...`);
 
     try {
       const bodyData = new FormData();
@@ -84,45 +91,58 @@ export function ProductForm({
 
       const data = await res.json();
       if (res.ok && data.url) {
-        // Use TinyURL if available, or Supabase public URL
         const finalUrl = data.tinyUrl || data.url;
-        setImageUrl(finalUrl);
-        setUploadStatus("✓ Foto berhasil diunggah cloud storage!");
+        if (slotIndex === 9) {
+          setVideoUrl(finalUrl);
+        } else {
+          setPhotos((prev) => {
+            const next = [...prev];
+            next[slotIndex] = finalUrl;
+            return next;
+          });
+        }
+        setUploadStatus(`✓ Upload Slot ${slotIndex === 9 ? "Video" : slotIndex + 1} Berhasil!`);
       } else {
         setUploadStatus(`Gagal unggah: ${data.error || "Terjadi kesalahan"}`);
       }
-    } catch (err) {
-      setUploadStatus("Gagal menghubungkan ke server unggah.");
+    } catch {
+      setUploadStatus("Gagal menghubungi server unggah.");
     } finally {
-      setIsUploading(false);
+      setUploadingIndex(null);
     }
   }
 
-  async function handleShortenTinyUrl() {
-    if (!imageUrl) return;
-    setIsShortening(true);
+  async function handleShortenUrl(slotIndex: number, currentUrl: string) {
+    if (!currentUrl) return;
+    setShorteningIndex(slotIndex);
     try {
       const res = await fetch("/api/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: imageUrl }),
+        body: JSON.stringify({ url: currentUrl }),
       });
       const data = await res.json();
       if (res.ok && data.shortUrl) {
-        setImageUrl(data.shortUrl);
-        setUploadStatus("✓ URL berhasil disingkat via TinyURL!");
-      } else {
-        setUploadStatus(`Gagal singkat URL: ${data.error || "Service TinyURL offline"}`);
+        if (slotIndex === 9) {
+          setVideoUrl(data.shortUrl);
+        } else {
+          setPhotos((prev) => {
+            const next = [...prev];
+            next[slotIndex] = data.shortUrl;
+            return next;
+          });
+        }
+        setUploadStatus(`✓ URL Slot ${slotIndex === 9 ? "Video" : slotIndex + 1} berhasil disingkat!`);
       }
     } catch {
       setUploadStatus("Gagal menghubungi service TinyURL.");
     } finally {
-      setIsShortening(false);
+      setShorteningIndex(null);
     }
   }
 
   return (
-    <form action={formAction} className="max-w-3xl space-y-6">
+    <form action={formAction} className="max-w-4xl space-y-6">
       {state.error && (
         <div
           className={
@@ -136,7 +156,7 @@ export function ProductForm({
         </div>
       )}
 
-      {/* Informasi Dasar Produk */}
+      {/* Informasi Utama Produk */}
       <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-paper)] p-5 space-y-4">
         <h2 className="text-base font-semibold text-[var(--color-navy)] pb-2 border-b border-[var(--color-line)]">
           Informasi Utama Produk
@@ -153,7 +173,7 @@ export function ProductForm({
             required
             defaultValue={product?.name}
             className={field}
-            placeholder="Misal: (Variable Speed Drive (VSD) Training System)"
+            placeholder="Misal: Variable Speed Drive (VSD) Training System"
           />
           {fe.name && <p className={errText}>{fe.name}</p>}
         </div>
@@ -342,104 +362,228 @@ export function ProductForm({
         </div>
       </div>
 
-      {/* Upload Foto & URL TinyURL Storage */}
-      <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-paper)] p-5 space-y-4">
-        <h2 className="text-base font-semibold text-[var(--color-navy)] pb-2 border-b border-[var(--color-line)] flex items-center justify-between">
-          <span>Foto & Upload Media</span>
-          <span className="text-xs font-normal text-[var(--color-mute)]">Cloud Storage / TinyURL Integration</span>
-        </h2>
-
-        {/* Drag and drop upload box */}
-        <div className="border-2 border-dashed border-[var(--color-navy)]/30 rounded-lg p-6 text-center bg-[var(--color-paper-dim)] hover:bg-[var(--color-paper)] transition">
-          <input
-            type="file"
-            ref={fileInputRef}
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                handleFileUpload(e.target.files[0]);
-              }
-            }}
-          />
-
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="h-12 w-12 rounded-full bg-[var(--color-navy)]/10 text-[var(--color-navy)] flex items-center justify-center text-xl font-bold">
-              📸
-            </div>
-            <p className="text-sm font-medium text-[var(--color-ink)]">
-              Upload foto produk langsung tanpa disimpan lokal
+      {/* Media: 9 Slot Foto + 1 Slot Video */}
+      <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-paper)] p-5 space-y-6">
+        <div className="flex items-center justify-between border-b border-[var(--color-line)] pb-3">
+          <div>
+            <h2 className="text-base font-semibold text-[var(--color-navy)]">
+              Media Produk (9 Slot Foto + 1 Slot Video)
+            </h2>
+            <p className="text-xs text-[var(--color-mute)] mt-0.5">
+              Upload foto & video langsung ke Cloud Storage. URL otomatis disingkat dengan TinyURL.
             </p>
-            <p className="text-xs text-[var(--color-mute)]">
-              Format PNG, JPG, WebP. Foto otomatis disimpan ke Cloud Storage & TinyURL CDN.
-            </p>
-
-            <button
-              type="button"
-              disabled={isUploading}
-              onClick={() => fileInputRef.current?.click()}
-              className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-navy)] text-white text-xs font-semibold rounded-md shadow-sm hover:opacity-90 transition disabled:opacity-50"
-            >
-              {isUploading ? "Mengunggah..." : "📁 Pilih File Foto..."}
-            </button>
-
-            {uploadStatus && (
-              <p className={`mt-2 text-xs font-medium ${uploadStatus.startsWith("✓") ? "text-green-600" : "text-amber-600"}`}>
-                {uploadStatus}
-              </p>
-            )}
           </div>
+          {uploadStatus && (
+            <span className="text-xs font-medium text-green-600 bg-green-50 px-2.5 py-1 rounded border border-green-200">
+              {uploadStatus}
+            </span>
+          )}
         </div>
 
-        <div>
-          <div className="flex items-center justify-between">
-            <label htmlFor="image" className={label}>
-              URL Gambar Produk
-            </label>
+        {/* 9 Slot Foto Grid */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-semibold text-[var(--color-ink)] flex items-center gap-2">
+            <span>📷 Galeri 9 Foto Produk</span>
+            <span className="text-xs font-normal text-[var(--color-mute)]">(Slot 1 = Sampul Utama)</span>
+          </h3>
 
-            {imageUrl && (
-              <button
-                type="button"
-                disabled={isShortening}
-                onClick={handleShortenTinyUrl}
-                className="text-xs text-[var(--color-navy)] hover:underline font-medium flex items-center gap-1"
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {photos.map((url, idx) => (
+              <div
+                key={idx}
+                className={`p-3 rounded-lg border text-xs space-y-2 transition ${
+                  idx === 0
+                    ? "border-[var(--color-navy)] bg-[var(--color-navy)]/5"
+                    : "border-[var(--color-line)] bg-[var(--color-paper-dim)]"
+                }`}
               >
-                🔗 {isShortening ? "Menyingkat..." : "Singkatkan ke TinyURL"}
-              </button>
-            )}
-          </div>
+                <div className="flex items-center justify-between font-semibold">
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-5 w-5 rounded-full bg-[var(--color-navy)] text-white flex items-center justify-center text-[10px]">
+                      {idx + 1}
+                    </span>
+                    {idx === 0 ? "Foto Utama (Sampul)" : `Foto Galeri #${idx + 1}`}
+                  </span>
+                  {url && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPhotos((prev) => {
+                          const next = [...prev];
+                          next[idx] = "";
+                          return next;
+                        });
+                      }}
+                      className="text-red-500 hover:underline"
+                    >
+                      Hapus
+                    </button>
+                  )}
+                </div>
 
-          <input
-            id="image"
-            name="image"
-            type="url"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            className={field}
-            placeholder="https://.../gambar.jpg"
-          />
+                {/* Preview image */}
+                <div className="relative h-28 w-full overflow-hidden rounded border bg-white flex items-center justify-center">
+                  {url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={url}
+                      alt={`Foto slot ${idx + 1}`}
+                      className="h-full w-full object-contain p-1"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = "none";
+                      }}
+                    />
+                  ) : (
+                    <span className="text-[10px] text-[var(--color-mute)]">Kosong (Slot {idx + 1})</span>
+                  )}
+                </div>
+
+                {/* Upload Button & URL input */}
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={(el) => { fileInputRefs.current[idx] = el; }}
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      handleFileUpload(e.target.files[0], idx);
+                    }
+                  }}
+                />
+
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    disabled={uploadingIndex === idx}
+                    onClick={() => fileInputRefs.current[idx]?.click()}
+                    className="flex-1 px-2 py-1.5 bg-[var(--color-navy)] text-white text-[11px] font-medium rounded hover:opacity-90 transition disabled:opacity-50"
+                  >
+                    {uploadingIndex === idx ? "Uploading..." : "📁 Upload Foto"}
+                  </button>
+
+                  {url && (
+                    <button
+                      type="button"
+                      disabled={shorteningIndex === idx}
+                      onClick={() => handleShortenUrl(idx, url)}
+                      className="px-2 py-1.5 border border-[var(--color-line)] bg-white text-[11px] font-medium rounded hover:bg-gray-50 transition"
+                      title="Singkatkan ke TinyURL"
+                    >
+                      🔗 {shorteningIndex === idx ? "..." : "TinyURL"}
+                    </button>
+                  )}
+                </div>
+
+                <input
+                  name={idx === 0 ? "image" : `image_${idx + 1}`}
+                  type="url"
+                  value={url}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setPhotos((prev) => {
+                      const next = [...prev];
+                      next[idx] = val;
+                      return next;
+                    });
+                  }}
+                  className="w-full text-[11px] px-2 py-1 border rounded bg-white outline-none"
+                  placeholder={`https://.../foto-${idx + 1}.jpg`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Live Preview */}
-        {imageUrl && (
-          <div className="mt-3 p-3 rounded-lg border border-[var(--color-line)] bg-[var(--color-paper-dim)] flex items-center gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md border bg-white">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={imageUrl}
-                alt="Preview produk"
-                className="h-full w-full object-contain p-1"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = "none";
+        {/* Hidden inputs to pass all 9 photo URLs to action */}
+        {photos.map((url, i) => (
+          <input key={i} type="hidden" name={`photo_slot_${i + 1}`} value={url} />
+        ))}
+
+        {/* 1 Slot Video Produk */}
+        <div className="border-t border-[var(--color-line)] pt-4 space-y-3">
+          <h3 className="text-sm font-semibold text-[var(--color-ink)] flex items-center gap-2">
+            <span>🎬 Slot 10: Video Demonstrasi / Unboxing Produk</span>
+            <span className="text-xs font-normal text-[var(--color-mute)]">(Opsional — MP4, WebM, MOV, YouTube)</span>
+          </h3>
+
+          <div className="p-4 rounded-lg border border-purple-200 bg-purple-50/50 space-y-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <input
+                type="file"
+                accept="video/*"
+                ref={(el) => { fileInputRefs.current[9] = el; }}
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    handleFileUpload(e.target.files[0], 9);
+                  }
                 }}
               />
+
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <button
+                  type="button"
+                  disabled={uploadingIndex === 9}
+                  onClick={() => fileInputRefs.current[9]?.click()}
+                  className="px-3 py-1.5 bg-purple-700 text-white text-xs font-medium rounded hover:bg-purple-800 transition disabled:opacity-50"
+                >
+                  {uploadingIndex === 9 ? "Uploading Video..." : "📹 Upload Video File"}
+                </button>
+
+                {videoUrl && (
+                  <button
+                    type="button"
+                    disabled={shorteningIndex === 9}
+                    onClick={() => handleShortenUrl(9, videoUrl)}
+                    className="px-3 py-1.5 border border-purple-300 bg-white text-xs font-medium rounded hover:bg-purple-50 transition"
+                  >
+                    🔗 {shorteningIndex === 9 ? "..." : "TinyURL"}
+                  </button>
+                )}
+
+                {videoUrl && (
+                  <button
+                    type="button"
+                    onClick={() => setVideoUrl("")}
+                    className="text-xs text-red-500 hover:underline"
+                  >
+                    Hapus Video
+                  </button>
+                )}
+              </div>
             </div>
-            <div className="text-xs text-[var(--color-ink-soft)] overflow-hidden">
-              <span className="font-semibold text-[var(--color-ink)] block">Preview Foto Terpasang</span>
-              <span className="truncate block opacity-80 mt-1">{imageUrl}</span>
-            </div>
+
+            <input
+              id="video"
+              name="video"
+              type="url"
+              value={videoUrl}
+              onChange={(e) => setVideoUrl(e.target.value)}
+              className={field}
+              placeholder="https://.../video-produk.mp4 atau https://www.youtube.com/watch?v=..."
+            />
+
+            {/* Video Preview */}
+            {videoUrl && (
+              <div className="mt-2 rounded border overflow-hidden bg-black max-w-md">
+                {videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be") ? (
+                  <iframe
+                    className="w-full aspect-video"
+                    src={videoUrl.replace("watch?v=", "embed/")}
+                    title="Preview Video Produk"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    src={videoUrl}
+                    controls
+                    className="w-full max-h-48 object-contain"
+                  />
+                )}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       <div className="flex items-center justify-between p-4 rounded-lg border border-[var(--color-line)] bg-[var(--color-paper)]">
@@ -457,7 +601,7 @@ export function ProductForm({
       <div className="flex items-center gap-4 pt-4">
         <button
           type="submit"
-          disabled={pending || isUploading}
+          disabled={pending || uploadingIndex !== null}
           className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] bg-[var(--color-navy)] px-8 text-sm font-semibold text-[var(--color-paper)] shadow transition hover:opacity-90 disabled:opacity-50"
         >
           {pending ? "Menyimpan Ke Database..." : submitLabel}

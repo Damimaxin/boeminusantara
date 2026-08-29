@@ -42,8 +42,18 @@ function parseForm(formData: FormData): {
   let description = String(formData.get("description") ?? "").trim();
   const priceRaw = String(formData.get("price") ?? "").trim();
   const stockRaw = String(formData.get("stock") ?? "").trim();
-  const image = String(formData.get("image") ?? "").trim();
   const active = formData.get("active") === "on";
+
+  // Collect 9 photo slots
+  const photoSlots: string[] = [];
+  for (let i = 1; i <= 9; i++) {
+    const val = String(formData.get(`photo_slot_${i}`) ?? "").trim();
+    if (val) photoSlots.push(val);
+  }
+
+  // Fallback to 'image' field if photo_slot_1 is empty
+  const mainImage = photoSlots[0] || String(formData.get("image") ?? "").trim() || null;
+  const video = String(formData.get("video") ?? "").trim() || null;
 
   const sku = String(formData.get("sku") ?? "").trim();
   const brand = String(formData.get("brand") ?? "").trim();
@@ -107,7 +117,9 @@ function parseForm(formData: FormData): {
       description: finalDescription,
       price: Math.round(price),
       stock,
-      image: image || null,
+      image: mainImage,
+      images: photoSlots.length > 0 ? photoSlots : undefined,
+      video: video,
       active,
       sku: sku || undefined,
       brand: brand || undefined,
