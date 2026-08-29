@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const { pathname } = url;
 
-  // 1. Subdomain Check: admin.boeminusantara.com or admin.localhost or internal.
+  // 1. Dual Domain Routing: Support both boeminusantara.com and admin.boeminusantara.com
   const isAdminDomain = host.startsWith("admin.") || host.startsWith("internal.");
 
   if (isAdminDomain) {
@@ -34,15 +34,9 @@ export async function middleware(request: NextRequest) {
       url.pathname = `/admin${pathname}`;
       return NextResponse.rewrite(url);
     }
-  } else {
-    // Main domain (boeminusantara.com): Redirect /admin access to admin.boeminusantara.com
-    if (pathname.startsWith("/admin") && host.includes("boeminusantara.com")) {
-      const adminUrl = new URL(`https://admin.boeminusantara.com${pathname}${url.search}`);
-      return NextResponse.redirect(adminUrl);
-    }
   }
 
-  // 2. Supabase Auth Check for /admin and /portal
+  // 2. Supabase Auth Check for /admin and /portal across all domains
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.R5Gv5-Vf-q5w6z-W6z6z";
 
