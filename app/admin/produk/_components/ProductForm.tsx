@@ -17,29 +17,24 @@ const INITIAL: ProductFormState = { ok: false };
 function parseDescriptionMeta(desc: string | undefined) {
   if (!desc) return { sku: "", brand: "", standard: "", dimensions: "", weight: "", specBody: "" };
 
-  let sku = "";
-  let brand = "";
-  let standard = "";
-  let dimensions = "";
-  let weight = "";
-
   const skuMatch = desc.match(/SKU:\s*([^|\n]+)/i);
-  if (skuMatch) sku = skuMatch[1].trim();
+  const sku = skuMatch?.[1]?.trim() ?? "";
 
   const brandMatch = desc.match(/Merk:\s*([^|\n]+)/i);
-  if (brandMatch) brand = brandMatch[1].trim();
+  const brand = brandMatch?.[1]?.trim() ?? "";
 
   const stdMatch = desc.match(/Standar:\s*([^|\n]+)/i);
-  if (stdMatch) standard = stdMatch[1].trim();
+  const standard = stdMatch?.[1]?.trim() ?? "";
 
   const dimMatch = desc.match(/Dimensi[^:\n]*:\s*([^\n]+)/i);
-  if (dimMatch) dimensions = dimMatch[1].trim();
+  const dimensions = dimMatch?.[1]?.trim() ?? "";
 
-  const weightMatch = desc.match(/Bobot|Berat[^:\n]*:\s*([^\n]+)/i);
-  if (weightMatch) weight = weightMatch[1].trim();
+  const weightMatch = desc.match(/(?:Bobot|Berat)[^:\n]*:\s*([^\n]+)/i);
+  const weight = weightMatch?.[1]?.trim() ?? "";
 
   return { sku, brand, standard, dimensions, weight, specBody: desc };
 }
+
 
 export function ProductForm({
   action,
