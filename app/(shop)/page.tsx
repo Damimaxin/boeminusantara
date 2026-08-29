@@ -27,7 +27,6 @@ export default async function HomePage({
   const sort = parseSort(sp.sort);
   const page = Math.max(1, Number(sp.page) || 1);
   const { products, total } = await getProducts({ sort, page });
-  const { products: daidenProducts } = await getProducts({ search: "Daiden", pageSize: 8 });
 
   return (
     <>
@@ -37,29 +36,6 @@ export default async function HomePage({
       <BannerStrip />
 
       <CategoryNav />
-
-      {/* Featured Daiden Showcase Section */}
-      {daidenProducts.length > 0 && (
-        <section className="border-b border-[var(--color-line)] bg-[var(--color-paper-dim)] py-8">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-red)]">Brand Resmi</span>
-                <h2 className="text-xl font-bold tracking-tight text-[var(--color-navy)]">
-                  Katalog Mesin Las &amp; Equipment Daiden Japan 2026
-                </h2>
-              </div>
-              <a
-                href="/cari?q=Daiden"
-                className="text-sm font-medium text-[var(--color-navy)] hover:underline"
-              >
-                Lihat Semua ({daidenProducts.length}+) &rarr;
-              </a>
-            </div>
-            <ProductGrid products={daidenProducts} />
-          </div>
-        </section>
-      )}
 
       <section className="mx-auto max-w-6xl px-4 py-8">
         <h2 className="mb-4 text-lg font-medium tracking-tight">
