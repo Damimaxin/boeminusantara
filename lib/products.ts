@@ -1,8 +1,8 @@
 import type { Product } from "@/lib/types";
 import { SEED_PRODUCTS } from "@/data/seed-products";
 
-const SUPABASE_URL = "https://ospkhjgjrxlogjlegftf.supabase.co";
-const SERVICE_ROLE_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjU3MzUzNywiZXhwIjoyMTAyMTQ5NTM3fQ.QC4FL6VIDquyCysv5y7Qlu8v1ZGvPA4cwIcgHpx-z90";
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const SERVICE_ROLE_JWT = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 export type SortKey = "name" | "price_asc" | "price_desc";
 
@@ -48,41 +48,45 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
   }
 
   // 2. Fetch from Supabase REST API
-  try {
-    let orderQuery = "&order=name.asc";
-    if (q.sort === "price_asc") orderQuery = "&order=price.asc";
-    else if (q.sort === "price_desc") orderQuery = "&order=price.desc";
+  if (SUPABASE_URL && SERVICE_ROLE_JWT) {
+    try {
+      let orderQuery = "&order=name.asc";
+      if (q.sort === "price_asc") orderQuery = "&order=price.asc";
+      else if (q.sort === "price_desc") orderQuery = "&order=price.desc";
 
-    let url = `${SUPABASE_URL}/rest/v1/products?select=*${orderQuery}&limit=100`;
+      let url = `${SUPABASE_URL}/rest/v1/products?select=*${orderQuery}&limit=1000`;
 
-    if (q.category) {
-      url += `&category=eq.${encodeURIComponent(q.category)}`;
-    }
+      if (q.category) {
+        url += `&category=eq.${encodeURIComponent(q.category)}`;
+      }
 
-    if (q.search) {
-      const s = encodeURIComponent(q.search.trim());
-      url += `&or=(name.ilike.*${s}*,brand.ilike.*${s}*,description.ilike.*${s}*)`;
-    }
+      if (q.search) {
+        const s = encodeURIComponent(q.search.trim());
+        url += `&or=(name.ilike.*${s}*,brand.ilike.*${s}*,description.ilike.*${s}*)`;
+      }
 
-    const res = await fetch(url, {
-      headers: {
-        apikey: SERVICE_ROLE_JWT,
-        Authorization: `Bearer ${SERVICE_ROLE_JWT}`,
-        Prefer: "count=exact",
-      },
-      cache: "no-store",
-    });
+      const res = await fetch(url, {
+        headers: {
+          apikey: SERVICE_ROLE_JWT,
+          Authorization: `Bearer ${SERVICE_ROLE_JWT}`,
+          Prefer: "count=exact",
+          "Accept-Profile": "boemi",
+          "Content-Profile": "boemi",
+        },
+        cache: "no-store",
+      });
 
-    if (res.ok) {
-      const data = (await res.json()) as Product[];
-      if (Array.isArray(data)) {
-        for (const item of data) {
-          if (item.id) map.set(item.id, item);
+      if (res.ok) {
+        const data = (await res.json()) as Product[];
+        if (Array.isArray(data)) {
+          for (const item of data) {
+            if (item.id) map.set(item.id, item);
+          }
         }
       }
+    } catch {
+      // Supabase REST fallback
     }
-  } catch {
-    // Supabase REST fallback
   }
 
   let allProducts = Array.from(map.values());
@@ -116,20 +120,24 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/products?slug=eq.${encodeURIComponent(slug)}&limit=1`, {
-      headers: {
-        apikey: SERVICE_ROLE_JWT,
-        Authorization: `Bearer ${SERVICE_ROLE_JWT}`,
-      },
-      cache: "no-store",
-    });
-    if (res.ok) {
-      const data = (await res.json()) as Product[];
-      if (data && data.length > 0) return data[0];
+  if (SUPABASE_URL && SERVICE_ROLE_JWT) {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/products?slug=eq.${encodeURIComponent(slug)}&limit=1`, {
+        headers: {
+          apikey: SERVICE_ROLE_JWT,
+          Authorization: `Bearer ${SERVICE_ROLE_JWT}`,
+          "Accept-Profile": "boemi",
+          "Content-Profile": "boemi",
+        },
+        cache: "no-store",
+      });
+      if (res.ok) {
+        const data = (await res.json()) as Product[];
+        if (data && data.length > 0) return data[0];
+      }
+    } catch {
+      // Fallback
     }
-  } catch {
-    // Fallback
   }
 
   return SEED_PRODUCTS.find(p => p.slug === slug) ?? null;

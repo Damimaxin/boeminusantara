@@ -7,6 +7,8 @@ import AddToQuoteButton from "@/components/AddToQuoteButton";
 import AddToCartButton from "@/components/AddToCartButton";
 import { isInstantBuyable } from "@/lib/checkout";
 
+import ProductGallery from "@/components/ProductGallery";
+
 export const revalidate = 10;
 
 export async function generateMetadata({
@@ -49,22 +51,14 @@ export default async function ProductPage({
       </nav>
 
       <div className="grid gap-8 sm:grid-cols-2 sm:gap-12">
-        {/* Gambar */}
-        <div className="relative aspect-square overflow-hidden border border-[var(--color-line)] bg-[var(--color-paper-dim)]">
-          {product.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={product.image}
-              alt={product.name}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="text-7xl font-light text-[var(--color-line)]">
-                {product.name.charAt(0)}
-              </span>
-            </div>
-          )}
+        {/* Galeri Media (9 Slot Foto + 1 Slot Video) */}
+        <div>
+          <ProductGallery
+            name={product.name}
+            image={product.image}
+            images={product.images}
+            video={product.video}
+          />
         </div>
 
         {/* Info */}

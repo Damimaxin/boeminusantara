@@ -70,9 +70,19 @@ export function AdminSidebar({ isOwner = false }: { isOwner?: boolean }) {
 
       {/* Footer sidebar */}
       <div className="border-t border-white/10 px-5 py-4 text-[11px] text-white/50">
-        <Link href="/" className="hover:text-white/80">
+        <a
+          href={
+            typeof window !== "undefined" &&
+            (window.location.hostname === "localhost" ||
+              window.location.hostname.endsWith(".localhost") ||
+              window.location.hostname === "127.0.0.1")
+              ? "http://localhost:3000"
+              : process.env.NEXT_PUBLIC_SITE_URL || "https://boeminusantara.com"
+          }
+          className="hover:text-white/80 transition inline-block"
+        >
           ← Kembali ke toko
-        </Link>
+        </a>
       </div>
     </aside>
   );

@@ -1,8 +1,8 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ospkhjgjrxlogjlegftf.supabase.co";
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.FzUsEGbikAoTWQRz-_ikcKyXQuniMPwRXhzlweXU7aM";
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export async function middleware(request: NextRequest) {
   const host = (
@@ -45,35 +45,40 @@ export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
   let hasSession = false;
 
-  try {
-    const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          );
-        },
-      },
-    });
-
-    // Use getSession() — reads from cookie, no network round-trip, fast on Edge
-    const { data: { session } } = await supabase.auth.getSession();
-    hasSession = !!session;
-  } catch {
-    // If auth check fails, fail open for main domain, fail closed for admin
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     hasSession = isMainDomain;
+  } else {
+    try {
+      const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+            response = NextResponse.next({ request });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            );
+          },
+        },
+      });
+
+      // Use getSession() — reads from cookie, no network round-trip, fast on Edge
+      const { data: { session } } = await supabase.auth.getSession();
+      hasSession = !!session;
+    } catch {
+      // If auth check fails, fail open for main domain, fail closed for admin
+      hasSession = isMainDomain;
+    }
   }
 
   // Admin subdomain: redirect unauthenticated to login
   if (isAdminDomain && !hasSession && !isAuthPath) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/masuk";
-    loginUrl.searchParams.set("next", "/admin");
+    const nextPath = pathname === "/" ? "/admin" : pathname + request.nextUrl.search;
+    loginUrl.searchParams.set("next", nextPath);
     return NextResponse.redirect(loginUrl);
   }
 

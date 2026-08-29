@@ -1,18 +1,21 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const DEFAULT_URL = "https://ospkhjgjrxlogjlegftf.supabase.co";
-const DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zcGtoamdqcnhsb2dqbGVnZnRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzM1MzcsImV4cCI6MjEwMjE0OTUzN30.FzUsEGbikAoTWQRz-_ikcKyXQuniMPwRXhzlweXU7aM";
-
 let cached: SupabaseClient | null | undefined;
 
 export function getSupabase(): SupabaseClient | null {
   if (cached !== undefined) return cached;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || DEFAULT_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || DEFAULT_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !key) {
+    cached = null;
+    return null;
+  }
 
   cached = createClient(url, key);
   return cached;
 }
 
-export const isSupabaseConfigured = () => true;
+export const isSupabaseConfigured = () =>
+  Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);

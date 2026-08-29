@@ -91,7 +91,7 @@ export async function listMyOrders(user: SessionUser): Promise<PortalOrder[]> {
 
   const { data, error } = await sb
     .from("orders")
-    .select("code, status, total, created_at, address")
+    .select("code, status, total, created_at, address, user_id")
     .order("created_at", { ascending: false });
 
   if (error || !data) return [];

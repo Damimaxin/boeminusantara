@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useTransition } from "react";
 import Link from "next/link";
 import { DEFAULT_CATEGORIES, type Category } from "@/lib/categories";
+import {
+  getCategoriesAction,
+  addCategoryAction,
+  deleteCategoryAction,
+} from "./actions";
 
 export default function AdminKategoriPage() {
   const [categories, setCategories] = useState<Category[]>(DEFAULT_CATEGORIES);
+  const [loading, setLoading] = useState(true);
+  const [isPending, startTransition] = useTransition();
 
   // Form states
   const [newCatName, setNewCatName] = useState("");
@@ -13,67 +20,72 @@ export default function AdminKategoriPage() {
   const [parentSlug, setParentSlug] = useState<string>("root"); // "root" or parent category slug
 
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Load live categories from boemi.categories with fallback to DEFAULT_CATEGORIES
+  useEffect(() => {
+    let isMounted = true;
+    getCategoriesAction()
+      .then((data) => {
+        if (isMounted && data && data.length > 0) {
+          setCategories(data);
+        }
+      })
+      .catch(() => {
+        // Keep DEFAULT_CATEGORIES fallback
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   function handleAddCategory(e: React.FormEvent) {
     e.preventDefault();
     if (!newCatName.trim()) return;
 
-    const slug = (newCatSlug || newCatName)
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9\s-]/g, "")
-      .replace(/\s+/g, "-");
+    setMessage("");
+    setErrorMessage("");
 
-    if (parentSlug === "root") {
-      // Add Main Category
-      const newCategory: Category = {
-        slug,
-        name: newCatName.trim(),
-        subcategories: [],
-      };
-      setCategories([...categories, newCategory]);
-      setMessage(`✓ Kategori Utama "${newCatName}" berhasil ditambahkan!`);
-    } else {
-      // Add Subcategory
-      const updated = categories.map((c) => {
-        if (c.slug === parentSlug) {
-          const subs = c.subcategories || [];
-          return {
-            ...c,
-            subcategories: [
-              ...subs,
-              { slug, name: newCatName.trim(), parentSlug: c.slug },
-            ],
-          };
-        }
-        return c;
-      });
-      setCategories(updated);
-      setMessage(`✓ Sub-kategori "${newCatName}" berhasil ditambahkan!`);
-    }
+    const targetName = newCatName.trim();
+    const targetSlug = newCatSlug.trim();
+    const targetParent = parentSlug;
 
-    setNewCatName("");
-    setNewCatSlug("");
+    startTransition(async () => {
+      const res = await addCategoryAction(targetName, targetSlug, targetParent);
+      if (res.ok && res.categories) {
+        setCategories(res.categories);
+        setMessage(
+          targetParent === "root"
+            ? `✓ Kategori Utama "${targetName}" berhasil disimpan ke database!`
+            : `✓ Sub-kategori "${targetName}" berhasil disimpan!`
+        );
+        setNewCatName("");
+        setNewCatSlug("");
+      } else {
+        setErrorMessage(res.error || "Gagal menambahkan kategori.");
+      }
+    });
   }
 
   function handleDeleteCategory(slug: string, isSub = false, parentSlug?: string) {
     if (!confirm("Apakah Anda yakin ingin menghapus kategori ini?")) return;
 
-    if (!isSub) {
-      setCategories(categories.filter((c) => c.slug !== slug));
-    } else if (parentSlug) {
-      setCategories(
-        categories.map((c) => {
-          if (c.slug === parentSlug) {
-            return {
-              ...c,
-              subcategories: (c.subcategories || []).filter((s) => s.slug !== slug),
-            };
-          }
-          return c;
-        })
-      );
-    }
+    setMessage("");
+    setErrorMessage("");
+
+    startTransition(async () => {
+      const res = await deleteCategoryAction(slug);
+      if (res.ok && res.categories) {
+        setCategories(res.categories);
+        setMessage(`✓ Kategori "${slug}" berhasil dihapus dari database!`);
+      } else {
+        setErrorMessage(res.error || "Gagal menghapus kategori.");
+      }
+    });
   }
 
   return (
@@ -92,14 +104,25 @@ export default function AdminKategoriPage() {
             Kelola Kategori & Sub-kategori
           </h1>
           <p className="text-sm text-[var(--color-ink-soft)]">
-            Atur hierarki kategori jurusan SMK & sub-kategori peralatan praktik.
+            Atur hierarki kategori jurusan SMK & sub-kategori peralatan praktik (Database Schema: boemi.categories).
           </p>
         </div>
+        {loading && (
+          <span className="text-xs text-[var(--color-mute)] animate-pulse">
+            Memuat kategori dari database...
+          </span>
+        )}
       </div>
 
       {message && (
         <div className="p-3 bg-green-50 border border-green-200 text-green-700 text-sm rounded-md font-medium">
           {message}
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-md font-medium">
+          {errorMessage}
         </div>
       )}
 
@@ -159,9 +182,10 @@ export default function AdminKategoriPage() {
 
           <button
             type="submit"
-            className="px-5 py-2 bg-[var(--color-navy)] text-white font-medium text-sm rounded-[var(--radius-card)] hover:opacity-90 transition"
+            disabled={isPending}
+            className="px-5 py-2 bg-[var(--color-navy)] text-white font-medium text-sm rounded-[var(--radius-card)] hover:opacity-90 transition disabled:opacity-50"
           >
-            + Simpan Kategori
+            {isPending ? "Menyimpan..." : "+ Simpan Kategori"}
           </button>
         </form>
       </div>
@@ -188,8 +212,10 @@ export default function AdminKategoriPage() {
                   </h3>
                 </div>
                 <button
+                  type="button"
+                  disabled={isPending}
                   onClick={() => handleDeleteCategory(cat.slug)}
-                  className="text-xs text-red-500 hover:underline font-medium"
+                  className="text-xs text-red-500 hover:underline font-medium disabled:opacity-50"
                 >
                   Hapus
                 </button>
@@ -210,8 +236,10 @@ export default function AdminKategoriPage() {
                       >
                         <span>↳ {sub.name}</span>
                         <button
+                          type="button"
+                          disabled={isPending}
                           onClick={() => handleDeleteCategory(sub.slug, true, cat.slug)}
-                          className="text-red-400 hover:text-red-600 font-bold ml-1"
+                          className="text-red-400 hover:text-red-600 font-bold ml-1 disabled:opacity-50"
                           title="Hapus sub-kategori"
                         >
                           ×

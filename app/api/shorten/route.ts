@@ -1,7 +1,16 @@
 import { NextResponse } from "next/server";
+import { checkAdmin } from "@/lib/admin/auth";
 
 export async function POST(request: Request) {
   try {
+    const adminCheck = await checkAdmin();
+    if (!adminCheck.ok) {
+      return NextResponse.json(
+        { error: "Akses ditolak: Hanya administrator yang diizinkan menyingkat URL." },
+        { status: 401 }
+      );
+    }
+
     const { url } = await request.json();
     if (!url || typeof url !== "string") {
       return NextResponse.json({ error: "URL tidak valid." }, { status: 400 });
