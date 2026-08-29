@@ -100,14 +100,6 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
     });
   }
 
-  // Hard Fail-Safe Guarantee for Daiden
-  if (allProducts.length === 0 && q.search && q.search.toLowerCase().includes("daiden")) {
-    allProducts = SEED_PRODUCTS.filter(p => 
-      p.name?.toLowerCase().includes("daiden") || 
-      p.brand?.toLowerCase().includes("daiden")
-    );
-  }
-
   // Sort
   if (q.sort === "price_asc") {
     allProducts.sort((a, b) => a.price - b.price);
