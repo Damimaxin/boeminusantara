@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { formatIDR } from "@/lib/format";
 import { categoryName } from "@/lib/categories";
+import ProductImage from "@/components/ProductImage";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -10,20 +11,12 @@ export default function ProductCard({ product }: { product: Product }) {
       className="group flex flex-col border border-[var(--color-line)] bg-[var(--color-paper)] transition hover:border-[var(--color-navy)]"
     >
       <div className="relative aspect-square overflow-hidden bg-[var(--color-paper-dim)]">
-        {product.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={product.image}
-            alt={product.name}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <span className="text-4xl font-light text-[var(--color-line)]">
-              {product.name.charAt(0)}
-            </span>
-          </div>
-        )}
+        <ProductImage
+          src={product.image}
+          alt={product.name}
+          fill
+          className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+        />
       </div>
 
       <div className="flex flex-1 flex-col gap-1.5 p-3">

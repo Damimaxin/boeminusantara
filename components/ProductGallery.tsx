@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ProductImage from "@/components/ProductImage";
 
 type ProductGalleryProps = {
   name: string;
@@ -61,20 +62,13 @@ export default function ProductGallery({
       {/* Main Viewport */}
       <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-[var(--color-line)] bg-[var(--color-paper-dim)] flex items-center justify-center">
         {activeMedia.type === "image" ? (
-          activeMedia.url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={activeMedia.url}
-              alt={`${name} - Foto ${activeMedia.index + 1}`}
-              className="h-full w-full object-contain p-2 transition-transform duration-300 hover:scale-105"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="text-7xl font-light text-[var(--color-line)]">
-                {name.charAt(0)}
-              </span>
-            </div>
-          )
+          <ProductImage
+            src={activeMedia.url}
+            alt={`${name} - Foto ${activeMedia.index + 1}`}
+            fill
+            priority
+            className="h-full w-full object-contain p-2 transition-transform duration-300 hover:scale-105"
+          />
         ) : (
           <div className="h-full w-full bg-black flex items-center justify-center">
             {isYouTube ? (
@@ -131,10 +125,10 @@ export default function ProductGallery({
                 }`}
                 title={`Foto ${idx + 1}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <ProductImage
                   src={url}
                   alt={`Thumbnail ${idx + 1}`}
+                  fill
                   className="h-full w-full object-cover"
                 />
                 <span className="absolute bottom-0.5 right-0.5 rounded bg-black/70 px-1 text-[9px] font-bold text-white">
