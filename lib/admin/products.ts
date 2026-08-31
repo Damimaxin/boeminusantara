@@ -120,21 +120,42 @@ export async function listAllProducts(): Promise<Product[]> {
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
+  const decodedId = decodeURIComponent(id || "").trim();
+  if (!decodedId) return null;
+
   const sb = getAdminSupabase();
   if (sb) {
     try {
-      const { data, error } = await sb
+      // Try by id first
+      const { data: dataId } = await sb
         .from("products")
         .select("*")
-        .eq("id", id)
-        .single();
-      if (error) throw error;
-      return data ? fromRow(data as Row) : null;
+        .eq("id", decodedId)
+        .maybeSingle();
+
+      if (dataId) return fromRow(dataId as Row);
+
+      // Try by slug
+      const { data: dataSlug } = await sb
+        .from("products")
+        .select("*")
+        .eq("slug", decodedId)
+        .maybeSingle();
+
+      if (dataSlug) return fromRow(dataSlug as Row);
     } catch {
       // fall through to seed
     }
   }
-  return SEED_PRODUCTS.find((p) => p.id === id) ?? null;
+
+  // Fallback to listAllProducts or SEED_PRODUCTS
+  const all = await listAllProducts();
+  const found = all.find(
+    (p) => p.id === decodedId || p.slug === decodedId || p.name.toLowerCase() === decodedId.toLowerCase()
+  );
+  if (found) return found;
+
+  return SEED_PRODUCTS.find((p) => p.id === decodedId || p.slug === decodedId) ?? null;
 }
 
 /** Simpan produk baru. Return { ok, id?, error? }. */
@@ -171,10 +192,14 @@ export async function updateProduct(
   if (!sb) return { ok: false, error: "preview" };
   try {
     const dbPayload = toDbRow(input);
+    const decodedId = decodeURIComponent(id || "").trim();
+
+    // Update by matching id or slug
     const { error } = await sb
       .from("products")
       .update(dbPayload)
-      .eq("id", id);
+      .or(`id.eq.${decodedId},slug.eq.${decodedId}`);
+
     if (error) throw error;
     return { ok: true };
   } catch (e) {
