@@ -153,6 +153,7 @@ export async function createProductAction(
   await recordAudit({ action: "produk.tambah", target: input!.name, detail: { slug: input!.slug, harga: input!.price } });
   
   // Revalidate ALL storefront & admin paths so newly created product appears immediately
+  revalidatePath("/", "layout");
   revalidatePath("/");
   revalidatePath("/admin/produk");
   revalidatePath("/admin");

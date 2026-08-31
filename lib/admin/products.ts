@@ -57,10 +57,13 @@ export type AdminProductInput = {
   brand?: string;
 };
 
-function toDbRow(input: AdminProductInput) {
+function toDbRow(input: AdminProductInput, generateId = false) {
   const galleryList = Array.isArray(input.images) && input.images.length > 0
     ? input.images
     : (input.image ? [input.image] : []);
+
+  const catCode = (input.category || "gen").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const slugClean = (input.slug || "prod").toLowerCase().replace(/[^a-z0-9]/g, "-").slice(0, 30);
 
   const row: Record<string, any> = {
     slug: input.slug,
@@ -74,6 +77,10 @@ function toDbRow(input: AdminProductInput) {
     active: input.active ?? true,
     updated_at: new Date().toISOString(),
   };
+
+  if (generateId) {
+    row.id = `boemi-${catCode}-${slugClean}-${Date.now().toString(36)}`;
+  }
 
   if (input.sku) row.sku = input.sku;
   if (input.brand) row.brand = input.brand;
@@ -92,7 +99,7 @@ export async function listAllProducts(): Promise<Product[]> {
       const { data, error } = await sb
         .from("products")
         .select("*")
-        .order("name");
+        .order("created_at", { ascending: false });
       if (error) throw error;
       if (data && Array.isArray(data) && data.length > 0) {
         rawProducts = (data as Row[]).map(fromRow);
@@ -168,7 +175,7 @@ export async function createProduct(
   const sb = getAdminSupabase();
   if (!sb) return { ok: false, error: "preview" };
   try {
-    const dbPayload = toDbRow(input);
+    const dbPayload = toDbRow(input, true); // generate non-null ID
     const { data, error } = await sb
       .from("products")
       .insert(dbPayload)
@@ -191,7 +198,7 @@ export async function updateProduct(
   const sb = getAdminSupabase();
   if (!sb) return { ok: false, error: "preview" };
   try {
-    const dbPayload = toDbRow(input);
+    const dbPayload = toDbRow(input, false);
     const decodedId = decodeURIComponent(id || "").trim();
 
     // Update by matching id or slug
