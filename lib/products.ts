@@ -23,32 +23,10 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
   const page = q.page && q.page > 0 ? q.page : 1;
   const offset = (page - 1) * pageSize;
 
-  const map = new Map<string, Product>();
+  let rawProducts: Product[] = [];
+  let fetchedFromDb = false;
 
-  // 1. Seed Products matching query
-  const seedFiltered = SEED_PRODUCTS.filter(p => {
-    if (q.category && p.category && p.category.toLowerCase() !== q.category.toLowerCase()) {
-      return false;
-    }
-    if (q.search) {
-      const s = q.search.toLowerCase().trim();
-      const matchName = p.name && p.name.toLowerCase().includes(s);
-      const matchBrand = p.brand && p.brand.toLowerCase().includes(s);
-      const matchDesc = p.description && p.description.toLowerCase().includes(s);
-      const matchSlug = p.slug && p.slug.toLowerCase().includes(s);
-      const matchId = p.id && p.id.toLowerCase().includes(s);
-      const matchSku = p.sku && p.sku.toLowerCase().includes(s);
-      return matchName || matchBrand || matchDesc || matchSlug || matchId || matchSku;
-    }
-    return true;
-  });
-
-  for (const item of seedFiltered) {
-    const key = (item.slug || item.id).toLowerCase();
-    map.set(key, item);
-  }
-
-  // 2. Fetch from Supabase REST API (overrides seed items with same slug)
+  // 1. Fetch from Supabase REST API (Primary Source)
   if (SUPABASE_URL && SERVICE_ROLE_JWT) {
     try {
       let orderQuery = "&order=name.asc";
@@ -79,15 +57,42 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
 
       if (res.ok) {
         const data = (await res.json()) as Product[];
-        if (Array.isArray(data)) {
-          for (const item of data) {
-            const key = (item.slug || item.id).toLowerCase();
-            map.set(key, item);
-          }
+        if (Array.isArray(data) && data.length > 0) {
+          rawProducts = data;
+          fetchedFromDb = true;
         }
       }
     } catch {
-      // Supabase REST fallback
+      // Fallback below
+    }
+  }
+
+  // 2. Fallback to SEED_PRODUCTS if DB is offline or empty
+  if (!fetchedFromDb) {
+    rawProducts = SEED_PRODUCTS.filter(p => {
+      if (q.category && p.category && p.category.toLowerCase() !== q.category.toLowerCase()) {
+        return false;
+      }
+      if (q.search) {
+        const s = q.search.toLowerCase().trim();
+        const matchName = p.name && p.name.toLowerCase().includes(s);
+        const matchBrand = p.brand && p.brand.toLowerCase().includes(s);
+        const matchDesc = p.description && p.description.toLowerCase().includes(s);
+        const matchSlug = p.slug && p.slug.toLowerCase().includes(s);
+        const matchId = p.id && p.id.toLowerCase().includes(s);
+        const matchSku = p.sku && p.sku.toLowerCase().includes(s);
+        return matchName || matchBrand || matchDesc || matchSlug || matchId || matchSku;
+      }
+      return true;
+    });
+  }
+
+  // 3. Strict Deduplication by normalized name so each product name appears ONLY ONCE
+  const map = new Map<string, Product>();
+  for (const item of rawProducts) {
+    const normKey = (item.name || "").trim().toLowerCase();
+    if (!map.has(normKey)) {
+      map.set(normKey, item);
     }
   }
 

@@ -56,17 +56,11 @@ export type AdminProductInput = {
   brand?: string;
 };
 
-/** Semua produk (aktif + non-aktif) untuk tabel admin — ter-deduplikasi berdasarkan slug. */
+/** Semua produk (aktif + non-aktif) untuk tabel admin — ter-deduplikasi ketat berdasarkan nama. */
 export async function listAllProducts(): Promise<Product[]> {
-  const map = new Map<string, Product>();
+  let rawProducts: Product[] = [];
+  let fetchedFromDb = false;
 
-  // 1. Seed items
-  for (const item of SEED_PRODUCTS) {
-    const key = (item.slug || item.id).toLowerCase();
-    map.set(key, item);
-  }
-
-  // 2. Fetch from DB (overrides seed items with same slug)
   const sb = getAdminSupabase();
   if (sb) {
     try {
@@ -75,15 +69,25 @@ export async function listAllProducts(): Promise<Product[]> {
         .select("*")
         .order("name");
       if (error) throw error;
-      if (data && Array.isArray(data)) {
-        for (const r of data as Row[]) {
-          const item = fromRow(r);
-          const key = (item.slug || item.id).toLowerCase();
-          map.set(key, item);
-        }
+      if (data && Array.isArray(data) && data.length > 0) {
+        rawProducts = (data as Row[]).map(fromRow);
+        fetchedFromDb = true;
       }
     } catch {
       // fall through
+    }
+  }
+
+  if (!fetchedFromDb) {
+    rawProducts = SEED_PRODUCTS;
+  }
+
+  // Deduplicate by normalized name
+  const map = new Map<string, Product>();
+  for (const item of rawProducts) {
+    const normKey = (item.name || "").trim().toLowerCase();
+    if (!map.has(normKey)) {
+      map.set(normKey, item);
     }
   }
 
