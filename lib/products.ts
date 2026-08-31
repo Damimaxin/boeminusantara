@@ -56,9 +56,12 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
       });
 
       if (res.ok) {
-        const data = (await res.json()) as Product[];
+        const data = (await res.json()) as any[];
         if (Array.isArray(data) && data.length > 0) {
-          rawProducts = data;
+          rawProducts = data.map((item) => ({
+            ...item,
+            images: Array.isArray(item.gallery) ? item.gallery : (Array.isArray(item.images) ? item.images : []),
+          }));
           fetchedFromDb = true;
         }
       }
@@ -139,8 +142,14 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
         cache: "no-store",
       });
       if (res.ok) {
-        const data = (await res.json()) as Product[];
-        if (data && data.length > 0) return data[0];
+        const data = (await res.json()) as any[];
+        if (data && data.length > 0) {
+          const item = data[0];
+          return {
+            ...item,
+            images: Array.isArray(item.gallery) ? item.gallery : (Array.isArray(item.images) ? item.images : []),
+          };
+        }
       }
     } catch {
       // Fallback

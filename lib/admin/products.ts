@@ -18,6 +18,7 @@ type Row = {
   price: number;
   stock: number;
   image: string | null;
+  gallery?: string[];
   images?: string[];
   video?: string | null;
   active: boolean;
@@ -34,9 +35,9 @@ const fromRow = (r: Row): Product => ({
   price: r.price,
   stock: r.stock,
   image: r.image,
-  images: r.images,
-  video: r.video,
-  active: r.active,
+  images: Array.isArray(r.gallery) ? r.gallery : (Array.isArray(r.images) ? r.images : []),
+  video: r.video || null,
+  active: r.active ?? true,
   sku: r.sku,
   brand: r.brand,
 });
@@ -55,6 +56,30 @@ export type AdminProductInput = {
   sku?: string;
   brand?: string;
 };
+
+function toDbRow(input: AdminProductInput) {
+  const galleryList = Array.isArray(input.images) && input.images.length > 0
+    ? input.images
+    : (input.image ? [input.image] : []);
+
+  const row: Record<string, any> = {
+    slug: input.slug,
+    name: input.name,
+    category: input.category,
+    description: input.description,
+    price: input.price,
+    stock: input.stock,
+    image: input.image || null,
+    gallery: galleryList,
+    active: input.active ?? true,
+    updated_at: new Date().toISOString(),
+  };
+
+  if (input.sku) row.sku = input.sku;
+  if (input.brand) row.brand = input.brand;
+
+  return row;
+}
 
 /** Semua produk (aktif + non-aktif) untuk tabel admin — ter-deduplikasi ketat berdasarkan nama. */
 export async function listAllProducts(): Promise<Product[]> {
@@ -122,9 +147,10 @@ export async function createProduct(
   const sb = getAdminSupabase();
   if (!sb) return { ok: false, error: "preview" };
   try {
+    const dbPayload = toDbRow(input);
     const { data, error } = await sb
       .from("products")
-      .insert({ ...input, updated_at: new Date().toISOString() })
+      .insert(dbPayload)
       .select("id")
       .single();
     if (error) throw error;
@@ -144,9 +170,10 @@ export async function updateProduct(
   const sb = getAdminSupabase();
   if (!sb) return { ok: false, error: "preview" };
   try {
+    const dbPayload = toDbRow(input);
     const { error } = await sb
       .from("products")
-      .update({ ...input, updated_at: new Date().toISOString() })
+      .update(dbPayload)
       .eq("id", id);
     if (error) throw error;
     return { ok: true };
@@ -161,7 +188,7 @@ export async function getProductStats(lowStockThreshold = 10): Promise<{
   active: number;
   lowStock: number;
   outOfStock: number;
-  inventoryValue: number; // total nilai stok exPPN
+  inventoryValue: number;
 }> {
   const products = await listAllProducts();
   return {
