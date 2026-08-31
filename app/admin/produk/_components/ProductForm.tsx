@@ -104,7 +104,7 @@ export function ProductForm({
 
       const data = await res.json();
       if (res.ok && data.url) {
-        const finalUrl = data.tinyUrl || data.url;
+        const finalUrl = data.url;
         if (slotIndex === 9) {
           setVideoUrl(finalUrl);
         } else {

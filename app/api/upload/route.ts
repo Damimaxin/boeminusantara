@@ -51,30 +51,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // Get public URL
+    // Get direct public CDN URL
     const { data: publicUrlData } = supabase.storage
       .from("products")
       .getPublicUrl(data.path);
 
     const publicUrl = publicUrlData.publicUrl;
 
-    // Optionally fetch TinyURL
-    let tinyUrl = publicUrl;
-    try {
-      const tinyRes = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(publicUrl)}`);
-      if (tinyRes.ok) {
-        const text = await tinyRes.text();
-        if (text.startsWith("http")) {
-          tinyUrl = text.trim();
-        }
-      }
-    } catch {
-      // Fallback to publicUrl if tinyurl service unavailable
-    }
-
     return NextResponse.json({
       url: publicUrl,
-      tinyUrl: tinyUrl,
       filename: file.name,
     });
   } catch (e) {
