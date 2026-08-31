@@ -62,8 +62,10 @@ function parseForm(formData: FormData): {
   const weight = String(formData.get("weight") ?? "").trim();
 
   const fieldErrors: Record<string, string> = {};
-  if (!name) fieldErrors.name = "Nama wajib diisi.";
-  if (!category) fieldErrors.category = "Pilih kategori.";
+  if (!name) fieldErrors.name = "Judul/Nama produk wajib diisi.";
+  if (!category) fieldErrors.category = "Pilih kategori jurusan SMK.";
+  if (!description) fieldErrors.description = "Deskripsi & spesifikasi lengkap produk wajib diisi.";
+  if (!mainImage) fieldErrors.image = "Foto produk wajib diisi (minimal 1 foto utama pada Slot 1).";
 
   const price = Number(priceRaw);
   if (priceRaw === "" || Number.isNaN(price) || price < 0)
@@ -149,8 +151,15 @@ export async function createProductAction(
   }
 
   await recordAudit({ action: "produk.tambah", target: input!.name, detail: { slug: input!.slug, harga: input!.price } });
+  
+  // Revalidate ALL storefront & admin paths so newly created product appears immediately
+  revalidatePath("/");
   revalidatePath("/admin/produk");
   revalidatePath("/admin");
+  revalidatePath("/cari");
+  revalidatePath(`/kategori/${input!.category}`);
+  revalidatePath(`/produk/${input!.slug}`);
+
   redirect("/admin/produk");
 }
 
@@ -177,8 +186,15 @@ export async function updateProductAction(
   }
 
   await recordAudit({ action: "produk.ubah", target: input!.name, detail: { id, harga: input!.price, stok: input!.stock, aktif: input!.active } });
+  
+  // Revalidate ALL storefront & admin paths
+  revalidatePath("/");
   revalidatePath("/admin/produk");
   revalidatePath(`/admin/produk/${id}`);
   revalidatePath("/admin");
+  revalidatePath("/cari");
+  revalidatePath(`/kategori/${input!.category}`);
+  revalidatePath(`/produk/${input!.slug}`);
+
   redirect("/admin/produk");
 }

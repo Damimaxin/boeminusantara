@@ -320,16 +320,18 @@ export function ProductForm({
 
         <div>
           <label htmlFor="description" className={label}>
-            Deskripsi & Spesifikasi Lengkap Produk
+            Deskripsi & Spesifikasi Lengkap Produk <span className="text-red-500">*</span>
           </label>
           <textarea
             id="description"
             name="description"
             rows={5}
+            required
             defaultValue={product?.description}
             className={field}
             placeholder="Spesifikasi & keterangan lengkap produk..."
           />
+          {fe.description && <p className={errText}>{fe.description}</p>}
         </div>
       </div>
 
@@ -350,6 +352,7 @@ export function ProductForm({
               type="number"
               min={0}
               step={1}
+              required
               defaultValue={product?.price}
               className={field}
               placeholder="30880800"
@@ -366,6 +369,7 @@ export function ProductForm({
               name="stock"
               type="number"
               step={1}
+              required
               defaultValue={product?.stock ?? 0}
               className={field}
               placeholder="50"
@@ -397,8 +401,9 @@ export function ProductForm({
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-[var(--color-ink)] flex items-center gap-2">
             <span>📷 Galeri 9 Foto Produk</span>
-            <span className="text-xs font-normal text-[var(--color-mute)]">(Slot 1 = Sampul Utama)</span>
+            <span className="text-xs font-semibold text-red-500">(Minimal 1 Foto Utama/Sampul Wajib Ada!)</span>
           </h3>
+          {fe.image && <p className={errText}>{fe.image}</p>}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {photos.map((url, idx) => (
