@@ -8,7 +8,7 @@ import {
   DEFAULT_PAGE_SIZE,
   type SortKey,
 } from "@/lib/products";
-import { CATEGORIES } from "@/lib/categories";
+import { getDynamicCategories } from "@/lib/categories";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -17,7 +17,6 @@ function parseSort(v?: string): SortKey {
   return v === "price_asc" || v === "price_desc" ? v : "name";
 }
 
-// Kategori populer untuk arahan cepat di empty-state.
 const POPULAR = ["tkro", "titl", "toi", "tav", "tp"];
 
 export async function generateMetadata({
@@ -29,8 +28,9 @@ export async function generateMetadata({
   return { title: q ? `Cari: ${q}` : "Cari" };
 }
 
-function EmptyState({ heading, hint }: { heading: string; hint: string }) {
-  const chips = CATEGORIES.filter((c) => POPULAR.includes(c.slug));
+async function EmptyState({ heading, hint }: { heading: string; hint: string }) {
+  const categories = await getDynamicCategories();
+  const chips = categories.filter((c) => POPULAR.includes(c.slug) || categories.length <= 15);
   return (
     <div className="border border-dashed border-[var(--color-line)] px-6 py-16 text-center">
       <p className="text-base font-medium text-[var(--color-ink)]">{heading}</p>

@@ -44,10 +44,11 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
   });
 
   for (const item of seedFiltered) {
-    if (item.id) map.set(item.id, item);
+    const key = (item.slug || item.id).toLowerCase();
+    map.set(key, item);
   }
 
-  // 2. Fetch from Supabase REST API
+  // 2. Fetch from Supabase REST API (overrides seed items with same slug)
   if (SUPABASE_URL && SERVICE_ROLE_JWT) {
     try {
       let orderQuery = "&order=name.asc";
@@ -80,7 +81,8 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
         const data = (await res.json()) as Product[];
         if (Array.isArray(data)) {
           for (const item of data) {
-            if (item.id) map.set(item.id, item);
+            const key = (item.slug || item.id).toLowerCase();
+            map.set(key, item);
           }
         }
       }

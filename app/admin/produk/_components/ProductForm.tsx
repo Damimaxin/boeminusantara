@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState, useState, useRef } from "react";
+import { useActionState, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { CATEGORIES } from "@/lib/categories";
+import { DEFAULT_CATEGORIES, type Category } from "@/lib/categories";
+import { getCategoriesAction } from "@/app/admin/kategori/actions";
 import type { ProductFormState } from "../actions";
 
 type Action = (
@@ -45,6 +46,18 @@ export function ProductForm({
 }) {
   const [state, formAction, pending] = useActionState(action, INITIAL);
   const fe = state.fieldErrors ?? {};
+
+  const [categoriesList, setCategoriesList] = useState<Category[]>(DEFAULT_CATEGORIES);
+
+  useEffect(() => {
+    let isMounted = true;
+    getCategoriesAction().then((cats) => {
+      if (isMounted && cats && cats.length > 0) {
+        setCategoriesList(cats);
+      }
+    }).catch(() => {});
+    return () => { isMounted = false; };
+  }, []);
 
   const meta = parseDescriptionMeta(product?.description);
 
@@ -241,7 +254,7 @@ export function ProductForm({
               <option value="" disabled>
                 Pilih kategori…
               </option>
-              {CATEGORIES.map((c) => (
+              {categoriesList.map((c) => (
                 <option key={c.slug} value={c.slug}>
                   {c.name}
                 </option>

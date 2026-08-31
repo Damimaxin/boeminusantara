@@ -9,7 +9,7 @@ import {
   DEFAULT_PAGE_SIZE,
   type SortKey,
 } from "@/lib/products";
-import { CATEGORIES, categoryName } from "@/lib/categories";
+import { getDynamicCategories, categoryName } from "@/lib/categories";
 
 function parseSort(v?: string): SortKey {
   return v === "price_asc" || v === "price_desc" ? v : "name";
@@ -23,7 +23,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return { title: categoryName(slug) };
+  const categories = await getDynamicCategories();
+  return { title: categoryName(slug, categories) };
 }
 
 export default async function CategoryPage({
@@ -34,7 +35,8 @@ export default async function CategoryPage({
   searchParams: Promise<{ sort?: string; page?: string }>;
 }) {
   const { slug } = await params;
-  if (!CATEGORIES.some((c) => c.slug === slug)) notFound();
+  const categories = await getDynamicCategories();
+  if (!categories.some((c) => c.slug === slug)) notFound();
 
   const sp = await searchParams;
   const sort = parseSort(sp.sort);
@@ -45,13 +47,15 @@ export default async function CategoryPage({
     page,
   });
 
+  const catTitle = categoryName(slug, categories);
+
   return (
     <>
       <CategoryNav active={slug} />
-      <Breadcrumb label={categoryName(slug)} />
+      <Breadcrumb label={catTitle} />
       <section className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="mb-4 text-lg font-medium tracking-tight">
-          {categoryName(slug)}
+          {catTitle}
         </h1>
         <ProductToolbar total={total} sort={sort} />
         <ProductGrid products={products} />

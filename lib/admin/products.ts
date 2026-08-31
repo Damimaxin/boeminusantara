@@ -56,8 +56,17 @@ export type AdminProductInput = {
   brand?: string;
 };
 
-/** Semua produk (aktif + non-aktif) untuk tabel admin. */
+/** Semua produk (aktif + non-aktif) untuk tabel admin — ter-deduplikasi berdasarkan slug. */
 export async function listAllProducts(): Promise<Product[]> {
+  const map = new Map<string, Product>();
+
+  // 1. Seed items
+  for (const item of SEED_PRODUCTS) {
+    const key = (item.slug || item.id).toLowerCase();
+    map.set(key, item);
+  }
+
+  // 2. Fetch from DB (overrides seed items with same slug)
   const sb = getAdminSupabase();
   if (sb) {
     try {
@@ -66,12 +75,19 @@ export async function listAllProducts(): Promise<Product[]> {
         .select("*")
         .order("name");
       if (error) throw error;
-      return (data as Row[]).map(fromRow);
+      if (data && Array.isArray(data)) {
+        for (const r of data as Row[]) {
+          const item = fromRow(r);
+          const key = (item.slug || item.id).toLowerCase();
+          map.set(key, item);
+        }
+      }
     } catch {
-      // fall through to seed
+      // fall through
     }
   }
-  return [...SEED_PRODUCTS].sort((a, b) => a.name.localeCompare(b.name));
+
+  return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export async function getProductById(id: string): Promise<Product | null> {

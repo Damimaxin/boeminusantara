@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { CATEGORIES } from "@/lib/categories";
+import { getDynamicCategories } from "@/lib/categories";
 
-export default function CategoryNav({ active }: { active?: string }) {
+export default async function CategoryNav({ active }: { active?: string }) {
+  const categories = await getDynamicCategories();
+
   return (
     <div className="border-b border-[var(--color-line)] bg-[var(--color-paper)]">
       <div className="no-scrollbar mx-auto flex max-w-6xl items-center gap-2 overflow-x-auto px-4 py-3">
@@ -18,7 +20,7 @@ export default function CategoryNav({ active }: { active?: string }) {
         >
           🔥 Mesin Las Daiden
         </Link>
-        {CATEGORIES.map((c) => (
+        {categories.map((c) => (
           <Link
             key={c.slug}
             href={`/kategori/${c.slug}`}

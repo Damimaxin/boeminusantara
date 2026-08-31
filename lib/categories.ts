@@ -3,8 +3,9 @@
 export type Category = {
   slug: string;
   name: string;
-  parentSlug?: string | null; // Null if main category, string if sub-category
+  parentSlug?: string | null;
   subcategories?: Category[];
+  sortOrder?: number;
 };
 
 export const DEFAULT_CATEGORIES: Category[] = [
@@ -77,8 +78,60 @@ export const DEFAULT_CATEGORIES: Category[] = [
 
 export const CATEGORIES = DEFAULT_CATEGORIES;
 
-export function categoryName(slug: string): string {
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const SERVICE_ROLE_JWT = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+export async function getDynamicCategories(): Promise<Category[]> {
+  const map = new Map<string, Category>();
+
+  // 1. Seed defaults
   for (const c of DEFAULT_CATEGORIES) {
+    map.set(c.slug.toLowerCase(), { ...c });
+  }
+
+  // 2. Fetch from Supabase DB categories table
+  if (SUPABASE_URL && SERVICE_ROLE_JWT) {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/categories?select=*&order=sort_order.asc`, {
+        headers: {
+          apikey: SERVICE_ROLE_JWT,
+          Authorization: `Bearer ${SERVICE_ROLE_JWT}`,
+          "Accept-Profile": "boemi",
+          "Content-Profile": "boemi",
+        },
+        cache: "no-store",
+      });
+
+      if (res.ok) {
+        const rows = (await res.json()) as { slug: string; name: string; sort_order?: number }[];
+        if (Array.isArray(rows)) {
+          for (const row of rows) {
+            const key = row.slug.toLowerCase();
+            const existing = map.get(key);
+            if (existing) {
+              existing.name = row.name;
+            } else {
+              map.set(key, {
+                slug: row.slug,
+                name: row.name,
+                sortOrder: row.sort_order,
+                subcategories: [],
+              });
+            }
+          }
+        }
+      }
+    } catch {
+      // Fallback to default
+    }
+  }
+
+  return Array.from(map.values());
+}
+
+export function categoryName(slug: string, dynamicCategories?: Category[]): string {
+  const list = dynamicCategories || DEFAULT_CATEGORIES;
+  for (const c of list) {
     if (c.slug === slug) return c.name;
     if (c.subcategories) {
       const sub = c.subcategories.find((s) => s.slug === slug);
