@@ -22,8 +22,15 @@ export default function ProductImage({
   priority = false,
 }: ProductImageProps) {
   const [error, setError] = useState(false);
+  const [prevSrc, setPrevSrc] = useState(src);
 
   const cleanSrc = (src || "").trim();
+
+  // Reset error state if src prop changes
+  if (src !== prevSrc) {
+    setPrevSrc(src);
+    setError(false);
+  }
 
   // Render clean branded fallback placeholder if src is missing, empty, or failed to load
   if (!cleanSrc || error || cleanSrc === "#") {

@@ -100,6 +100,8 @@ export async function addCategoryAction(
       detail: { slug, parentSlug: parentSlug || "root" },
     });
 
+    revalidatePath("/", "layout");
+    revalidatePath("/");
     revalidatePath("/admin/kategori");
     revalidatePath("/admin/produk");
     revalidatePath("/admin/produk/baru");
@@ -134,6 +136,8 @@ export async function deleteCategoryAction(slug: string): Promise<CategoryAction
       detail: { slug },
     });
 
+    revalidatePath("/", "layout");
+    revalidatePath("/");
     revalidatePath("/admin/kategori");
     revalidatePath("/admin/produk");
     revalidatePath("/admin/produk/baru");

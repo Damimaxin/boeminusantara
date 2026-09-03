@@ -2,10 +2,11 @@
 
 import { useActionState, useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { Product } from "@/lib/types";
 import { DEFAULT_CATEGORIES, type Category } from "@/lib/categories";
 import { getCategoriesAction } from "@/app/admin/kategori/actions";
-import type { ProductFormState } from "../actions";
+import { deleteProductAction, type ProductFormState } from "../actions";
 
 type Action = (
   prev: ProductFormState,
@@ -44,10 +45,13 @@ export function ProductForm({
   product?: Product;
   submitLabel: string;
 }) {
+  const router = useRouter();
   const [state, formAction, pending] = useActionState(action, INITIAL);
   const fe = state.fieldErrors ?? {};
 
   const [categoriesList, setCategoriesList] = useState<Category[]>(DEFAULT_CATEGORIES);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -61,9 +65,9 @@ export function ProductForm({
 
   const meta = parseDescriptionMeta(product?.description);
 
-  // Initialize 9 photo slots
+  // Initialize 9 photo slots cleanly from product.image and product.images array
   const initialPhotos = Array.from({ length: 9 }, (_, i) => {
-    if (i === 0) return product?.image ?? "";
+    if (i === 0) return product?.image || product?.images?.[0] || "";
     if (product?.images && product.images[i]) return product.images[i];
     return "";
   });
@@ -82,6 +86,30 @@ export function ProductForm({
   const [weight, setWeight] = useState<string>(meta.weight ?? "");
 
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  async function handleDelete() {
+    if (!product?.id) return;
+    const confirmed = window.confirm(
+      `Apakah Anda yakin ingin menghapus produk "${product.name}"? Tindakan ini tidak dapat dibatalkan.`
+    );
+    if (!confirmed) return;
+
+    setIsDeleting(true);
+    setDeleteError(null);
+    try {
+      const res = await deleteProductAction(product.id);
+      if (res && !res.ok) {
+        setDeleteError(res.error || "Gagal menghapus produk.");
+        setIsDeleting(false);
+      } else {
+        router.push("/admin/produk");
+        router.refresh();
+      }
+    } catch (err: any) {
+      setDeleteError(err?.message || "Gagal menghapus produk.");
+      setIsDeleting(false);
+    }
+  }
 
   const field =
     "mt-1 w-full rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-paper)] px-3 py-2 text-sm outline-none focus:border-[var(--color-navy)]";
@@ -616,20 +644,39 @@ export function ProductForm({
         </label>
       </div>
 
-      <div className="flex items-center gap-4 pt-4">
-        <button
-          type="submit"
-          disabled={pending || uploadingIndex !== null}
-          className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] bg-[var(--color-navy)] px-8 text-sm font-semibold text-[var(--color-paper)] shadow transition hover:opacity-90 disabled:opacity-50"
-        >
-          {pending ? "Menyimpan Ke Database..." : submitLabel}
-        </button>
-        <Link
-          href="/admin/produk"
-          className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] border border-[var(--color-line)] px-6 text-sm font-medium text-[var(--color-ink-soft)] transition hover:bg-[var(--color-paper-dim)]"
-        >
-          Batal
-        </Link>
+      {deleteError && (
+        <div className="rounded-[var(--radius-card)] border border-[var(--color-red)] bg-[var(--color-red)]/5 p-3 text-sm text-[var(--color-red-deep)]">
+          {deleteError}
+        </div>
+      )}
+
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-[var(--color-line)]">
+        <div className="flex items-center gap-4">
+          <button
+            type="submit"
+            disabled={pending || uploadingIndex !== null || isDeleting}
+            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] bg-[var(--color-navy)] px-8 text-sm font-semibold text-[var(--color-paper)] shadow transition hover:opacity-90 disabled:opacity-50"
+          >
+            {pending ? "Menyimpan Ke Database..." : submitLabel}
+          </button>
+          <Link
+            href="/admin/produk"
+            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] border border-[var(--color-line)] px-6 text-sm font-medium text-[var(--color-ink-soft)] transition hover:bg-[var(--color-paper-dim)]"
+          >
+            Batal
+          </Link>
+        </div>
+
+        {product?.id && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={isDeleting || pending}
+            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-5 text-sm font-semibold text-red-600 shadow-sm transition hover:bg-red-100 hover:border-red-300 disabled:opacity-50"
+          >
+            {isDeleting ? "Menghapus..." : "🗑️ Hapus Produk"}
+          </button>
+        )}
       </div>
     </form>
   );

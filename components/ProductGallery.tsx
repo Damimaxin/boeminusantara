@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductImage from "@/components/ProductImage";
 
 type ProductGalleryProps = {
@@ -54,6 +54,15 @@ export default function ProductGallery({
       : { type: "image", url: "", index: 0 }
   );
 
+  // Sync activeMedia if image/images props change dynamically
+  useEffect(() => {
+    if (allImages.length > 0) {
+      setActiveMedia({ type: "image", url: allImages[0], index: 0 });
+    } else if (hasVideo) {
+      setActiveMedia({ type: "video", url: cleanVideo });
+    }
+  }, [image, JSON.stringify(images), video]);
+
   const isYouTube =
     cleanVideo.includes("youtube.com") || cleanVideo.includes("youtu.be");
 
@@ -63,6 +72,7 @@ export default function ProductGallery({
       <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-[var(--color-line)] bg-[var(--color-paper-dim)] flex items-center justify-center">
         {activeMedia.type === "image" ? (
           <ProductImage
+            key={activeMedia.url}
             src={activeMedia.url}
             alt={`${name} - Foto ${activeMedia.index + 1}`}
             fill

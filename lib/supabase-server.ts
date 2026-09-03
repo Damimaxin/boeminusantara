@@ -2,7 +2,7 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-export async function createServerSupabase(): Promise<SupabaseClient | null> {
+export async function createServerSupabase(): Promise<SupabaseClient<any, any, any> | null> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -13,6 +13,7 @@ export async function createServerSupabase(): Promise<SupabaseClient | null> {
   const cookieStore = await cookies();
 
   return createServerClient(url, key, {
+    db: { schema: "boemi" },
     cookies: {
       getAll() {
         return cookieStore.getAll();

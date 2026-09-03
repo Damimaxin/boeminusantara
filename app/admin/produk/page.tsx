@@ -2,6 +2,7 @@ import Link from "next/link";
 import { listAllProducts } from "@/lib/admin/products";
 import { categoryName } from "@/lib/categories";
 import { formatIDR } from "@/lib/format";
+import { DeleteProductButton } from "./_components/DeleteProductButton";
 
 export const metadata = { title: "Daftar Produk" };
 
@@ -114,12 +115,15 @@ export default async function AdminProductsPage() {
                       )}
                     </td>
                     <td className="px-4 py-3.5 text-right">
-                      <Link
-                        href={`/admin/produk/${p.id}`}
-                        className="inline-flex items-center px-3 py-1 bg-[var(--color-navy)]/10 text-[var(--color-navy)] hover:bg-[var(--color-navy)] hover:text-white rounded text-xs font-semibold transition"
-                      >
-                        ✏️ Edit Produk
-                      </Link>
+                      <div className="flex items-center justify-end gap-2">
+                        <Link
+                          href={`/admin/produk/${p.id}`}
+                          className="inline-flex items-center px-3 py-1 bg-[var(--color-navy)]/10 text-[var(--color-navy)] hover:bg-[var(--color-navy)] hover:text-white rounded text-xs font-semibold transition"
+                        >
+                          ✏️ Edit Produk
+                        </Link>
+                        <DeleteProductButton id={p.id} name={p.name} />
+                      </div>
                     </td>
                   </tr>
                 );

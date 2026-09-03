@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { publicOrigin } from "@/lib/site-url";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Konfirmasi tautan email (pemulihan sandi / verifikasi akun) pola SSR resmi.
  *

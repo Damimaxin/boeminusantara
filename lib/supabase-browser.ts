@@ -1,9 +1,9 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-let cached: SupabaseClient | null | undefined;
+let cached: SupabaseClient<any, any, any> | null | undefined;
 
-export function createBrowserSupabase(): SupabaseClient | null {
+export function createBrowserSupabase(): SupabaseClient<any, any, any> | null {
   if (cached !== undefined) return cached;
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -14,7 +14,9 @@ export function createBrowserSupabase(): SupabaseClient | null {
     return null;
   }
 
-  cached = createBrowserClient(url, key);
+  cached = createBrowserClient(url, key, {
+    db: { schema: "boemi" },
+  });
   return cached;
 }
 

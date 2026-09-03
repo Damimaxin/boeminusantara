@@ -74,6 +74,7 @@ function toDbRow(input: AdminProductInput, generateId = false) {
     stock: input.stock,
     image: input.image || null,
     gallery: galleryList,
+    video: input.video || null,
     active: input.active ?? true,
     updated_at: new Date().toISOString(),
   };
@@ -205,6 +206,28 @@ export async function updateProduct(
     const { error } = await sb
       .from("products")
       .update(dbPayload)
+      .or(`id.eq.${decodedId},slug.eq.${decodedId}`);
+
+    if (error) throw error;
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+}
+
+export async function deleteProduct(
+  id: string,
+): Promise<{ ok: boolean; error?: string }> {
+  if (!isAdminDbConnected()) {
+    return { ok: false, error: "preview" };
+  }
+  const sb = getAdminSupabase();
+  if (!sb) return { ok: false, error: "preview" };
+  try {
+    const decodedId = decodeURIComponent(id || "").trim();
+    const { error } = await sb
+      .from("products")
+      .delete()
       .or(`id.eq.${decodedId},slug.eq.${decodedId}`);
 
     if (error) throw error;

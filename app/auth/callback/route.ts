@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { publicOrigin } from "@/lib/site-url";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Callback OAuth (Google) & konfirmasi email.
  * Supabase mengarahkan ke sini dengan ?code=... → tukar jadi session cookie.
