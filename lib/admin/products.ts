@@ -26,21 +26,45 @@ type Row = {
   brand?: string;
 };
 
-const fromRow = (r: Row): Product => ({
-  id: r.id,
-  slug: r.slug,
-  name: r.name,
-  category: r.category,
-  description: r.description,
-  price: r.price,
-  stock: r.stock,
-  image: r.image,
-  images: Array.isArray(r.gallery) ? r.gallery : (Array.isArray(r.images) ? r.images : []),
-  video: r.video || null,
-  active: r.active ?? true,
-  sku: r.sku,
-  brand: r.brand,
-});
+function isVideoLink(url: string): boolean {
+  if (!url || typeof url !== "string") return false;
+  const u = url.toLowerCase();
+  return (
+    u.includes("youtube.com") ||
+    u.includes("youtu.be") ||
+    u.includes("vimeo.com") ||
+    u.endsWith(".mp4") ||
+    u.endsWith(".webm") ||
+    u.endsWith(".mov")
+  );
+}
+
+const fromRow = (r: Row): Product => {
+  const rawGallery = Array.isArray(r.gallery)
+    ? r.gallery
+    : Array.isArray(r.images)
+    ? r.images
+    : [];
+
+  const videoItem = rawGallery.find((g) => isVideoLink(g));
+  const imagesList = rawGallery.filter((g) => g !== videoItem);
+
+  return {
+    id: r.id,
+    slug: r.slug,
+    name: r.name,
+    category: r.category,
+    description: r.description,
+    price: r.price,
+    stock: r.stock,
+    image: r.image,
+    images: imagesList,
+    video: videoItem || r.video || null,
+    active: r.active ?? true,
+    sku: r.sku,
+    brand: r.brand,
+  };
+};
 
 export type AdminProductInput = {
   slug: string;
@@ -58,13 +82,25 @@ export type AdminProductInput = {
 };
 
 function toDbRow(input: AdminProductInput, generateId = false) {
-  const galleryList = Array.isArray(input.images) && input.images.length > 0
-    ? input.images
-    : (input.image ? [input.image] : []);
+  const galleryList =
+    Array.isArray(input.images) && input.images.length > 0
+      ? input.images.filter(Boolean)
+      : input.image
+      ? [input.image]
+      : [];
+
+  // Append video URL to gallery if provided so it is preserved in DB without unmapped video column error
+  if (input.video && input.video.trim()) {
+    const cleanVid = input.video.trim();
+    if (!galleryList.includes(cleanVid)) {
+      galleryList.push(cleanVid);
+    }
+  }
 
   const catCode = (input.category || "gen").toLowerCase().replace(/[^a-z0-9]/g, "");
   const slugClean = (input.slug || "prod").toLowerCase().replace(/[^a-z0-9]/g, "-").slice(0, 30);
 
+  // Strictly include ONLY valid columns existing in boemi.products table schema
   const row: Record<string, any> = {
     slug: input.slug,
     name: input.name,
@@ -74,7 +110,6 @@ function toDbRow(input: AdminProductInput, generateId = false) {
     stock: input.stock,
     image: input.image || null,
     gallery: galleryList,
-    video: input.video || null,
     active: input.active ?? true,
     updated_at: new Date().toISOString(),
   };

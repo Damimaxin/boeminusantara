@@ -18,6 +18,36 @@ export type ProductResult = { products: Product[]; total: number };
 
 export const DEFAULT_PAGE_SIZE = 24;
 
+function isVideoLink(url: string): boolean {
+  if (!url || typeof url !== "string") return false;
+  const u = url.toLowerCase();
+  return (
+    u.includes("youtube.com") ||
+    u.includes("youtu.be") ||
+    u.includes("vimeo.com") ||
+    u.endsWith(".mp4") ||
+    u.endsWith(".webm") ||
+    u.endsWith(".mov")
+  );
+}
+
+function mapRowToProduct(item: any): Product {
+  const rawGallery = Array.isArray(item.gallery)
+    ? item.gallery
+    : Array.isArray(item.images)
+    ? item.images
+    : [];
+
+  const videoItem = rawGallery.find((g: any) => typeof g === "string" && isVideoLink(g));
+  const imagesList = rawGallery.filter((g: any) => g !== videoItem);
+
+  return {
+    ...item,
+    images: imagesList,
+    video: videoItem || item.video || null,
+  };
+}
+
 export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> {
   const pageSize = q.pageSize && q.pageSize > 0 ? q.pageSize : DEFAULT_PAGE_SIZE;
   const page = q.page && q.page > 0 ? q.page : 1;
@@ -58,10 +88,7 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
       if (res.ok) {
         const data = (await res.json()) as any[];
         if (Array.isArray(data) && data.length > 0) {
-          rawProducts = data.map((item) => ({
-            ...item,
-            images: Array.isArray(item.gallery) ? item.gallery : (Array.isArray(item.images) ? item.images : []),
-          }));
+          rawProducts = data.map(mapRowToProduct);
           fetchedFromDb = true;
         }
       }
@@ -72,7 +99,7 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
 
   // 2. Fallback to SEED_PRODUCTS if DB is offline or empty
   if (!fetchedFromDb) {
-    rawProducts = SEED_PRODUCTS.filter(p => {
+    rawProducts = SEED_PRODUCTS.filter((p) => {
       if (q.category && p.category && p.category.toLowerCase() !== q.category.toLowerCase()) {
         return false;
       }
@@ -103,7 +130,7 @@ export async function getProducts(q: ProductQuery = {}): Promise<ProductResult> 
 
   if (q.search) {
     const s = q.search.toLowerCase().trim();
-    allProducts = allProducts.filter(p => {
+    allProducts = allProducts.filter((p) => {
       const matchName = p.name && p.name.toLowerCase().includes(s);
       const matchBrand = p.brand && p.brand.toLowerCase().includes(s);
       const matchDesc = p.description && p.description.toLowerCase().includes(s);
@@ -144,11 +171,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       if (res.ok) {
         const data = (await res.json()) as any[];
         if (data && data.length > 0) {
-          const item = data[0];
-          return {
-            ...item,
-            images: Array.isArray(item.gallery) ? item.gallery : (Array.isArray(item.images) ? item.images : []),
-          };
+          return mapRowToProduct(data[0]);
         }
       }
     } catch {
@@ -156,5 +179,5 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     }
   }
 
-  return SEED_PRODUCTS.find(p => p.slug === slug) ?? null;
+  return SEED_PRODUCTS.find((p) => p.slug === slug) ?? null;
 }
