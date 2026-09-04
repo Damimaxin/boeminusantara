@@ -18,10 +18,13 @@ export default function Pagination({
   basePath: string;
   query?: Record<string, string | undefined>;
 }) {
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const safePageSize = pageSize > 0 && Number.isFinite(pageSize) ? Math.floor(pageSize) : 24;
+  const safeTotal = total > 0 && Number.isFinite(total) ? Math.floor(total) : 0;
+  const totalPages = Math.max(1, Math.ceil(safeTotal / safePageSize));
   if (totalPages <= 1) return null;
 
-  const current = Math.min(Math.max(1, page), totalPages);
+  const safePage = Number.isFinite(page) ? Math.floor(page) : 1;
+  const current = Math.min(Math.max(1, safePage), totalPages);
 
   const hrefFor = (p: number) => {
     const params = new URLSearchParams();

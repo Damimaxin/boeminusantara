@@ -62,6 +62,8 @@ export default function ProductImage({
     );
   }
 
+  const fit = className.includes("object-contain") ? "contain" : "cover";
+
   return (
     <img
       src={cleanSrc}
@@ -69,7 +71,7 @@ export default function ProductImage({
       className={className}
       onError={() => setError(true)}
       loading={priority ? "eager" : "lazy"}
-      style={fill ? { width: "100%", height: "100%", objectFit: "cover" } : undefined}
+      style={fill ? { width: "100%", height: "100%", objectFit: fit } : undefined}
       width={!fill ? width : undefined}
       height={!fill ? height : undefined}
     />

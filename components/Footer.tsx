@@ -85,6 +85,14 @@ export default function Footer() {
             </p>
             <p className="mt-1">Harga belum termasuk PPN.</p>
             <p className="mt-1">Pengiriman ditangani langsung oleh tim kami.</p>
+            <p className="mt-2">
+              <Link
+                href="/masuk"
+                className="text-xs text-[var(--color-mute)] hover:text-[var(--color-navy)]"
+              >
+                Portal Masuk Admin
+              </Link>
+            </p>
           </div>
         </div>
         <p className="mt-8 text-xs text-[var(--color-mute)]">

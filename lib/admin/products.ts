@@ -28,14 +28,15 @@ type Row = {
 
 function isVideoLink(url: string): boolean {
   if (!url || typeof url !== "string") return false;
-  const u = url.toLowerCase();
+  const clean = url.split("?")[0].toLowerCase();
   return (
-    u.includes("youtube.com") ||
-    u.includes("youtu.be") ||
-    u.includes("vimeo.com") ||
-    u.endsWith(".mp4") ||
-    u.endsWith(".webm") ||
-    u.endsWith(".mov")
+    clean.includes("youtube.com") ||
+    clean.includes("youtu.be") ||
+    clean.includes("vimeo.com") ||
+    clean.includes("tinyurl.com") ||
+    clean.endsWith(".mp4") ||
+    clean.endsWith(".webm") ||
+    clean.endsWith(".mov")
   );
 }
 

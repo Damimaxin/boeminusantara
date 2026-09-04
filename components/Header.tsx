@@ -52,9 +52,29 @@ export default function Header() {
             name="q"
             type="search"
             placeholder="Cari alat praktik SMK…"
-            className="h-11 w-full rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-paper-dim)] px-3.5 text-sm outline-none transition focus:border-[var(--color-navy)] focus:bg-[var(--color-paper)]"
+            className="h-11 w-full rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-paper-dim)] pl-3.5 pr-10 text-sm outline-none transition focus:border-[var(--color-navy)] focus:bg-[var(--color-paper)]"
             aria-label="Cari produk"
           />
+          <button
+            type="submit"
+            aria-label="Cari"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-2 text-[var(--color-mute)] transition hover:text-[var(--color-navy)] focus:text-[var(--color-navy)] focus:outline-none"
+          >
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
         </form>
 
         <nav className="flex shrink-0 items-center gap-1 text-sm">

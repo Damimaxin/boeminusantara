@@ -202,11 +202,36 @@ export function formatYouTubeEmbed(url) {
   if (url.includes("youtube.com/watch?v=")) {
     return url.replace("watch?v=", "embed/").split("&")[0];
   }
+  if (url.includes("youtube.com/shorts/")) {
+    const id = url.split("shorts/")[1]?.split("?")[0]?.split("/")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
   if (url.includes("youtu.be/")) {
     const id = url.split("youtu.be/")[1]?.split("?")[0];
     return `https://www.youtube.com/embed/${id}`;
   }
   return url;
+}
+
+export const CATEGORY_ALIASES = {
+  "audio-video": "tav",
+  "pemesinan": "tp",
+  "k3-safety": "k3",
+  "las-fabrikasi": "tp",
+};
+
+export function isVideoLink(url) {
+  if (!url || typeof url !== "string") return false;
+  const clean = url.split("?")[0].toLowerCase();
+  return (
+    clean.includes("youtube.com") ||
+    clean.includes("youtu.be") ||
+    clean.includes("vimeo.com") ||
+    clean.includes("tinyurl.com") ||
+    clean.endsWith(".mp4") ||
+    clean.endsWith(".webm") ||
+    clean.endsWith(".mov")
+  );
 }
 
 // 7. Indonesian Rupiah & Tax Formatters

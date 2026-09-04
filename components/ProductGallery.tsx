@@ -19,6 +19,10 @@ function formatYouTubeEmbed(url: string): string {
   if (url.includes("youtube.com/watch?v=")) {
     return url.replace("watch?v=", "embed/").split("&")[0];
   }
+  if (url.includes("youtube.com/shorts/")) {
+    const id = url.split("shorts/")[1]?.split("?")[0]?.split("/")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
   if (url.includes("youtu.be/")) {
     const id = url.split("youtu.be/")[1]?.split("?")[0];
     return `https://www.youtube.com/embed/${id}`;
@@ -94,6 +98,8 @@ export default function ProductGallery({
                 src={cleanVideo}
                 controls
                 autoPlay
+                muted
+                playsInline
                 className="h-full w-full object-contain"
               />
             )}
